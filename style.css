@@ -9,7 +9,7 @@
 .index-btn{
   display: block;
   width: calc(720px - 80px);
-  font-size: 32px;
+  font-size: 46px;
   margin: 30px 40px 0;
 }
 #program{
@@ -21,7 +21,7 @@
 
 
 .wrap-button{
-  margin-top: 60px;
+  margin-top: 220px;
 }
 .q{
   max-width: 800px;
@@ -30,24 +30,21 @@
   border-radius: 10px;
   background-color: #eee;
 
-  font-size: 32px;
+  font-size: 36px;
   line-height: 120px;
   vertical-align: top;
   text-align: center;
 }
-#answer{
-  font-size: 28px;
-}
 .button{
   display: block;
   max-width: 600px;
-  height: 80px;
+  height: 100px;
   margin: 0 auto 10px;
   border-radius: 50px;
   background-color: #bbb;
 
-  font-size: 36px;
-  line-height: 80px;
+  font-size: 42px;
+  line-height: 100px;
   text-align: center;
   cursor: pointer;
 }
