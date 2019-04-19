@@ -35,7 +35,7 @@ body{
 .wrap-button{
   margin-top: 220px;
 }
-.q{
+.text-field{
   max-width: 800px;
   height: 120px;
   margin: 0 auto 10px;
@@ -60,6 +60,11 @@ body{
   text-align: center;
   cursor: pointer;
 }
+#ask-transcript{
+  display: none;
+}
+
+
 #info{
   display: block;
   padding: 2px 10px;
