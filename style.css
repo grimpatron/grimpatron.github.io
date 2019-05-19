@@ -30,6 +30,7 @@ body{
   margin: 0 20px;
   width: 115px;
   border-radius: 10px;
+  outline:none;           /*обводка кнопки*/
 }
 
 
