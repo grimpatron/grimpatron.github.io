@@ -1,0 +1,90 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+h4{
+  text-align: center;
+  padding-bottom: 10px;
+}
+.wrapper{
+  margin: 0 auto;
+  text-align: center;
+  width: 860px;
+  font-size: 0;
+}
+.ta{
+  margin: 0 auto 10px;
+  padding-top: 5px;
+  background-color: #fefefe;
+  border: 2px solid #eee;
+  width: 440px;
+  height: 36px;
+  font-size: 24px;
+}
+.buttons{
+  padding: 50px 0 50px 0;
+}
+.bt{
+  height: 50px;
+  width: 360px;
+  margin: 20px auto;
+  background-color: #eee;
+  border-radius: 25px;
+  font-size: 36px;
+  cursor: pointer;
+  border: 1px solid silver;
+}
+label{
+  display: block;
+  cursor: pointer;
+}
+
+.viewport,
+.lesson-list,
+.select-words{
+  padding-top: 10px;
+  font-size: 22px;
+  vertical-align: top;
+}
+.viewport{
+  width: 460px;
+  display: inline-block;
+  background-color: lightblue;
+}
+.lesson-list,
+.select-words{
+  display: inline-block;
+  width: 200px;
+  /* background-color: bisque; */
+  text-align: left;
+}
+.check-icon{
+  margin: 10px 15px;
+}
+.check-all-icon{
+  margin: 10px 5px;
+}
+.check-word{
+  margin-bottom: 1px;
+  background: radial-gradient(40% 50%, #FAECD5, #CAE4D8);
+}
+
+.schema{
+  display: inline-block;
+  width: 440px;
+  height: 283px;
+}
+
+
+@media (max-width: 720px) {
+  .wrapper{
+    width: 100%;
+  }
+  .viewport,
+  .lesson-list,
+  .select-words{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
