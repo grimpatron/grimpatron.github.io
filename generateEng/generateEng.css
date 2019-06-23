@@ -26,12 +26,12 @@ h4{
   padding: 0px 0 50px 0;
 }
 .bt{
-  height: 50px;
+  height: 45px;
   width: 360px;
   margin: 20px auto;
   background-color: #eee;
   border-radius: 25px;
-  font-size: 36px;
+  font-size: 32px;
   cursor: pointer;
   border: 1px solid silver;
 }
@@ -42,18 +42,17 @@ label{
 .header{
   display: block;
   width: 100%;
-  padding-top: 10px;
-  font-size: 25px;
   color: black;
 }
 .header span{
   padding: 10px 10px;
 }
+.header,
 .viewport,
 .lesson-list,
 .select-words{
   padding-top: 10px;
-  font-size: 22px;
+  font-size: 20px;
   vertical-align: top;
 }
 .viewport{
