@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="generateEng.css"/>
 </head>
 <body>
   <div class="wrapper">
+    <a class="header" href="../index.html"><span>Вернуться в меню</span></a>
 
     <div class="lesson-list">
       <h4>Выбрать Урок</h4>
@@ -19,8 +19,10 @@
     <div class="viewport">
       <div class="ta" id="rus"></div>
       <div class="ta" id="eng"></div>
-      <img class="schema" id="schema" src="image/poliglot-1mini.jpg">
-      <p class="bt" class="show-schema" id="show-schema">Показать схему</p>
+
+      <img id="schema-image" src="image/poliglot-1mini.jpg" style="opacity: 0">
+      <p class="bt" id="show-schema">Показать схему</p>
+
       <div class="buttons">
         <div class="bt" id="next">Дальше</div>
         <div class="bt" id="answer">Ответ</div>

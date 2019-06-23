@@ -39,7 +39,16 @@ label{
   display: block;
   cursor: pointer;
 }
-
+.header{
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  font-size: 25px;
+  color: black;
+}
+.header span{
+  padding: 10px 40px;
+}
 .viewport,
 .lesson-list,
 .select-words{
@@ -55,7 +64,6 @@ label{
 .select-words{
   display: inline-block;
   width: 200px;
-  /* background-color: bisque; */
   text-align: left;
 }
 .check-icon{
@@ -69,22 +77,38 @@ label{
   background: radial-gradient(40% 50%, #FAECD5, #CAE4D8);
 }
 
-.schema{
+#schema-image{
   display: inline-block;
   width: 440px;
   height: 283px;
 }
 
 
-@media (max-width: 720px) {
+
+@media (max-width: 768px) {
+  body{
+    width: 100%;
+  }
   .wrapper{
     width: 100%;
   }
+  .header,
+  .lesson-list {
+    width: 50%;
+    display: inline-block;
+  }
   .viewport,
-  .lesson-list,
   .select-words{
     display: block;
     width: 100%;
     margin: 0 auto;
+  }
+  .ta,
+  .bt,
+  .schema {
+    width: 96%;
+  }
+  .schema{
+    height: auto;
   }
 }
