@@ -47,7 +47,7 @@ label{
   color: black;
 }
 .header span{
-  padding: 10px 40px;
+  padding: 10px 10px;
 }
 .viewport,
 .lesson-list,
@@ -105,10 +105,10 @@ label{
   }
   .ta,
   .bt,
-  .schema {
-    width: 96%;
+  #schema-image {
+    width: 98%;
   }
-  .schema{
+  #schema-image{
     height: auto;
   }
 }
