@@ -5,27 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="generateEng.css"/>
+  <link rel="stylesheet" href="../style.css"/>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="generate-wrapper">
     <a class="header" href="../index.html"><span>Назад в меню</span></a>
 
     <div class="lesson-list">
       <h4>Выбрать Урок</h4>
-      <div id="select-lesson">
-      </div>
+      <div id="select-lesson"></div>
     </div>
 
-    <div class="viewport">
-      <div class="ta" id="rus"></div>
-      <div class="ta" id="eng"></div>
+    <div class="generate-viewport">
+      <div class="generate-text-fields">
+        <div class="generate-ta" id="rus"></div>
+        <div class="generate-ta" id="eng"></div>
+      </div>
 
-      <img id="schema-image" src="image/poliglot-1mini.jpg" style="opacity: 0">
-      <p class="bt" id="show-schema">Показать схему</p>
+      <div class="generate-shema">
+        <img id="schema-image" src="image/poliglot-1mini.jpg" style="opacity: 0">
+        <button class="generate-btn" id="show-schema">Показать схему</button>
+      </div>
 
-      <div class="buttons">
-        <div class="bt" id="next">Дальше</div>
-        <div class="bt" id="answer">Ответ</div>
+      <div class="generate-buttons">
+        <button class="generate-btn" id="next">Дальше</button>
+        <button class="generate-btn" id="answer">Ответ</button>
       </div>
     </div>
 

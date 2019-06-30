@@ -1,20 +1,16 @@
-*{
-  margin: 0;
-  padding: 0;
-}
 h4{
   text-align: center;
   padding-bottom: 10px;
 }
-.wrapper{
+.generate-wrapper{
   background-color: lightblue;
   margin: 0 auto;
   text-align: center;
   width: 860px;
   font-size: 0;
 }
-.ta{
-  margin: 0 auto 10px;
+.generate-ta{
+  margin: 0 auto 5px;
   padding-top: 5px;
   background-color: #fefefe;
   border: 2px solid #eee;
@@ -22,13 +18,13 @@ h4{
   height: 36px;
   font-size: 24px;
 }
-.buttons{
+.generate-buttons{
   padding: 0px 0 50px 0;
 }
-.bt{
+.generate-btn{
   height: 45px;
   width: 360px;
-  margin: 20px auto;
+  margin: 10px auto;
   background-color: #eee;
   border-radius: 25px;
   font-size: 32px;
@@ -48,14 +44,14 @@ label{
   padding: 10px 10px;
 }
 .header,
-.viewport,
+.generate-viewport,
 .lesson-list,
 .select-words{
   padding-top: 10px;
-  font-size: 20px;
+  font-size: 18px;
   vertical-align: top;
 }
-.viewport{
+.generate-viewport{
   width: 460px;
   display: inline-block;
 }
@@ -88,7 +84,7 @@ label{
   body{
     width: 100%;
   }
-  .wrapper{
+  .generate-wrapper{
     width: 100%;
   }
   .header,
@@ -96,14 +92,14 @@ label{
     width: 50%;
     display: inline-block;
   }
-  .viewport,
+  .generate-viewport,
   .select-words{
     display: block;
     width: 100%;
     margin: 0 auto;
   }
-  .ta,
-  .bt,
+  .generate-ta,
+  .generate-btn,
   #schema-image {
     width: 98%;
   }

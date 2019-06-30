@@ -133,7 +133,8 @@ function blessRNG(){
 
 function step2(){
   currentEnglishVerb = verbsEngArr[verbRnd];
-  
+
+  /* Спряжение глагола */
   if (X >= 0 && X <= 2){
     verbRusRnd = 10 * verbRnd;
   } else if (X >= 3 && X <= 5){
@@ -147,13 +148,11 @@ function step2(){
       verbRusRnd = 9 + (10 * verbRnd);
     }
   }
-
+  
   if (X == 0){
     toDo1 = toDo1Arr[1];
-  } else if (X == 3 && pronRnd < 4){
-    toDo1 = toDo1Arr[2];
-  } else if (X == 3 && pronRnd >= 4 ){
-    toDo1 = toDo1Arr[3];
+  } else if (X == 3){
+    pronRnd < 4 ? toDo1 = toDo1Arr[2] : toDo1 = toDo1Arr[3];
   } else if (X == 6 ){
     toDo1 = toDo1Arr[4];
   } else {
@@ -164,10 +163,8 @@ function step2(){
     toDo2 = toDo2Arr[1];
   } else if (X == 2){
     toDo2 = toDo2Arr[2];
-  } else if (X == 5 && pronRnd < 4){
-    toDo2 = toDo2Arr[3];
-  } else if (X == 5 && pronRnd >= 4 ){
-    toDo2 = toDo2Arr[4];
+  } else if (X == 5){
+    (pronRnd < 4) ? toDo2 = toDo2Arr[3] : toDo2 = toDo2Arr[4];
   } else if (X == 8 ){
     toDo2 = toDo2Arr[5];
   } else {
@@ -195,6 +192,7 @@ function step2(){
   } else {
     ending = "";
   }
+
   (X == 0 || X == 1 || X == 2) ? rusQ = WillRus[pronRnd] : rusQ = "";
   (X == 2 || X == 5 || X == 8 || X == 11) ? rusN = "не" : rusN = "";
   (X == 0 || X == 3 || X == 6 || X == 9) ? pMark = "?" : pMark = "";
