@@ -1,0 +1,84 @@
+/* Базовые стили демо-страницы */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 22px;
+}
+
+/* Компоненты аккордеона. */
+.accordion_item,
+.acc-item {
+  border-bottom: 1px solid #5a95fd;
+}
+.accordion_item:last-of-type,
+.acc-item:last-of-type {
+  border-bottom: none;
+}
+
+/* Элемент label который запускает открыть/закрыть. */
+.accordion_trigger,
+.acc-trig {
+  display: block;
+  background-color: #007ccf;
+  color: #ddd;
+  cursor: pointer;
+  padding: 1em;
+  user-select: none;    /* запрещено выделять элемент.*/
+}
+
+/* меняем цвет фона у активного переключателя */
+.accordion_toggle:checked ~ .accordion_trigger,
+.acc-togg:checked ~ .acc-trig {
+  background-color: #005d9c;
+}
+
+/* эти элементы radio/checkbox всегда должны быть скрыты. */
+.accordion_toggle,
+.acc-togg {
+  position: absolute;
+  display: none;
+}
+
+/* скрытое содержание аккордеона. */
+.accordion_target,
+.acc-targ {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  background-color: #fafafa;
+  color: #444;
+}
+
+/* когда переключатель checked на radio/checkbox, показать содержимое аккордеона. */
+.accordion_toggle:checked ~ .accordion_target,
+.acc-togg:checked ~ .acc-targ {
+  position: static;
+  overflow: visible;
+  width: auto;
+  height: auto;
+  margin: auto;
+  clip: auto;
+  padding: 1.5rem;
+	
+/* задержка появления  функция анимации */
+  animation:fadeIn ease-in 0.4s;
+}
+
+/* анимация при появлении блоков с содержанием */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1 }
+}
+
+
+
+fieldset{
+  padding: 10px; 
+  margin: 10px -10px 0;
+}

@@ -1,0 +1,115 @@
+/***   Общие стили   ***/
+body {
+    margin: 0;
+    background-color: #3e94ec;
+    font-size: 16px;
+    font-family: helvetica, arial, sans-serif;
+    text-rendering: optimizeLegibility; /*делает особый акцент на скорость отображения в ущерб удобочитаемости и геометрической четкости.*/
+}
+li {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+
+.wrapper {
+    width: 720px;
+    margin: auto;
+}
+
+/***   Header Styles	***/
+header {
+    margin: auto;
+    max-width: 720px;
+    width: 100%;
+}
+header h1 {
+    margin: 0;
+    color: #fafafa;
+    padding: 20px;
+    font-size: 34px;
+    font-weight: 400;
+    font-family: helvetica, arial, sans-serif;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+        
+/***   СТИЛИ ГЛАВНОЙ СТРАНИЦЫ   ***/
+.main_menu {
+    padding: 0 40px;
+    margin: 0;
+}
+.long-link {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+nav li a{
+    font-size: 48px;
+    color:#666B85;
+    display: block;
+    margin: 0 10px 16px;
+    padding: 9px 30px;
+    border: 2px solid #4E5066;
+    border-radius: 35px;
+    box-shadow: 8px 6px 5px rgba(0,0,0,.4);
+    background: linear-gradient(#EBEBEB, #BCC);
+}
+.one-inline,
+.two-inline,
+.thre-inline {
+    display: block;
+    margin: 0 -20px;
+}
+.two-inline a {
+    width: 252px;
+    display: inline-block;
+}
+.thre-inline a {
+    width: 138px;
+    display: inline-block;
+}
+
+.more_pages_links {
+    width: 680px;
+    display: flex;
+}
+.more_pages_links a span {
+    margin: 0 20px 20px 0;
+}
+.four_inline {
+    width: 105px;
+}
+.five_inline {
+    width: 72px;
+}
+
+.four_inline,
+.five_inline {
+    margin: 0 10px 20px 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    color: #3e94ec;
+    text-align: center;
+    font-size: 46px;
+    border-radius: 35px;
+    box-shadow: 10px 6px 5px rgba(0,0,0,.4);
+}
+
+/*GreenLight - означает что номера правильные*/
+.gl{
+    background: linear-gradient(#EBffEB, #BfC);
+}
+
+.clr1{background: #FCF78A}  .clr1d{background: #A49F2D}  .clr1l{background: #FEFBBE}
+.clr2{background: #FF8E00}  .clr2d{background: #A65C00}  .clr2l{background: #FFC173}
+.clr3{background: #007ECF}  .clr3d{background: #005287}  .clr3l{background: #68B5E7}
+.clr4{background: #00D76F}  .clr4d{background: #008B48}  .clr4l{background: #6AEBAD}
+.clr5{background: #FF4100}  .clr5d{background: #A62A00}  .clr5l{background: #FF9773}
+.clr6{background: #D5FB00}  .clr6d{background: #8BA300}  .clr6l{background: #E8FD72}
+.clr7{background: #736AAF}  .clr7d{background: #2D2272}  .clr7l{background: #AFA8D7}
+.clr8{background: #00CCBD}  .clr8d{background: #00857B}  .clr8l{background: #67E6DC}
+.clr9{background: #59A292}  .clr9d{background: #1D6A58}  .clr9l{background: #9DD1C5}
+.clrx{background: #FCD18A}  .clrxd{background: #A4772D}  .clrxl{background: #FEE6BE}
+.clrz{background: #EC0033}  .clrzd{background: #990021}  .clrzl{background: #F56E8B}
