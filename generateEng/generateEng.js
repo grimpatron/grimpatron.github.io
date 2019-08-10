@@ -11,15 +11,12 @@ let showSchemaOn = 0;
 let binaryVerbs = [];
 let rndX = null; //order time and form
 let rndPron = null; // random pronouns
-/*new*/let rndPron2 = null;
 let rndVerbEng = null;
 let rndVerbRus = null;
 let curVerbEng = "";
 let curVerbRus = "";
 let curPronEng = "";
-/*new*/let curPronEng2 = "";
 let curPronRus = "";
-/*new*/let curPronRus2 = "";
 let curToDo1 = "";
 let curToDo2 = "";
 let curToDoRusQ = "";
@@ -29,41 +26,35 @@ let curSign = "";
 let listVerbEng = [];
 let listVerbRus = [];
 let listPastSimple = [];
-var arrPastSimple = []; // для фторой формы нерпавильных глаголав (обычный глагол - пустая строка)
+let arrPastSimple = []; // для фторой формы нерпавильных глаголав (обычный глагол - пустая строка)
 let arrPronEng = ["I", "you", "we", "they", "he", "she"];   // pronouns English
 let arrPronRus = ["я", "ты", "мы", "они", "он", "она"];     // pronouns Russian
+  let arrToDo = ["", "will", "do", "does", "did", "will not", "don't", "doesn't", "didn't"]; // вспомогательные слова (весто arrToDo1 и arrToDo2)
 let arrToDo1 = ["", "will", "do", "does", "did"];           // вспомогательное слово перед местоимением
-let arrToDo2 = ["", "will", "will Not", "don't", "does'nt", "did'nt"]; // вспомогательное слово после местоимения
+let arrToDo2 = ["", "will", "will not", "don't", "doesn't", "didn't"]; // вспомогательное слово после местоимения
 let arrToDoRus = ["буду","будешь","будем","будут","будет","будет"];
 let arrEnding = ["", "s", "es", "d", "ed"];
-// let arrVerbEng = "love work live open close start finish see(saw) come(came) go(went) know(knew) think(thought)";
-// let arrVerbRus = "любить люблю любишь любим любят любит любит любил любили любила работать работаю работаешь работаем работают работает работает работал работали работала жить живу живёшь живём живут живёт живёт жил жили жила открывать открываю открываешь открываем открывают открывает открывает открывал открывали открывала закрывать закрываю закрываешь закрываем закрывают закрывает закрывает закрывал закрывали закрывала начинать начинаю начинаешь начинаем начинают начинает начинает начинал начинали начинала заканчивать заканчиваю заканчиваешь заканчиваем заканчивают заканчивает заканчивает заканчивал заканчивали заканчивала видеть видел видишь видим видят видит видит видел видели видела приходить приду придёшь придём придут придёт придёт пришёл пришли пришла идти иду идёшь идём идут идёт идёт шёл шли шла знать знаю знаешь знаем знают знает знает знал знали знала думать думаю думаешь думаем думают думает думает думал думали думала";
-/*new*/let arrVerbEng = "ask answer give(gave) take(took) help hope speak(spoke) travel"; 
-/*new*/let arrVerbRus = "спрашивать спрашиваю спрашиваешь спрашиваем спрашивают спрашивает спрашивает спрашивал спрашивали спрашивала отвечать отвечаю отвечаешь отвечаем отвечают отвечает отвечает отвечал отвечали отвечала давать даю даёшь даём дают даёт даёт давал давали давала брать беру берёшь берём берут берёт берёт брал брали брала помогать помогаю помогаешь помогаем помогают помогает помогает помогал помогали помагала надеятся надеюсь надеешься надеемся надеются надеется надеется надеялся надеялись надеялась разговаривать разговариваю разговариваешь разговариваем разговаривают разговаривает разговариваает разговаривал разговаривали разговаривала путешествовать путешествую путешествуешь путешествуем путешествуют путешествует путешествует путешествовал путешествовали путешествовала";
-arrVerbEng = arrVerbEng.split(' ');
-arrVerbRus = arrVerbRus.split(' ');
+let arrVerbEng = "love work live open close start finish see(saw) come(came) go(went) know(knew) think(thought)".split(' ');
+let arrVerbRus = "любить люблю любишь любим любят любит любит любил любили любила работать работаю работаешь работаем работают работает работает работал работали работала жить живу живёшь живём живут живёт живёт жил жили жила открывать открываю открываешь открываем открывают открывает открывает открывал открывали открывала закрывать закрываю закрываешь закрываем закрывают закрывает закрывает закрывал закрывали закрывала начинать начинаю начинаешь начинаем начинают начинает начинает начинал начинали начинала заканчивать заканчиваю заканчиваешь заканчиваем заканчивают заканчивает заканчивает заканчивал заканчивали заканчивала видеть видел видишь видим видят видит видит видел видели видела приходить приду придёшь придём придут придёт придёт пришёл пришли пришла идти иду идёшь идём идут идёт идёт шёл шли шла знать знаю знаешь знаем знают знает знает знал знали знала думать думаю думаешь думаем думают думает думает думал думали думала".split(' ');
 binaryVerbs = new Array(arrVerbEng.length);
 
-/*new*/var lalka = [1, 2, 2, 1, 2, 0, 0, 0];
-/*new*/var lolita = [];
-
-arrVerbEng.forEach(function callback(currentValue, index, array) {
-  if ( currentValue.includes('(') ){
-    arrPastSimple.push(currentValue.substring( currentValue.indexOf('(') + 1, currentValue.length - 1) );
-    array[index] = currentValue.substring( 0, currentValue.indexOf('(') );
+arrVerbEng.forEach(function callback(curValue, index, array) {
+  if ( curValue.includes('(') ){
+    arrPastSimple.push(curValue.substring( curValue.indexOf('(') + 1, curValue.length - 1) );
+    array[index] = curValue.substring( 0, curValue.indexOf('(') );
   } else {
     arrPastSimple.push("");
   }
 });
 
 // Выводим все глаголы в виде списка, чтобы была возможность выбрать нужные.     
-for(let i = 0; i < arrVerbEng.length; i++){
+for (let i = 0; i < arrVerbEng.length; i++){
   let eLabel = document.createElement("label");
   let eInput = document.createElement("input");
   let nText = document.createTextNode (arrVerbEng[i]);
   eInput.className = "check-icon";
   eInput.setAttribute("type", "checkbox");
-  if(i == 0) eInput.setAttribute("checked", "checked");
+  if (i == 0) eInput.setAttribute("checked", "checked");
   eLabel.className = "check-word";
   eLabel.appendChild(eInput);
   eLabel.appendChild(nText);
@@ -71,22 +62,19 @@ for(let i = 0; i < arrVerbEng.length; i++){
 }
 writeSV();
 
-// События при котором будет пересобираться массив (разобраться со всплытием);
-selectBlock.addEventListener("click", function(){
-  writeSV();
-}, true);
+// События при котором будет пересобираться массив;
+selectBlock.addEventListener("click", writeSV, false);
 
 selectAllVerbs.addEventListener('click', function(){
   if ( selectAllVerbs.checked ){
-    for( i = 0; i < checkListVerbs.length; i++){
+    for ( i = 0; i < checkListVerbs.length; i++){
       checkListVerbs[i].checked = "checked";
     }
   } else if ( selectAllVerbs.checked != "checked" ){
-    for( i = 0; i < checkListVerbs.length; i++ ){
+    for ( i = 0; i < checkListVerbs.length; i++ ){
       checkListVerbs[i].checked = "";
     }
   }
-  writeSV();
 });
 
 showSchema.addEventListener('click', function(){
@@ -101,7 +89,7 @@ showSchema.addEventListener('click', function(){
   }
 });
 
-// Заполняет массив 1||0 на основании того какие слова выбраны.
+// Заполняет массив 1||0 на основании того какие слова выбраны. (можно сократить используя место 1|0 напрямую true|false)
 function writeSV(){
   for (let i = 0; i < binaryVerbs.length; i++){
     if (checkListVerbs[i].checked == true){
@@ -111,7 +99,7 @@ function writeSV(){
     }
   }
   createArr();
-  // console.log(binaryVerbs);
+  console.log(binaryVerbs);
 }
 
 // Заполнение массива выбранными глаголами.
@@ -119,12 +107,10 @@ function createArr(){
   listVerbEng = [];
   listVerbRus = [];
   listPastSimple = [];
-  /*new*/lolita = [];
   for (let i = 0, aStart = null, aFinish = null; i < binaryVerbs.length; i++){
     if (binaryVerbs[i] == 1){
       listVerbEng.push(arrVerbEng[i]);
       listPastSimple.push(arrPastSimple[i]);
-      /*new*/lolita.push(lalka[i]);
       aStart = i * 10;
       aFinish = aStart + 9;
       
@@ -138,20 +124,7 @@ function createArr(){
 function blessRNG(){
   rndX = Math.floor(Math.random() * 9);
   rndPron = Math.floor(Math.random() * 6);
-  /*new*/rndPron2 = Math.floor(Math.random() * 6);
-  /*new*/for ( ; ; ){
-  /*new*/  console.log(rndPron, rndPron2);  // Эпическая проверка местоимений на совместимость
-  /*new*/  if ( rndPron == rndPron2 || rndPron == 0 && rndPron2 == 4 || rndPron == 2 && rndPron2 == 4 ) { 
-  /*new*/    rndPron2 = Math.floor(Math.random() * 6);
-  /*new*/  } else break;
-  /*new*/}
   rndVerbEng = Math.floor(Math.random() * (listVerbEng.length));
-  /*new*/if (rndX == 0 || rndX == 3 || rndX == 6){
-  /*new*/  lol();
-  /*new*/} else {
-  /*new*/  curQuestionEng = "";
-  /*new*/  curQuestionRus = "";
-  /*new*/}
   
   if (rndX >= 0 && rndX <= 2){
     rndVerbRus = 10 * rndVerbEng;
@@ -173,13 +146,8 @@ function step2(){
   curVerbRus = listVerbRus[rndVerbRus];
   curPronEng = arrPronEng[rndPron];
   curPronRus = arrPronRus[rndPron];
-  /*new*/curPronEng2 = arrPronEng2[rndPron2];
-  /*new*/if(lolita[rndVerbEng] == 2) rndPron2 += 6; // Как вывести в сравнение 1 || 0 (может формировать новый массив на манер паст симпл) ещё одна переменная.
-  /*new*/curPronRus2 = arrPronRus2[rndPron2];
-  /*new*/if(lolita[rndVerbEng] == 0) { curPronRus2 = ""; curPronEng2 = ""; }; // Убрать второе местоимение в последних трёх словах.
 
-
-  switch(rndX){
+  switch (rndX) {
     case 0: curtoDo1 = arrToDo1[1]; 
       curToDo2 = arrToDo2[0]; break;
     case 1: curToDo2 = arrToDo2[1];
@@ -208,13 +176,13 @@ function step2(){
     }
   // выбирает между окончаниями    d || ed
   } else if (rndX == 7){
-    if(curVerbEng.charAt(curVerbEng.length-1) == 'e'){
+    if (curVerbEng.charAt(curVerbEng.length-1) == 'e'){
       curEnding = arrEnding[3];
     } else {
       curEnding = arrEnding[4];
     }
 
-    if(listPastSimple[rndVerbEng] != ""){
+    if (listPastSimple[rndVerbEng] != ""){
       curVerbEng = listPastSimple[rndVerbEng];
       curEnding = "";
     }
@@ -227,94 +195,31 @@ function step2(){
   (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) ? curSign = "?" : curSign = "";
 }
 
-// next.onclick = function step1337(){
-//   if ( plus() ){
-//     blessRNG();
-//     // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
-//     rus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}${curSign}`;
-//     eng.innerHTML = '';
-//     console.log("Форма-"+rndX, "Местоимение-"+rndPron, "Глагол-"+rndVerbEng, 'Русский-'+rndVerbRus);
-//   } else {
-//     alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
-//   }
-// }
-
-function plus(){
-  for(pRes = 0, i = 0; i < binaryVerbs.length; i++){
-    pRes += binaryVerbs[i];
-  }
-  return pRes;
-}
-
-// answer.onclick = function step228(){
-//   // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-//   eng.innerHTML = `${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding}${curSign}`;
-// }
-
-
-
-
-var arrPronEng2 = ["me", "you", "him", "her", "us", "them"];
-var arrPronRus2 = ["меня", "тебя", "его", "её", "нас", "их", "мне", "тебе", "ему", "ей", "нам", "им" ];
-
-
-var curQuestionEng = "";
-var curQuestionRus = "";
-var listQuestionEng = [];
-var listQuestionRus = [];
-var listCompatQuestion = [];
-var arrCompatQuestion = ["100001110", "100101111", "100111111", "100111111", "100101111", "000000110", "000101111", "000101111"]; // compatibility (совместимость)
-let questionWordsRus = ["Что",  "Какой", "Кто", "Где",   "Куда",  "Когда", "Зачем", "Почему", "Как"];
-let questionWordsEng = ["What", "What",  "Who", "Where", "Where", "When",  "Why",   "Why",    "How"];
-// let questionWordsEng = ["What",          "Who",      "Where",        "When",     "Why",              "How"];
-// let questionWordsRus = ["Что Какой",    "Кто",      "Где Куда",    "Когда",    "Зачем Почему",    "Как"];
-/*У каждого слова есть массив из 9 возможных русских вопросов. Затем выбираются только те вопросы которые подходят этому глаголу и среди выбранных рандомно выбирается вопрос.*/
-
-
-/* выбирает для текущего слова подходящие вопросы */
-function lol(){
-  let X = null;
-  listCompatQuestion = [];
-  listQuestionEng = [];
-  listQuestionRus = [];
-  for(let i = 0; i < binaryVerbs.length; i++){
-    if (binaryVerbs[i] == 1){
-      listCompatQuestion.push(arrCompatQuestion[i]);
-    }
-  }
-
-  listCompatQuestion = listCompatQuestion[rndVerbEng].split('');
-
-  for(let i = 0; i < listCompatQuestion.length; i++){
-    if (listCompatQuestion[i] == 1){
-      listQuestionEng.push(questionWordsEng[i]);
-      listQuestionRus.push(questionWordsRus[i]);
-    }
-  }
-
-  X = Math.floor(Math.random() * listQuestionEng.length);
-
-  curQuestionEng = listQuestionEng[X];
-  curQuestionRus = listQuestionRus[X];
-}
-
-
-next.onclick = function step1337(){
+next.onclick = function(){
   if ( plus() ){
     blessRNG();
     // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
-    rus.innerHTML = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curPronRus2}${curSign}`;
+    rus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}${curSign}`;
     eng.innerHTML = '';
     console.log("Форма-"+rndX, "Местоимение-"+rndPron, "Глагол-"+rndVerbEng, 'Русский-'+rndVerbRus);
   } else {
     alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
   }
 }
-answer.onclick = function step228(){
-  // Eng  1)вопрос 2)вставка 3)местоимение 4)вставка 5)глагол 6)окончание 7)местоимение 8)знак препинания
-  eng.innerHTML = `${curQuestionEng} ${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${curPronEng2}${curSign}`;
+
+function plus(){
+  for (pRes = 0, i = 0; i < binaryVerbs.length; i++){
+    pRes += binaryVerbs[i];
+  }
+  return pRes;
 }
 
+answer.onclick = function(){
+  // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
+  eng.innerHTML = `${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding}${curSign}`;
+}
+// Всётаки разобраться с всплытием.
+// Вариант где выбранное слово автоматически переписывает бинарный массив. 
+// Слово считае своё положение как ребёнка и заменяет соответсвенную цифру.
 
-
-// Первое слово в предложении должно начинаться с большой буквы.
+// ToDo из двух массивов в один.
