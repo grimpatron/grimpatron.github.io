@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="generateEng.css"/>
+  <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+  <div class="generate-wrapper">
+
+    <div class="header-block">
+      <a class="header" href="../index.html"><h4>Назад в меню</h4></a>
+    </div>
+
+    <div class="lessons-block">
+      <h4>Выбрать урок</h4>
+      <div id="select-lesson"></div>
+    </div>
+
+    <div class="viewport-block">
+      <div class="generate-text-fields">
+        <div class="generate-ta" id="rus"></div>
+        <div class="generate-ta" id="eng"></div>
+      </div>
+
+      <div class="generate-shema">
+        <img id="schema-image" src="image/poliglot-1mini.jpg" style="opacity: 0">
+        <button class="generate-btn" id="show-schema">Показать схему</button>
+      </div>
+
+      <div class="generate-buttons">
+        <button class="generate-btn" id="next">Дальше</button>
+        <button class="generate-btn" id="answer">Ответ</button>
+      </div>
+    </div>
+
+    <div class="words-block">
+      <h4>Выбрать глаголы</h4>
+      <div id="select-block">
+        <label class="check-word"><input class="check-all-icon" type="checkbox" id="select-all-verbs">Выбрать все</label>
+      </div>
+    </div>
+
+  </div>
+  <script src="generateEngLvL2.js"></script>
+</body>
+</html>
