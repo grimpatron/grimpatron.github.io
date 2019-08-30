@@ -26,7 +26,7 @@
       </div>
 
       <div class="generate-shema">
-        <img id="schema-image" src="image/01mini.jpg" style="opacity: 0">
+        <img id="schema-image" src="image/01mini.gif" style="opacity: 0">
         <button class="generate-btn" id="show-schema">Показать схему</button>
       </div>
 
@@ -45,7 +45,7 @@
 
   </div>
   <script>
-  let outputEng = document.getElementById("eng");
+let outputEng = document.getElementById("eng");
 let outputRus = document.getElementById("rus");
 let next = document.getElementById("next");
 let answer = document.getElementById("answer");
@@ -54,7 +54,6 @@ let selectAllVerbs = document.getElementById("select-all-verbs");
 let checkListVerbs = document.getElementsByClassName("check-icon");
 let schemaImage = document.getElementById("schema-image");
 let showSchema = document.getElementById("show-schema");
-let binaryVerbs = [];
 let curVerbEng = "";
 let curVerbRus = "";
 let curPronEng = "";
@@ -76,7 +75,17 @@ let arrToDoRus = ["буду","будешь","будем","будут","буде�
 let arrEnding = ["", "s", "es", "d", "ed"];
 let arrVerbEng = "love work live open close start finish see(saw) come(came) go(went) know(knew) think(thought)".split(' ');
 let arrVerbRus = "любить люблю любишь любим любят любит любит любил любили любила работать работаю работаешь работаем работают работает работает работал работали работала жить живу живёшь живём живут живёт живёт жил жили жила открывать открываю открываешь открываем открывают открывает открывает открывал открывали открывала закрывать закрываю закрываешь закрываем закрывают закрывает закрывает закрывал закрывали закрывала начинать начинаю начинаешь начинаем начинают начинает начинает начинал начинали начинала заканчивать заканчиваю заканчиваешь заканчиваем заканчивают заканчивает заканчивает заканчивал заканчивали заканчивала видеть вижу видишь видим видят видит видит видел видели видела приходить приду придёшь придём придут придёт придёт пришёл пришли пришла идти иду идёшь идём идут идёт идёт шёл шли шла знать знаю знаешь знаем знают знает знает знал знали знала думать думаю думаешь думаем думают думает думает думал думали думала".split(' ');
-binaryVerbs = new Array(arrVerbEng.length);
+let binaryVerbs = new Array(arrVerbEng.length);
+/**/ let plusE = ["want", "like"];
+/**/ let plusR = [" хотеть", " хочу", " хочешь", " хотим", " хотят", " хочет", " хочет", " хотел", " хотели", " хотела", " любить", " люблю", " любишь", " любим", " любят", " любит", " любит", " любил", " любили", " любила"];
+/**/ let to = "";
+/**/ let v2E = ["dance", "speak"];
+/**/ let v2R = ["танцевать", "говорить"];
+/**/ let curV2E = "";
+/**/ let curV2R = "";
+/**/ let curPlusE = "";
+/**/ let curPlusR = "";
+
 
 arrVerbEng.forEach(function callback(curValue, index, array) {
   if ( curValue.includes('(') ) {
@@ -161,13 +170,25 @@ function blessRNG() {
   let rndX = Math.floor(Math.random() * 9); //order time and form
   let rndPron = Math.floor(Math.random() * 6); // random pronouns
   let rndVerbs = Math.floor(Math.random() * listVerbEng.length);
-  step2(rndX, rndPron, rndVerbs);
+  /**/let rndTo = Math.floor(Math.random() * 2);
+  step2(rndX, rndPron, rndVerbs, rndTo);
   console.log("Форма-"+rndX, "Местоимение-"+rndPron, "Глагол-"+rndVerbs);
 }
 
-function step2(rndX, rndPron, rndVerbs) {
-  curVerbEng = listVerbEng[rndVerbs];
-  curVerbRus = listVerbRus[getVerbRus(rndX, rndPron, rndVerbs)];
+function step2(rndX, rndPron, rndVerbs, rndTo) {
+/**/  if (rndX >= 3 && rndTo == 1){
+/**/    curVerbEng = plusE[rndVerbs];
+/**/    curVerbRus = plusR[getVerbRus(rndX, rndPron, rndVerbs)];
+/**/    curV2E = v2E[0];
+/**/    curV2R = v2R[0];
+/**/    to = "to";
+/**/  } else {  
+/**/    curVerbEng = listVerbEng[rndVerbs];
+/**/    curVerbRus = listVerbRus[getVerbRus(rndX, rndPron, rndVerbs)];
+/**/    curV2E = "";
+/**/    curV2R = "";
+/**/    to = "";
+/**/  }
   curPronEng = arrPronEng[rndPron];
   curPronRus = arrPronRus[rndPron];
 
@@ -216,7 +237,7 @@ function step2(rndX, rndPron, rndVerbs) {
 
   (rndX == 0 || rndX == 1 || rndX == 2) ? curToDoRusQ = arrToDoRus[rndPron] : curToDoRusQ = "";
   (rndX == 2 || rndX == 5 || rndX == 8 || rndX == 11) ? curToDoRusN = "не" : curToDoRusN = "";
-  (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) ? curSign = "?" : curSign = "";
+  (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) ? curSign = "?" : curSign = ".";
 }
 
 function getVerbRus(rndX, rndPron, rndVerbs) {
@@ -227,11 +248,11 @@ function getVerbRus(rndX, rndPron, rndVerbs) {
     rndVerbRus = (rndPron + 1) + (10 * rndVerbs);
   } else if (rndX >= 6 && rndX <= 8) {
     if (rndPron == 0 || rndPron == 1 || rndPron == 4) {
-      rndVerbRus = 7 + (10 * rndVerbs);      
+      rndVerbRus = 7 + (10 * rndVerbs);
     } else if (rndPron == 2 || rndPron == 3) {
-      rndVerbRus = 8 + (10 * rndVerbs);      
+      rndVerbRus = 8 + (10 * rndVerbs);
     } else if (rndPron == 5) {
-      rndVerbRus = 9 + (10 * rndVerbs);      
+      rndVerbRus = 9 + (10 * rndVerbs);
     }
   }
   return rndVerbRus;
@@ -241,7 +262,7 @@ next.onclick = function() {
   if ( plus() ) {
     blessRNG();
     // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
-    outputRus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}${curSign}`;
+    outputRus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curV2R}${curSign}`;
     outputEng.innerHTML = '';
   } else {
     alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
@@ -250,7 +271,7 @@ next.onclick = function() {
 
 answer.onclick = function() {
   // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-  outputEng.innerHTML = `${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding}${curSign}`;
+  outputEng.innerHTML = `${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E}${curSign}`;
 }
 
 /* Проверка на наличие выбранного глагола */
