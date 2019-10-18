@@ -1,0 +1,30 @@
+.lll {
+  background-color: #ffeeee;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td {
+  font-family: sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1px 5px;
+  text-align: center;
+  /*border: 2px solid #666;*/
+}
+.bdl{
+  border-left: 2px solid #666;
+}
+.bdr{
+  border-right: 2px solid #666;
+}
+.bdt{
+  border-top: 2px solid #666;
+}
+.bdb{
+  border-bottom: 2px solid #666;
+}
+.div {
+  width: 100%;
+}
