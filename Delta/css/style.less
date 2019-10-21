@@ -1,36 +1,27 @@
-html { font-size: 10px; }
-
-body {
-  color: #333;
-}
-
 @bg-shadow-box: rgba(0, 0, 0, 0.5);
+@color-text: #333;
+@bg-side-section: #efa;
+
+html { font-size: 10px; }
+body { color: @color-text; }
 
 .buttonStyle(){
   display: block;
   margin: 1rem auto;
-  width: 12rem;
+  min-width: 12rem;
   font-size: 1.8rem;
+  &:focus { outline: none; }
 }
+
 
 /* index.html */
 .menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0 1.5rem;
   &-button {
     .buttonStyle();
   }
 }
-.col-lg-6.col-lg-offset-3 {
-  position: relative;
-  // padding: 0;
-}
 
 .view {
-  margin-top: 6rem;
   &-field{
     display: table;
     height: 8rem;
@@ -56,15 +47,12 @@ body {
 
 .intarface {
   &-button {
-    display: block;
-    margin: 0 auto;
+    .buttonStyle();
     min-width: 30rem;
-    margin-bottom: 1rem;
     padding: 1rem 5rem;
     font-size: 2rem;
   }
 }
-
 
 
 .container {
@@ -74,14 +62,13 @@ body {
   position: absolute;
   display: inline-block;
   width: 28rem;
+  height: 100vh;
+  min-height: 100%;
   top: 0;
+  padding: 1rem;
+  background: @bg-side-section;
   &-left-pos { left: 0; }
   &-right-pos { right: 0; }
-}
-.section {
-  padding: 1rem;
-  height: 100vh;
-  background: #efa;
   &-left-button,
   &-right-button {
     .buttonStyle();
@@ -103,13 +90,15 @@ body {
 
 .check-word {
   display: block;
-  cursor: pointer;
   font-size: 1.8rem;
+  font-weight: normal;
+  cursor: pointer;
 }
 input.check-icon,
 input.check-all-icon {
   margin-right: 1rem;
 }
+
 
 /* Large devices (large desktops, 1200px and up) */
 @media (max-width: 1200px) {
@@ -142,10 +131,15 @@ input.check-all-icon {
 
 /* Small devices (tablets, 768px and up) */
 @media (max-width: 768px) {
+  html { font-size: 8px; }
+  // .container { width: 98%; } убирает горизонтальную полосу прокрутки
+  // она появляется из-за того что в html font-size: 8px;
+  .container { width: 98%; }
   .section-left, .section-right {
     &-pos {
       max-width: 30rem;
       width: 50%;   
     }
   }
+  // table td { font-size: 13px; }  // не имеет смысла т.к. fotorama с фиксированной высотой
 }
