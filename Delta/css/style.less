@@ -1,6 +1,8 @@
 @bg-shadow-box: rgba(0, 0, 0, 0.5);
 @color-text: #333;
-@bg-side-section: #efa;
+// @bg-side-section: #efa;
+@bg-side-section: linear-gradient(180deg, rgba(222,255,225,1) 0%, rgba(214,245,255,1) 100%);
+
 
 html { font-size: 10px; }
 body { color: @color-text; }
@@ -88,14 +90,16 @@ body { color: @color-text; }
   display: none;
 }
 
-.check-word {
+.label-word,
+.label-lesson {
   display: block;
   font-size: 1.8rem;
   font-weight: normal;
   cursor: pointer;
 }
 input.check-icon,
-input.check-all-icon {
+input.check-all-icon,
+input.check-lesson {
   margin-right: 1rem;
 }
 

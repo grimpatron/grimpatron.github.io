@@ -55,7 +55,7 @@ body {
   min-height: 100%;
   top: 0;
   padding: 1rem;
-  background: #efa;
+  background: linear-gradient(180deg, #deffe1 0%, #d6f5ff 100%);
 }
 .section-left-pos {
   left: 0;
@@ -87,14 +87,16 @@ body {
 .shadow-gray-box {
   display: none;
 }
-.check-word {
+.label-word,
+.label-lesson {
   display: block;
   font-size: 1.8rem;
   font-weight: normal;
   cursor: pointer;
 }
 input.check-icon,
-input.check-all-icon {
+input.check-all-icon,
+input.check-lesson {
   margin-right: 1rem;
 }
 /* Large devices (large desktops, 1200px and up) */
