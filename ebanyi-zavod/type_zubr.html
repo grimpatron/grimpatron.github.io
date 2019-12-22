@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Assistance</title>
+	<link rel="stylesheet" href="style-page.css" />
+	<link rel="stylesheet" href="style-page-data.css" />
+	<link rel="stylesheet" href="style-accordion.css" />
+	<style>
+		/* добавляет цветной круг */
+		.acc-trig::before{
+			margin-right: 20px;
+			padding-right: 5px;
+			border-radius: 50%;
+			content: "◯";
+			background: red;
+			color: transparent;
+    }
+	</style>
+</head>
+
+<body>
+
+	<header>
+			<a href="index.html"><h1>assistance</h1></a>
+	</header>
+	
+	<section>
+		<div class="wrapper">
+			<ul class="accordion">
+				<!-- 437121 -->		
+				<li class="accordion_item">			<input type="checkbox" class="accordion_toggle" id="n437121" hidden>
+					<label class="accordion_trigger" for="n437121">437121</label>
+					<div class="accordion_target">	
+						<ul>
+							<li><b>А></b> Б.О 4371W1-1001044-000</li>
+							<li><b>В></b> П.О - (свои) 438121-1001024/25-000</li>
+							<li><b>Г></b> глуш. - 438121-1203063-000 без NOx</li>
+							<li><b>З></b> амиак - 438121-1401102-000 (смещение назад) + пласт - 438121-1401041-000</li>
+						</ul>
+					</div>
+				</li>
+
+				<!-- 438121 -->	
+				<li class="accordion_item">			<input type="checkbox" class="accordion_toggle" id="n438121" hidden>
+					<label class="accordion_trigger" for="n438121">438121</label>
+					<div class="accordion_target">
+						<ul>
+							<li><b>А></b> Б.О 4371W1-1001044-000</li>
+							<li><b>В></b> П.О - (свои) 438121-1001024/25-000</li>
+							<li><b>Г></b> глуш. - 438121-1203063-000 без NOx; 4380W2-1203094-000 посреди АКБ €</li>
+							<li><b>З></b> амиак - 438121-1401102-000 (смещение вперёд) + пласт - 438121-1401041-000</li>
+						</ul>
+					</div>
+				</li>
+				 <!--<li class="acc-item"><input type="checkbox" class="acc-togg" id="n438121" hidden>
+					<label class="acc-trig" for="n438121">438121</label>
+					<ul class="acc-targ">
+						<li><b>А></b> Б.О 4371W1-1001044-000</li>
+						<li><b>Б></b> огр W2</li>
+						<li><b>В></b> П.О свои - 438121-1001024/25-000</li>
+						<li><b>Г></b> гл. - 438121-1203063-000 без NOx; 4380W2-1203094-000 посреди АКБ €</li>
+					</ul>--><!-- див вроде как не нужен -->	
+
+				<!-- 4381Y1 -->	
+				<li class="accordion_item">			<input type="checkbox" class="accordion_toggle" id="n4381Y1" hidden>
+					<label class="accordion_trigger" for="n4381Y1">4381Y1</label>
+					<div class="accordion_target">
+						<ul>
+							<li><b>А></b> Б.О - как на C0</li>
+							<li><b>В></b> П.О - 4370-1001023</li>
+							<li><b>Г></b> глуш. - _|  |_</li>
+						</ul>
+					</div>
+				</li>
+			</ul> <!-- accordion -->	
+
+			<!-- « » € α β & ⦏ ⦐ ⦍ ⦎-->
+			<div class="text">
+			</div> <!--text-->
+
+			<script>
+				var sss = document.getElementsByClassName("accordion_trigger");
+				var tog = document.getElementsByClassName("accordion_toggle");
+				for(var i = 0; i<sss.length; i++){
+					var x = document.createElement("span");
+
+
+					// let curTrig = 
+					x.style.display = "inline-block";
+					x.style.marginRight = "10px";
+					switch(tog[i].id.slice(3, 5)){
+						case "71":
+						case "81": console.log("\tБычара"); x.style.backgroundColor = "yellow"; break;
+						case "A0":
+						case "01":
+						case "02":
+						case "12":
+						case "30":
+						case "32":
+						case "40":
+						case "50": console.log("\tЕвро"); x.style.backgroundColor = "green"; break;
+						case "16":
+						case "17":
+						case "25": console.log("\tСерийные"); x.style.backgroundColor = "blue"; break;
+						case "09":
+						case "34": console.log("\tДругие"); x.style.backgroundColor = "red"; break;
+						// case /^438121$/: console.log("..."); break;
+					}					
+					// x.style.backgroundColor = "red";
+					x.style.width = "25px";
+					x.style.height = "25px";
+					x.style.borderRadius = "50%";
+					x.style.verticalAlign = "top";
+					sss[i].insertBefore(x, sss[i].firstChild);
+				}
+				</script>
+
+		</div><!--wrapper-->
+	</section>
+	<script>
+		// let label = document.getElementsByTagName("label");
+	</script>
+</body>
+</html>
