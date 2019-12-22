@@ -21,15 +21,13 @@
         <div class="row">
 
           <div class="col-xs-4">
-            <button class="menu-button menu-button-left btn btn-primary">Уроки</button>
+            <button class="menu-button menu-button-lesson btn btn-primary">Урок</button>
           </div>
-
           <div class="col-xs-4">
             <button class="menu-button schema-button btn btn-primary">Схемы</button>
           </div>
-
           <div class="col-xs-4">
-            <button class="menu-button menu-button-right btn btn-primary">Слова</button>
+            <button class="menu-button menu-button-right btn btn-primary" id="orderBtn">Порядок</button>
           </div>
 
         </div>
@@ -39,8 +37,8 @@
       <div class="view">
         <div class="row">
 
-          <div class="view-field"><div class="view-field-text" id="rus"></div></div>
-          <div class="view-field"><div class="view-field-text" id="eng"></div></div>
+          <div class="view-field"><div class="view-field-text" id="output-question"></div></div>
+          <div class="view-field"><div class="view-field-text" id="output-answer"></div></div>
 
         </div>
       </div><!--view-->
@@ -102,6 +100,16 @@
   </div>
 
 </div><!--container-->
+
+
+<div class="modal-order">
+  <div class="modal-order-content">
+      <button class="modal-order-btn btn" id="rus-eng" onclick="ruEn()">русский - английский</button>
+      <button class="modal-order-btn btn" id="eng-rus" onclick="enRu()">английский - русский</button>
+      <button class="modal-order-btn btn" id="mix" onclick="mixer()">случайно</button>
+      <button class="modal-order-btn__close btn btn-warning">закрыть</button>
+    </div>
+</div>
 
 
 <script src="scripts/script.js"></script>

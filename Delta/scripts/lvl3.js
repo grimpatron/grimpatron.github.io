@@ -1,41 +1,36 @@
 let level3 = (function (){
-  let outputEng = document.getElementById("eng");
-  let outputRus = document.getElementById("rus");
-  let next = document.getElementById("next");
-  let answer = document.getElementById("answer");
+  let outputQuestion = document.getElementById("output-question");
+  let outputAnswer = document.getElementById("output-answer");
   let selectBlock = document.querySelector("#select-block");
   let selectAllVerbs = document.getElementById("select-all-verbs");
   let checkListVerbs = document.getElementsByClassName("check-icon");
-  let schemaImage = document.getElementById("schema-image");
-  let showSchema = document.getElementById("show-schema");
-  let showSchemaOn = 0;
   let binaryVerbs = [];
   let curVerbEng = "";
   let curVerbRus = "";
   let curPronEng = "";
   let curPronRus = "";
-  let curToDo1 = "";
-  let curToDo2 = "";
   let curToDoRusQ = "";
   let curToDoRusN = "";
-  let curEnding = "";
   let curSign = "";
   let listVerbEng = [];
   let listVerbRus = [];
   let listPastSimple = [];
-  let arrPastSimple = []; // для фторой формы нерпавильных глаголав (обычный глагол - пустая строка)
+  let arrPastSimple = []; // вторая форма нерпавильных глаголав
   let arrPronEng = ["I", "you", "we", "they", "he", "she"];   // pronouns English
   let arrPronRus = ["я", "ты", "мы", "они", "он", "она"];     // pronouns Russian
-  let arrToDo = ["", "will", "do", "does", "did", "will not", "don't", "doesn't", "didn't"]; // вспомогательное слово перед местоимением
-  /**/ let arrPronEng228 = ["I", "you", "we", "they", "he", "she", "it"];   // pronouns English 228
-  /**/ let arrToBe = ["", "will", "be", "will be", "will not be", "am", "is", "are", "am not", "is not", "are not", "was", "were", "was not", "were not"]; // глагол быть
-  /**/ let curToBe1 = "";
-  /**/ let curToBe2 = "";
   let arrToDoRus = ["буду","будешь","будем","будут","будет","будет"];
-  // let arrEnding = ["", "s", "es", "d", "ed"];
-  let arrVerbEng = "here there in_Minsk".split(' ');
-  let arrVerbRus = "здесь там в_Минске".split(' ');
-  binaryVerbs = new Array(arrVerbEng.length);
+  let arrVerbEng = "here there in_Minsk with_me".split(' ');
+  let arrVerbRus = "здесь там в_Минске со_мной".split(' ');
+  let data = JSON.parse( localStorage.polyglot || '{}');
+  let stringQestion = "";
+  let stringAnswer = "";
+  let order = "";
+  let rndMixValue = null;
+  let modalOrderBtns = document.getElementsByClassName("modal-order-btn");
+
+  let arrToBe = ["", "will", "be", "will be", "will not be", "am", "is", "are", "am not", "is not", "are not", "was", "were", "was not", "were not"]; /* lvl3 */         // глагол быть
+  let curToBe1 = ""; /* lvl3 */
+  let curToBe2 = ""; /* lvl3 */
 
   arrVerbEng.forEach(function callback(curValue, index, array) {
     if ( curValue.includes('(') ) {
@@ -46,7 +41,7 @@ let level3 = (function (){
     }
   });
 
-  // Выводим все глаголы в виде списка, чтобы была возможность выбрать нужные.     
+  // Выводим все глаголы в виде списка в боковой панели.
   for (let i = 0; i < arrVerbEng.length; i++) {
     let eLabel = document.createElement("label");
     let eInput = document.createElement("input");
@@ -59,8 +54,7 @@ let level3 = (function (){
     selectBlock.appendChild(eLabel);
   }
 
-  var data =  JSON.parse( localStorage.polyglot || '{}');
-  // select words from localStorage
+  // Отмечаются выбранные слова (сохранённые в localStorage)
   if ( data.words_lvl3.length == arrVerbEng.length ) {
     binaryVerbs = data.words_lvl3;
     for (let i = 0; i <= binaryVerbs.length; i++) {
@@ -70,13 +64,14 @@ let level3 = (function (){
     }
   } else {
     binaryVerbs = new Array(arrVerbEng.length);
-    checkListVerbs[0].setAttribute("checked", "checked"); // перенёс назначение первого слова, сперва проверяю есть ли сохранения
+    checkListVerbs[0].setAttribute("checked", "checked"); // выбор первого слова, если нет сохранённых
   }
   writeSV();
 
-  // События при котором будет пересобираться массив;
+  // вешает события при котором будет пересобираться массив
   selectBlock.addEventListener("click", writeSV, false);
 
+  // вешает событие которое выбирает или снимает выбор у всех глаголов;
   selectAllVerbs.addEventListener('click', function() {
     if (selectAllVerbs.checked) {
       for (let i = 0; i < checkListVerbs.length; i++) {
@@ -88,18 +83,6 @@ let level3 = (function (){
       }
     }
   });
-
-  // showSchema.addEventListener('click', function() {
-  //   if (showSchemaOn == 0) {
-  //     schemaImage.style.opacity = "1";
-  //     showSchema.innerHTML = "Скрыть схему";
-  //     showSchemaOn = 1;
-  //   } else {
-  //     schemaImage.style.opacity = "0";
-  //     showSchema.innerHTML = "Показать схему";
-  //     showSchemaOn = 0;
-  //   }
-  // });
 
   // Составление списков на основании выбранных глаголов.
   function writeSV() {
@@ -115,21 +98,14 @@ let level3 = (function (){
       }
     }
 
-    for (let i = 0/*, aStart = null, aFinish = null*/; i < binaryVerbs.length; i++) {
+    for (let i = 0; i < binaryVerbs.length; i++) {
       if (binaryVerbs[i] == 1) {
         listVerbEng.push(arrVerbEng[i]);
-        /**/listVerbRus.push(arrVerbRus[i]);
+        listVerbRus.push(arrVerbRus[i]); /* lvl3 */
         listPastSimple.push(arrPastSimple[i]);
-
-        // aStart = i * 10;
-        // aFinish = aStart + 9;
-        
-        // for (let j = aStart; j <= aFinish ; j++) {
-        //   listVerbRus.push( arrVerbRus.slice(j, j + 1).toString() );        
-        // }
       }
     }
-    console.log(binaryVerbs); saveWords();
+    saveWords();
   }
 
   /* ****************************************************** */
@@ -137,10 +113,18 @@ let level3 = (function (){
     let rndX = Math.floor(Math.random() * 9); //order time and form
     let rndPron = Math.floor(Math.random() * 6); // random pronouns
     let rndVerbs = Math.floor(Math.random() * listVerbEng.length);
+    step1();                                      // преверяет какой порядок выбран в данный момент.
     step2(rndX, rndPron, rndVerbs);
     console.log("Форма-"+rndX, "Местоимение-"+rndPron, "Глагол-"+rndVerbs);
   }
 
+  function step1(){
+    for (let i = 0; i < modalOrderBtns.length; i++) {
+      if ( modalOrderBtns[i].classList.contains('btn-primary') ) order = modalOrderBtns[i].id;
+    }
+    console.log(order);
+  }
+  
   function step2(rndX, rndPron, rndVerbs) {
     curVerbEng = listVerbEng[rndVerbs];
     curVerbRus = listVerbRus[rndVerbs];
@@ -168,51 +152,30 @@ let level3 = (function (){
               curToBe1 = arrToBe[0]; break;
     }
 
-    // // выбирает между окончаниями    s || es
-    // if (rndX == 4 && rndPron >= 4) {
-    //   if (curVerbEng == "finish" || curVerbEng == "go") {
-    //     curEnding = arrEnding[2];
-    //   } else {
-    //     curEnding = arrEnding[1];      
-    //   }
-    // // выбирает между окончаниями    d || ed
-    // } else if (rndX == 7) {
-    //   if (curVerbEng.charAt(curVerbEng.length-1) == 'e') {
-    //     curEnding = arrEnding[3];
-    //   } else {
-    //     curEnding = arrEnding[4];
-    //   }
+    /* lvl3 */
+    if (rndX == 0 || rndX == 1 || rndX == 2) {
+      curToDoRusQ = arrToDoRus[rndPron];
+    } else if ( rndPron == 5 && (rndX == 6 || rndX == 7 || rndX == 8) ) {
+      curToDoRusQ = "была";
+    } else if ( (rndPron == 0 || rndPron == 1 || rndPron == 4 ) && (rndX == 6 || rndX == 7 || rndX == 8) ) {
+      curToDoRusQ = "был";
+    } else if ( (rndPron == 2 || rndPron == 3) && (rndX == 6 || rndX == 7 || rndX == 8) ) {
+      curToDoRusQ = "были";
+    } else {
+      curToDoRusQ = "";
+    }
 
-    //   if (listPastSimple[rndVerbs] != "") {
-    //     curVerbEng = listPastSimple[rndVerbs];
-    //     curEnding = "";
-    //   }
-    // } else {
-    //   curEnding = "";
-    // }
-
-    /**/(rndX == 0 || rndX == 1 || rndX == 2) ? curToDoRusQ = arrToDoRus[rndPron] : (rndX == 6 || rndX == 7 || rndX == 8) ? curToDoRusQ = "был" : curToDoRusQ = "";
+    // (rndX == 0 || rndX == 1 || rndX == 2) ? curToDoRusQ = arrToDoRus[rndPron] : (rndX == 6 || rndX == 7 || rndX == 8) ? curToDoRusQ = "был" : curToDoRusQ = ""; /* lvl3 */
     (rndX == 2 || rndX == 5 || rndX == 8 || rndX == 11) ? curToDoRusN = "не" : curToDoRusN = "";
     (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) ? curSign = "?" : curSign = "";
   }
 
-  // function getVerbRus(rndX, rndPron, rndVerbs) {
-  //   let rndVerbRus = null;
-  //   if (rndX >= 0 && rndX <= 2) {
-  //     rndVerbRus = 10 * rndVerbs;
-  //   } else if (rndX >= 3 && rndX <= 5) {
-  //     rndVerbRus = (rndPron + 1) + (10 * rndVerbs);
-  //   } else if (rndX >= 6 && rndX <= 8) {
-  //     if (rndPron == 0 || rndPron == 1 || rndPron == 4) {
-  //       rndVerbRus = 7 + (10 * rndVerbs);      
-  //     } else if (rndPron == 2 || rndPron == 3) {
-  //       rndVerbRus = 8 + (10 * rndVerbs);      
-  //     } else if (rndPron == 5) {
-  //       rndVerbRus = 9 + (10 * rndVerbs);      
-  //     }
-  //   }
-  //   return rndVerbRus;
-  // }
+  // Сохранение выбранных слов
+  function saveWords(){
+    data.words_lvl3 = binaryVerbs;
+    let jsn = JSON.stringify( data );
+    localStorage.polyglot = jsn;
+  }
 
   // next.onclick = function() {
   //   if ( plus() ) {
@@ -225,40 +188,43 @@ let level3 = (function (){
   //   }
   // }
 
-  function plus() {
-    let pRes = 0;
-    for (let i = 0; i < binaryVerbs.length; i++) {
-      pRes += binaryVerbs[i];
+  function generateString(){
+    /* Проверка на наличие выбранного глагола */
+    function plus() {
+      for (let i = 0; i < binaryVerbs.length; i++) {
+        if (binaryVerbs[i] == 1) return true;
+      }
+      return false
     }
-    return pRes;
+
+    if ( plus() ) {
+      blessRNG();
+      // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
+      // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
+      if (order == "eng-rus" || (order == "mix" && rndMixValue == 0)) {
+        stringQestion = `${curToBe1} ${curPronEng} ${curToBe2} ${curVerbEng}${curSign}`;
+        stringAnswer = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}${curSign}`;
+      } else if (order == "rus-eng" || (order == "mix" && rndMixValue == 1)) {
+        stringQestion = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}${curSign}`;
+        stringAnswer = `${curToBe1} ${curPronEng} ${curToBe2} ${curVerbEng}${curSign}`;
+      }       
+    } else {
+      alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
+    }
   }
 
-  // answer.onclick = function() {
-  //   // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-  //   outputEng.innerHTML = `${curToBe1} ${curPronEng} ${curToBe2} ${curVerbEng}${curSign}`;
-  // }
-
-  function saveWords(){
-    // localStorage.setItem('select_words_lvl3', binaryVerbs);
-    data.words_lvl3 = binaryVerbs;
-    let jsn = JSON.stringify( data );   // охуеть оно заработало
-    localStorage.polyglot = jsn;
-  }
   return {
     next: function() {
-      if ( plus() ) {
-        blessRNG();
-        // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
-        outputRus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}${curSign}`;
-        outputEng.innerHTML = '';
-      } else {
-        alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
-      }
+      generateString();
+      outputAnswer.innerHTML = '';
+      outputQuestion.innerHTML = stringQestion;
     },
     answer: function() {
-      // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-      outputEng.innerHTML = `${curToBe1} ${curPronEng} ${curToBe2} ${curVerbEng}${curSign}`;
+      outputAnswer.innerHTML = stringAnswer;
     }
   };
 
 })();
+
+// она БЫЛ со мной (сделать по красоте)
+// добавить код который парсит строку и заменяет все символы нижнего подчёркивания на пробел. или просто добавить больше вариантов (со мной, с тобой, с ней)

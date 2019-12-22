@@ -1,13 +1,10 @@
 var level1p = (function (){
-  let outputEng = document.getElementById("eng");
-  let outputRus = document.getElementById("rus");
-  let next = document.getElementById("next");
-  let answer = document.getElementById("answer");
+  let outputQuestion = document.getElementById("output-question");
+  let outputAnswer = document.getElementById("output-answer");
   let selectBlock = document.querySelector("#select-block");
   let selectAllVerbs = document.getElementById("select-all-verbs");
   let checkListVerbs = document.getElementsByClassName("check-icon");
-  let schemaImage = document.getElementById("schema-image");
-  let showSchema = document.getElementById("show-schema");
+  let binaryVerbs = [];
   let curVerbEng = "";
   let curVerbRus = "";
   let curPronEng = "";
@@ -21,7 +18,7 @@ var level1p = (function (){
   let listVerbEng = [];
   let listVerbRus = [];
   let listPastSimple = [];
-  let arrPastSimple = []; // для фторой формы нерпавильных глаголав (обычный глагол - пустая строка)
+  let arrPastSimple = []; // вторая форма нерпавильных глаголав
   let arrPronEng = ["I", "you", "we", "they", "he", "she"];   // pronouns English
   let arrPronRus = ["я", "ты", "мы", "они", "он", "она"];     // pronouns Russian
   let arrToDo = ["", "will", "do", "does", "did", "will not", "don't", "doesn't", "didn't"]; // вспомогательное слово перед местоимением
@@ -29,7 +26,13 @@ var level1p = (function (){
   let arrEnding = ["", "s", "es", "d", "ed"];
   let arrVerbEng = "love work live open close start finish see(saw) come(came) go(went) know(knew) think(thought)".split(' ');
   let arrVerbRus = "любить люблю любишь любим любят любит любит любил любили любила работать работаю работаешь работаем работают работает работает работал работали работала жить живу живёшь живём живут живёт живёт жил жили жила открывать открываю открываешь открываем открывают открывает открывает открывал открывали открывала закрывать закрываю закрываешь закрываем закрывают закрывает закрывает закрывал закрывали закрывала начинать начинаю начинаешь начинаем начинают начинает начинает начинал начинали начинала заканчивать заканчиваю заканчиваешь заканчиваем заканчивают заканчивает заканчивает заканчивал заканчивали заканчивала видеть вижу видишь видим видят видит видит видел видели видела приходить приду придёшь придём придут придёт придёт пришёл пришли пришла идти иду идёшь идём идут идёт идёт шёл шли шла знать знаю знаешь знаем знают знает знает знал знали знала думать думаю думаешь думаем думают думает думает думал думали думала".split(' ');
-  let binaryVerbs = new Array(arrVerbEng.length);
+  let data =  JSON.parse( localStorage.polyglot || '{}');
+  let stringQestion = "";
+  let stringAnswer = "";
+  let order = "";
+  let rndMixValue = null;
+  let modalOrderBtns = document.getElementsByClassName("modal-order-btn");
+
   /**/ let plusE = ["want", "like"];
   /**/ let plusR = [" хотеть", " хочу", " хочешь", " хотим", " хотят", " хочет", " хочет", " хотел", " хотели", " хотела", " любить", " люблю", " любишь", " любим", " любят", " любит", " любит", " любил", " любили", " любила"];
   /**/ let to = "";
@@ -37,10 +40,8 @@ var level1p = (function (){
   /**/ let v2R = ["танцевать", "говорить"];
   /**/ let curV2E = "";
   /**/ let curV2R = "";
-  /**/ let curPlusE = "";
-  /**/ let curPlusR = "";
-  /**/ let rndVerbsV2 = "";
 
+  // Формируем массив для второй формы нерпавильных глаголав (обычный глагол - пустая строка)
   arrVerbEng.forEach(function callback(curValue, index, array) {
     if ( curValue.includes('(') ) {
       arrPastSimple.push( curValue.substring( curValue.indexOf('(') + 1, curValue.length - 1) );
@@ -50,7 +51,7 @@ var level1p = (function (){
     }
   });
 
-  // Выводим все глаголы в виде списка, чтобы была возможность выбрать нужные.     
+  // Выводим все глаголы в виде списка, чтобы была возможность выбрать нужные.   
   for (let i = 0; i < arrVerbEng.length; i++) {
     let eLabel = document.createElement("label");
     let eInput = document.createElement("input");
@@ -63,8 +64,7 @@ var level1p = (function (){
     selectBlock.appendChild(eLabel);
   }
 
-  var data =  JSON.parse( localStorage.polyglot || '{}');
-  // select words from localStorage
+  // Отмечаются выбранные слова (сохранённые в localStorage)
   if ( data.words_lvl1p.length == arrVerbEng.length ) {
     binaryVerbs = data.words_lvl1p;
     for (let i = 0; i <= binaryVerbs.length; i++) {
@@ -74,13 +74,14 @@ var level1p = (function (){
     }
   } else {
     binaryVerbs = new Array(arrVerbEng.length);
-    checkListVerbs[0].setAttribute("checked", "checked"); // перенёс назначение первого слова, сперва проверяю есть ли сохранения
+    checkListVerbs[0].setAttribute("checked", "checked"); // выбор первого слова, если нет сохранённых
   }
   writeSV();
 
-  // События при котором будет пересобираться массив;
+  // вешает события при котором будет пересобираться массив
   selectBlock.addEventListener("click", writeSV, false);
 
+  // вешает событие которое выбирает или снимает выбор у всех глаголов;
   selectAllVerbs.addEventListener('click', function() {
     if (selectAllVerbs.checked) {
       for (let i = 0; i < checkListVerbs.length; i++) {
@@ -92,16 +93,6 @@ var level1p = (function (){
       }
     }
   });
-
-  // showSchema.addEventListener('click', function() {
-  //   if (schemaImage.style.opacity == "0") {
-  //     schemaImage.style.opacity = "1";
-  //     showSchema.innerHTML = "Скрыть схему";
-  //   } else {
-  //     schemaImage.style.opacity = "0";
-  //     showSchema.innerHTML = "Показать схему";
-  //   }
-  // });
 
   // Составление списков на основании выбранных глаголов.
   function writeSV() {
@@ -117,19 +108,17 @@ var level1p = (function (){
       }
     }
 
-    for (let i = 0, aStart = null, aFinish = null; i < binaryVerbs.length; i++) {
+    for (let i = 0; i < binaryVerbs.length; i++) {
       if (binaryVerbs[i] == 1) {
         listVerbEng.push(arrVerbEng[i]);
         listPastSimple.push(arrPastSimple[i]);
-        aStart = i * 10;
-        aFinish = aStart + 9;
         
-        for (let j = aStart; j <= aFinish ; j++) {
+        for (let j = (i * 10); j <= (i * 10) + 9; j++) {
           listVerbRus.push( arrVerbRus.slice(j, j + 1).toString() );        
         }
       }
     }
-    console.log(binaryVerbs); saveWords();
+    saveWords();
   }
 
   /* ****************************************************** */
@@ -137,21 +126,29 @@ var level1p = (function (){
     let rndX = Math.floor(Math.random() * 9); //order time and form
     let rndPron = Math.floor(Math.random() * 6); // random pronouns
     let rndVerbs = Math.floor(Math.random() * listVerbEng.length);
+    rndMixValue = Math.floor(Math.random() * 2);
     /**/let rndVerbsV2 = Math.floor(Math.random() * plusE.length);  // колличество добавленных глаголов
     /**/let rndTo = Math.floor(Math.random() * 2);
-    step2(rndX, rndPron, rndVerbs, rndTo);
+    step1();                                      // преверяет какой порядок выбран в данный момент.
+    step2(rndX, rndPron, rndVerbs, rndVerbsV2, rndTo);
     console.log("Форма-"+rndX, "Местоимение-"+rndPron, "Глагол-"+rndVerbs);
   }
 
-  function step2(rndX, rndPron, rndVerbs, rndTo) {
-    
-    console.log("rndX",rndX);
-    console.log("rndPron",rndPron);
-    console.log("rndVerbs",rndVerbs);
-    console.log("111", plusR[getVerbRus(rndX, rndPron, rndVerbs)]);
+  function step1(){
+    for (let i = 0; i < modalOrderBtns.length; i++) {
+      if ( modalOrderBtns[i].classList.contains('btn-primary') ) order = modalOrderBtns[i].id;
+    }
+    console.log(order);
+  }
 
+  function step2(rndX, rndPron, rndVerbs, rndVerbsV2, rndTo) {
+    
+    // console.log("rndX",rndX);
+    // console.log("rndPron",rndPron);
+    // console.log("rndVerbs",rndVerbs);
+    // console.log("rndVerbsV2",rndVerbsV2);
   /**/  if (rndX >= 3 && rndTo == 1){
-  /**/    curVerbEng = plusE[rndVerbs];
+  /**/    curVerbEng = plusE[rndVerbsV2];
   /**/    curVerbRus = plusR[getVerbRus(rndX, rndPron, rndVerbsV2)];
   /**/    curV2E = v2E[0];
   /**/    curV2R = v2R[0];
@@ -167,22 +164,22 @@ var level1p = (function (){
     curPronRus = arrPronRus[rndPron];
 
     switch (rndX) {
-      case 0: curtoDo1 = arrToDo[1]; 
+      case 0: curToDo1 = arrToDo[1]; 
         curToDo2 = arrToDo[0]; break;
       case 1: curToDo2 = arrToDo[1];
-        curtoDo1 = arrToDo[0]; break;
+        curToDo1 = arrToDo[0]; break;
       case 2: curToDo2 = arrToDo[5];
-        curtoDo1 = arrToDo[0]; break;
-      case 3: (rndPron < 4) ? curtoDo1 = arrToDo[2] : curtoDo1 = arrToDo[3];
+        curToDo1 = arrToDo[0]; break;
+      case 3: (rndPron < 4) ? curToDo1 = arrToDo[2] : curToDo1 = arrToDo[3];
         curToDo2 = arrToDo[0]; break;
       case 5: (rndPron < 4) ? curToDo2 = arrToDo[6] : curToDo2 = arrToDo[7];
-        curtoDo1 = arrToDo[0]; break;
-      case 6: curtoDo1 = arrToDo[4];
+        curToDo1 = arrToDo[0]; break;
+      case 6: curToDo1 = arrToDo[4];
         curToDo2 = arrToDo[0]; break;
       case 8: curToDo2 = arrToDo[8];
-        curtoDo1 = arrToDo[0]; break;
+        curToDo1 = arrToDo[0]; break;
       default:
-        curtoDo1 = arrToDo[0];
+        curToDo1 = arrToDo[0];
         curToDo2 = arrToDo[0];
     }
 
@@ -200,7 +197,7 @@ var level1p = (function (){
       } else {
         curEnding = arrEnding[4];
       }
-
+      // замена на неправильный глагол
       if (listPastSimple[rndVerbs] != "") {
         curVerbEng = listPastSimple[rndVerbs];
         curEnding = "";
@@ -232,52 +229,56 @@ var level1p = (function (){
     return rndVerbRus;
   }
 
-  // next.onclick = function() {
-  //   if ( plus() ) {
-  //     blessRNG();
-  //     // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
-  //     outputRus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curV2R}${curSign}`;
-  //     outputEng.innerHTML = '';
-  //   } else {
-  //     alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
-  //   }
-  // }
-
-  // answer.onclick = function() {
-  //   // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-  //   outputEng.innerHTML = `${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E}${curSign}`;
-  // }
-
-  /* Проверка на наличие выбранного глагола */
-  function plus() {
-    for (let i = 0; i < binaryVerbs.length; i++) {
-      if (binaryVerbs[i] == 1) return true;
-    }
-    return false
+  // Сохранение выбранных слов
+  function saveWords(){
+    data.words_lvl1p = binaryVerbs;
+    let jsn = JSON.stringify( data );
+    localStorage.polyglot = jsn;
   }
 
-  function saveWords(){
-    // localStorage.setItem('select_words_lvl1p', binaryVerbs);
-    data.words_lvl1p = binaryVerbs;
-    let jsn = JSON.stringify( data );   // охуеть оно заработало
-    localStorage.polyglot = jsn;
+  function generateString(){
+    /* Проверка на наличие выбранного глагола */
+    function plus() {
+      for (let i = 0; i < binaryVerbs.length; i++) {
+        if (binaryVerbs[i] == 1) return true;
+      }
+      return false
+    }
+    
+    if ( plus() ) {
+      blessRNG();
+      // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
+      // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
+      if (order == "eng-rus" || (order == "mix" && rndMixValue == 0)) {
+        stringQestion = `${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E}${curSign}`;
+        stringAnswer = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curV2R}${curSign}`;
+      } else if (order == "rus-eng" || (order == "mix" && rndMixValue == 1)) {
+        stringQestion = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curV2R}${curSign}`;
+        stringAnswer = `${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E}${curSign}`;
+      }       
+    } else {
+      alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
+    }
   }
 
   return {
     next: function() {
-      if ( plus() ) {
-        blessRNG();
-        // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
-        outputRus.innerHTML = `${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curV2R}${curSign}`;
-        outputEng.innerHTML = '';
-      } else {
-        alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
-      }
+      generateString();
+      outputAnswer.innerHTML = '';
+      outputQuestion.innerHTML = stringQestion;
     },
     answer: function() {
-      // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-      outputEng.innerHTML = `${curtoDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E}${curSign}`;
+      outputAnswer.innerHTML = stringAnswer;
     }
   };
 
 })();
+
+// Ставит знак препинания в конец сформированной фразы
+// function StavitZnakPrepinania(){
+//   if (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) {
+//     GotovaiaStroka =+ "?";
+//   } else {
+//     GotovaiaStroka =+ ".";
+//   }
+// }
