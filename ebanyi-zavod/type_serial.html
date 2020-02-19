@@ -42,14 +42,14 @@
 					<label class="accordion_trigger" for="n630303">630303 короткая</label>
 					<div class="accordion_target">
 						<ul>
-							<li><b>А></b> - АКБ загл-назад.</li>
-							<li><b>Б></b> - 102х2</li>
-							<li><b>В></b> - соска</li>
-							<li><b>Г></b> - глуш (сред. + длин.); пакет; воздухан.</li>
-							<li><b>З></b> - зап> 63035-3105050 + 2 пласт> 63035-3105022-020</li>
-							<li><b>М></b> - март.</li>
-							<li><b>С></b> - К.Т</li>
-							<li><b>&></b> - !капс</li>
+							<li><b>А</b> - АКБ загл-назад.</li>
+							<li><b>Б</b> - 102х2</li>
+							<li><b>В</b> - соска</li>
+							<li><b>Г</b> - глуш (сред. + длин.); пакет; воздухан.</li>
+							<li><b>З</b> - зап> 63035-3105050 + 2 пласт> 63035-3105022-020</li>
+							<li><b>М</b> - март.</li>
+							<li><b>С</b> - К.Т</li>
+							<li><b>&</b> - !капс</li>
 						</ul>
 					</div>
 				</li>
@@ -58,14 +58,14 @@
 					<label class="accordion_trigger" for="n630305">630305 длинная</label>
 					<div class="accordion_target">
 						<ul>
-							<li><b>А></b> - АКБ загл-назад; пакет на АКБ.</li>
-							<li><b>Б></b> - 102х2</li>
-							<li><b>В></b> - подрессоривание, соска</li>
-							<li><b>Г></b> - глуш (2 мал.); воздухан. <!-- 63031 --></li>
-							<li><b>З></b> - зап> 54321-3105050; кр. (2 отв.) продеть 5 трубок.</li>
-							<li><b>М></b> - март.; З.Э 5336A5|b</li>
-							<li><b>С></b> - </li>
-							<li><b>&></b> - !капс, !И.Я</li>
+							<li><b>А</b> - АКБ загл-назад; пакет на АКБ.</li>
+							<li><b>Б</b> - 102х2</li>
+							<li><b>В</b> - подрессоривание, соска</li>
+							<li><b>Г</b> - глуш (2 мал.); воздухан. <!-- 63031 --></li>
+							<li><b>З</b> - зап> 54321-3105050; кр. (2 отв.) продеть 5 трубок.</li>
+							<li><b>М</b> - март.; З.Э 5336A5|b</li>
+							<li><b>С</b> - </li>
+							<li><b>&</b> - !капс, !И.Я</li>
 						</ul>
 					</div>
 				</li>
@@ -76,6 +76,7 @@
 						<ul>
 							<li>МногА БУкаф</li>
 							<li>МногА БУкаф</li>
+							<li><b>С</b> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi adipisci dolores numquam. Eum accusantium aut expedita deserunt recusandae, illum consectetur ducimus. Alias culpa qui libero, expedita dolorem eum deleniti nam.</li>
 						</ul>
 					</div>
 				</li>
@@ -101,6 +102,15 @@
 				</li>
 			</ul>
 
+			<li class="accordion_item"><input type="checkbox" class="accordion_toggle" id="n37" hidden>
+				<label class="accordion_trigger" for="n37">37 цром</label>
+				<div class="accordion_target">
+					<ul>
+						<li>кр РОВ косой смотрит вперёд, РОВ снизу</li>
+					</ul>
+				</div>
+			</li>
+
 			<script>
 			var sss = document.getElementsByClassName("accordion_trigger");
 			for(var i = 0; i<sss.length; i++){
@@ -114,7 +124,55 @@
 				x.style.verticalAlign = "top";
 				sss[i].insertBefore(x, sss[i].firstChild);
 			}
+
+			let item = document.querySelectorAll('.accordion_item');
+			// console.log (item);
+
+			for (let w = 0; w<item.length; w++){
+				let ul = item[w].childNodes[4].childNodes[1];
+				// console.log (ul);
+
+				let li = ul.querySelectorAll('li');
+				// console.log (li);
+
+				for (let v = 0; v<li.length; v++){
+					// console.log (li[v].firstChild);
+					if (li[v].firstChild.nodeType == 1){
+						let r = li[v].firstChild;
+						li[v].className += 'operation-wrap'
+						r.className += 'operation'
+						console.log('sasat')
+					} else {
+						console.log('ne sasat')		
+					}
+				}
+			}
 			</script>
+
+			<style>
+				.accordion_target ul li{
+					padding: 2px 6px;
+					margin-bottom: 2px;
+				}
+				.operation-wrap{
+					border-top-left-radius: 16px;
+					border-bottom-left-radius: 16px;
+				}
+				.operation{
+					margin-left: -4px;
+					text-align: center;
+					display: inline-block;
+					line-height: 26px;
+					width: 26px;
+					height: 26px;
+					background-color: #ddd;
+					border: 1px solid #666;
+					border-radius: 50%;
+				}
+				.accordion_target ul li:hover > .operation {
+					color: #444;
+				}
+			</style>
 
 			
 			<div class="text">
