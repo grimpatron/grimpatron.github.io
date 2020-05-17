@@ -3,7 +3,7 @@ let irrVerbs_Easy_Str = "1.! be[biː] быть was[wɒz]/were[wɜ:] been[bi:n] 2
 let irrVerbs_Hard_Str = "133.!+ stick[stɪk] держать(ся),вонзать(ся),втыкать(ся) stuck[stʌk] stuck[stʌk] 142.! bear[bɛə] нести,выносить,переносить bore[bɔ:] born[bɔ:n] 155.! forecast['fɔːkɑːst] прогнозировать,предсказывать forecast['fɔːkɑːst] forecast['fɔːkɑːst] 157.!+ rid[rɪd] избавлять,освобождать rid[rɪd] rid[rɪd] 161.! thrust[θrʌst] толкать,засовывать,пронзать thrust[θrʌst] thrust[θrʌst] 162.! upset[ʌpˈset] расстроить,огорчить,опрокидывать upset[ʌpˈset] upset[ʌpˈset] 174.!+ shrink[ʃrɪŋk] сокращаться,сжиматься shrank[ʃræŋk] shrunk[ʃrʌŋk] 175.!+ spring[sprɪŋ] прыгать,пружинить sprang[spræŋ] sprung[sprʌŋ] 178.!+ swear[swɛə] ругаться,клясться swore[swɔ:] sworn[swɔ:n] 181.!+ shear[ʃɪə] стричь,резать sheared[ʃɪəd] shorn[ʃɔ:n] 183.!+ swell[swel] надуваться,набухать swelled[sweld] swollen[swoʊlən] 186.!+ wind[waɪnd] виться,наматывать wound[waʊnd] wound[waʊnd] 188.! abide[əˈbaɪd] терпеть,выносить abode[əˈboʊd] abode[əˈboʊd] 192.! befall[bɪ'fɔːl] случаться,происходить befell[bɪ'fel] befallen[bɪ'fɔːlən] 196.!+ bereave[bɪ'riːv] лишать,терять_близких bereaved/bereft bereaved/bereft 197.! beseech[bɪ'siːʧ] умолять,просить,упрашивать besought[bɪ'sɔːt] beseeched 198.! bespeak[bɪ'spiːk] заручаться,делать_на_заказ; bespoke[bɪ'spəuk] bespoke[bɪ'spəuk]/bespoken[bɪ'spəukn] 200.! betake[bɪ'teɪk] прибегать,обращаться_к betook[bɪ'tʊk] betaken[bɪ'teɪkən] 202.! breed[bri:d] вынашивать(детёнышей),разводить(животных) bred[bred] bred[bred] 203.! browbeat['braubiːt] запугивать,пугать browbeat['braubiːt] browbeaten['braubiːtn] 205.!+ bust[bʌst] сломать,разрушить,арестовать busted[bʌstɪd]/bust[bʌst] busted[bʌstɪd]/bust[bʌst] 207.! chide[ʧaɪd] ругать,винить,ворчать chid[ʧɪd]/chided chidden['ʧɪd(ə)n]/chided 208.! cleave[kli:v] раскалывать,рассекать cleft[kleft] cleft[kleft] 209.! cling[klɪŋ] цеплять(ся),облегать,прилипать clung[klʌŋ] clung[klʌŋ] 212.! dwell[dwel] жить,обитать,остановиться dwelt[dwelt]/dwelled[dweld] dwelt[dwelt]/dwelled[dweld] 213.! enwind[ɪnˈwaɪnd] виться,обвивать(ся) enwound[ɪnˈwaʊnd] enwound[ɪnˈwaʊnd] 215.! fling[flɪŋ] швырять,бросаться,кидаться flung[flʌŋ] flung[flʌŋ] 217.! forbear['fɔːbɛə] сдерживаться,воздерживаться forbore[fɔː'bɔː] forborne[fɔː'bɔːn] 218.! foresee[fɔː'siː] предвидеть,знать_заранее foresaw[fɔː'sɔː] foreseen[fɔː'siːn] 219.! foretell[fɔː'tel] предсказывать,прогнозировать foretold[fɔː'təuld] foretold[fɔː'təuld] 221.! forswear[fɔː'swɛə] отрекаться,зарекаться forswore[fɔːswɔː] forsworn[fɔː'swɔːn] 222.! gainsay[ˌgeɪn'seɪ] отрицать gainsaid[ˌgeɪn'sed] gainsaid[ˌgeɪn'sed] 223.! gild[gɪld] позолотить,украшать gilt[gɪlt] gilt[gɪlt] 224.! gird[gɜːd] подпоясывать(ся),опоясывать(ся) girded/girt[gɜːt] girded/girt[gɜːt] 225.! grave[greɪv] вырезать,гравировать,высекать graved[greɪvd] graved[greɪvd]/graven[greɪvən] 226.! hew[hju:] рубить hewed[hju:d] hewn[hju:n] 227.! kneel[ni:l] становиться_на_колени knelt[nelt] knelt[nelt] 228.! lade[leɪd] грузить,нагружать laded[leɪdɪd] laded[leɪdɪd]/laden['leɪd(ə)n] 229.! mow[moʊ] косить mowed[moʊd] mown[moʊn] 230.! remake[ˈriːmeɪk] переделывать,делать_заново remade[ˌriːˈmeɪd] remade[ˌriːˈmeɪd]";
 var adjective_Easy_Str = "89. conscious сознательный,осознанный 94. suspicious подозрительный,недоверчивый 109. necessary необходимый 111. difficult сложный,тяжелый 113. loose свободный_(в_т.ч._в_размере) 117. perfect идеальный,безупречный 118. bright яркий,умный 119. silly глупый,нелепый 121. fair честный,порядочный,светлый 122. exact точный,строгий 126. secure безопасный,надежный 129. fine хороший 131. informal неформальный,неофициальный 130. formal формальный,официальный 132. convenient удобный,подходящий 135. correct правильный,надлежащий,корректный 136. valuable ценный 137. leading ведущий,главный,передовой 138. heavy тяжелый,крупный 140. smooth гладкий 141. firm твердый 142. light легкий,светлый 143. international международный 144. sensible благоразумный,здравый 145. weird таинственный,странный,непонятный 146. busy занятой 147. free свободный,бесплатный 148. clever умный 149. wise мудрый 150. remote дальний,труднодоступный";
 var phrVerbs_Easy_Str = "1 pick_up забрать,подобрать,подцепить 3 get_out убираться,выбираться,вылезать 4 go_back возвращаться,вернуться 5 come_on дадай!,пошли!,да_брось! 7 sit_down сесть,садиться 8 come_out выйти,выходить,появляться 9 come_in войти,зайти,приходить 11 get_up вставать,подниматься,просыпатьс 12 come_up прийти,подойти,подниматься 14 go_out выходить 15+ take_off снимать_(с_себя),взлететь 16+ come_from происходить_от/из,взяться 17+ find_out выяснить,разузнать,обнаружить,найти 20+ get_back вернуть(ся) 21+ go_down спускаться,идти,ехать_вниз 25 take_out вынимать,вытаскивать 26+ wake_up просыпаться;будить_кого-либо 30+ be_back вернуться,возвращаться 57+ cut_off отрезать,отключать,отрубать 172 search_for искать(внимательно),обыскивать,досматривать";
-
+var adverbs_Str = "#254 today сегодня #310 tomorrow завтра #765 yesterday вчера #214 tonight сегодня_вечером #282 soon скоро,вскоре #47 now сейчас,теперь #133 ever когда-либо,всегда #88 never никогда #155 always всегда #659 early рано #316 late поздно #768 lately недавно,в_последнее_время #5709 occasionally иногда,время_от_времени #407 sometimes иногда,временами #62 when когда #1312 whenever когда,каждый_раз,как_только #79 then тогда,потом #145 after после,позже #131 before прежде,раньше,до #1896 recently недавно,в_последнее_время #264 once однажды,когда-то #12258 seldom редко,нечасто #842 usually обычно,как_правило #226 already уже #261 yet ещё,ещё_не #121 still до_сих_пор,всё_ещё #249 since поскольку,начиная_с #328 ago тому_назад #19 just только,только_что #36 here здесь,тут #52 there там #97 where где,куда #421 inside внутри #484 outside снаружи,извне #1629 above наверху,вверху #3286 below внизу,ниже #1373 everywhere везде,повсюду #528 somewhere где-то,куда-нибудь #514 anywhere везде,где_угодно,нигде #1359 nowhere нигде,никуда #5920 elsewhere в_другом_месте #361 far далеко,намного # northward к_северу,на_север #3197 forth вперёд,впредь #1425 quickly быстро #2837 slowly медленно #2792 carefully тщательно,осторожно #1523 clearly отчетливо,ясно #31 well хорошо #533 fast быстро #6640 beautifully красиво #4734 quietly тихо #2198 easily легко #2197 friendly дружелюбно,дружественно # sweetly сладко,мило # bravely храбро # quikly быстро # lazily лениво # greedily жадно # daintily изящно # innocently невинно #85 little мало,немного #583 less меньше #93 more больше #103 very очень #89 too слишком,тоже,также #2552 fully полностью #429 quite вполне,довольно,совсем #573 rather довольно,скорее #190 enough достаточно,довольно #6288 partly частично #385 almost почти #7119 utterly крайне,чрезмерно #2142 entirely полностью #107 much много,горaздо,очень #19 just просто,только #28 so так,настолько #1130 hardly едва,вряд_ли # scarcely едва,вряд_ли #1798 nearly близко";
 var transcriptionArr = [], 
     currentArrEng = [],  //сделать единым для всех трёх уровней  
     currentArrRus = [];  //сделать единым для всех трёх уровней
@@ -11,10 +11,27 @@ var transcriptionArr = [],
 //     engWordPastParticiple = [],
 //     wordsArrLength = null;
 
+let progressList = [];      //  **  // список прогресса всех слов из выбранного урока;
+let curSessionEng = [];     //  **  // список слов сформированный на основании неизученных;
+let curSessionRus = [];     //  **  // список слов сформированный на основании неизученных;
+let saveArr;                //  **  // сохранённые данные
+let wordLimit = 40;         //  **  // количество слов в упражнении
+let repeat = 5;             //  **  // количество повторений для каждого слова.
+let wordPositions = [];     //  **  // массив с позициями слов
+
+var currentLength = null,   // колличество слов
+    rng = null,             // случайное число
+    order = "eng_rus",      // eng || rus || mix
+    orderValue = null,      // порядок 
+    transcrSwitch = false,
+    historyArr = [],        // сохранять позиции последних слов (чтобы исключить повторения)
+    historyLength = 2;      // количество слов защищённых от повторения
+
 var regVerbs_Multiplier = 4,
     irrVerbs_Multiplier = 5,
     adjective_Multiplier = 3,
-    phrVerbs_Multiplier = 3;
+    phrVerbs_Multiplier = 3,
+    adverbs_Multiplier = 3;
 
 let regVerbs_Easy_Arr = regVerbs_Easy_Str.split(' '),
     regVerbs_Easy_Length = regVerbs_Easy_Arr.length / regVerbs_Multiplier;
@@ -26,45 +43,8 @@ let adjective_Easy_Arr = adjective_Easy_Str.split(' '),
     adjective_Easy_Length = adjective_Easy_Arr.length / adjective_Multiplier;
 let phrVerbs_Easy_Arr = phrVerbs_Easy_Str.split(' '),
     phrVerbs_Easy_Length = phrVerbs_Easy_Arr.length / phrVerbs_Multiplier;
-
-var currentLength = null,   // колличество слов
-    rng = null,             // случайное число
-    order = "eng_rus",      // eng || rus || mix
-    orderValue = null,      // порядок 
-    transcrSwitch = false,
-    historyArr = [],        // сохранять позиции последних слов (чтобы исключить повторения)
-    historyLength = 2;      // количество слов защищённых от повторения
-
-/*main-menu*/
-document.getElementById("main-menu").onclick = function(){
-  if (event.target.className == "index-btn"){
-    mode = event.target.id;
-    select(mode);
-  }
-}
-
-function select(mode){
-  clearArray();
-  switch(mode){
-    case "ModeRegularVerbsEasy":
-      currentLength = regVerbs_Easy_Length; 
-      pushArray(regVerbs_Easy_Arr, currentArrEng, currentArrRus, regVerbs_Multiplier); break;
-    case "ModeIrregularVerbsEasy":
-      currentLength = irrVerbs_Easy_Length;
-      pushArray(irrVerbs_Easy_Arr, currentArrEng, currentArrRus, irrVerbs_Multiplier); break;
-    case "ModeIrregularVerbsHard":
-      currentLength = irrVerbs_Hard_Length;
-      pushArray(irrVerbs_Hard_Arr, currentArrEng, currentArrRus, irrVerbs_Multiplier); break;
-    case "ModeAdjectiveEasy":
-      currentLength = adjective_Easy_Length;
-      pushArray(adjective_Easy_Arr, currentArrEng, currentArrRus, adjective_Multiplier); break;
-    case "ModePhrasalVerbsEasy":
-      currentLength = phrVerbs_Easy_Length;
-      pushArray(phrVerbs_Easy_Arr, currentArrEng, currentArrRus, phrVerbs_Multiplier);
-  }
-  currentArrEng.forEach(cutTranscription);
-  displayTransition();
-}
+let adverbs_Arr = adverbs_Str.split(' '),
+    adverbs_Length = adverbs_Arr.length / phrVerbs_Multiplier;
 
 /*program*/
 var screenMainMenu = document.getElementById("main-menu"),
@@ -78,38 +58,20 @@ var screenMainMenu = document.getElementById("main-menu"),
     answerTranscript = document.getElementById("answer-transcript"),
     next = document.getElementById("buttonNext"),
     check = document.getElementById("buttonCheck"),
-    info = document.getElementById("info");
+    info = document.getElementById("info"),
+    buttonPlus = document.getElementById("buttonPlus")
+    buttonMinus = document.getElementById("buttonMinus");
 
-function clearArray(){
-  currentArrEng = [];
-  currentArrRus = [];
-  transcriptionArr = [];
-  askTranscript.innerHTML = "";
+
+/*      ***     MAIN MENU     ***     */
+document.getElementById("main-menu").onclick = function(){
+  if (event.target.className == "index-btn"){
+    mode = event.target.id;
+    select(mode);
+  }
 }
 
-function pushArray(currentArr, engArr, rusArr, multiplier){
-  for (var i = 1; i < currentArr.length; i = i + multiplier) {
-    engArr.push(currentArr[i]);
-    rusArr.push(currentArr[i+1]);
-  };
-}
-
-function displayTransition(){
-  screenMainMenu.style.display = "none";
-  screenProgram.style.display = "block";
-  currentArrRus.forEach(editing);
-  currentArrEng.forEach(editing);
-  go();
-  console.log(currentArrEng);
-}
-
-// добовление пробелов
-function editing(currentValue, index, array){
-  if (currentValue.includes(',') || currentValue.includes('_'))
-    array[index] = currentValue.split(',').join(', ').split('_').join(' ');
-}
-
-/* back to menu */
+/*      ***     Lesson button     ***     */
 backToMenu.onclick = function(){
   document.location.reload(true);   // Перезагрузка страницы, вместо обнуления переменных
 }
@@ -130,7 +92,6 @@ revers.onclick = function(){
   }
 }
 
-/*transcription*/
 transcription.onclick = function(){
   if(transcrSwitch){
     transcrSwitch = false;
@@ -145,6 +106,74 @@ transcription.onclick = function(){
   }
 }
 
+reset.onclick = function(){
+  localStorage.removeItem('englishWords');
+}
+
+next.onclick = function nextWord(){
+  clearField();
+  go();
+}
+
+check.onclick = function checkWord(){
+  answerWord.innerHTML = correctAnswer;
+  if (order == "rus_eng" || (order == "mix" && orderValue == 1)){
+    answerTranscript.innerHTML = transcriptionArr[rng];
+  }
+}
+
+
+function select(mode){
+  currentArrEng = [];
+  currentArrRus = [];
+  transcriptionArr = [];
+  askTranscript.innerHTML = "";
+  switch(mode){
+    case "ModeRegularVerbsEasy":
+      // currentLength = regVerbs_Easy_Length; 
+      pushArray(regVerbs_Easy_Arr, currentArrEng, currentArrRus, regVerbs_Multiplier); break;
+    case "ModeIrregularVerbsEasy":
+      // currentLength = irrVerbs_Easy_Length;
+      pushArray(irrVerbs_Easy_Arr, currentArrEng, currentArrRus, irrVerbs_Multiplier); break;
+    case "ModeIrregularVerbsHard":
+      // currentLength = irrVerbs_Hard_Length;
+      pushArray(irrVerbs_Hard_Arr, currentArrEng, currentArrRus, irrVerbs_Multiplier); break;
+    case "ModeAdjectiveEasy":
+      // currentLength = adjective_Easy_Length;
+      pushArray(adjective_Easy_Arr, currentArrEng, currentArrRus, adjective_Multiplier); break;
+    case "ModePhrasalVerbsEasy":
+      // currentLength = phrVerbs_Easy_Length;
+      pushArray(phrVerbs_Easy_Arr, currentArrEng, currentArrRus, phrVerbs_Multiplier); break;
+    case "ModeAdverbs":
+      // currentLength = adverbs_Length;
+      pushArray(adverbs_Arr, currentArrEng, currentArrRus, adverbs_Multiplier);
+  }
+  assembly();
+  currentArrEng.forEach(cutTranscription);
+  displayTransition();
+}
+
+
+function pushArray(currentArr, engArr, rusArr, multiplier){
+  for (var i = 1; i < currentArr.length; i = i + multiplier) {
+    engArr.push(currentArr[i]);
+    rusArr.push(currentArr[i+1]);
+  };
+}
+
+function displayTransition(){
+  screenMainMenu.style.display = "none";
+  screenProgram.style.display = "block";
+  go();
+}
+
+// добовление пробелов
+function editing(currentValue, index, array){
+  if (currentValue.includes(',') || currentValue.includes('_'))
+    array[index] = currentValue.split(',').join(', ').split('_').join(' ');
+}
+
+
 /* извлекание транскрипции */
 var posttrans = [];
 var indx1 = "";
@@ -157,7 +186,7 @@ function cutTranscription(x){
     transRes = x.substring(indx1, indx2+1);
     posttrans.push(x.replace(transRes, ''));
     transcriptionArr.push(transRes);
-  } else {  // 
+  } else {
     posttrans.push(x);
     transcriptionArr.push('');
   }
@@ -167,12 +196,12 @@ function cutTranscription(x){
 function go(){
   blesRng();
   if (order == "eng_rus" || (order == "mix" && orderValue == 0)){
-    askWord.innerHTML = currentArrEng[rng];
-    askTranscript.innerHTML = transcriptionArr[rng] ? transcriptionArr[rng] : "[]"; 
-    correctAnswer = currentArrRus[rng];
+    askWord.innerHTML = curSessionEng[rng];
+    askTranscript.innerHTML = transcriptionArr[rng] ? transcriptionArr[rng] : "[]";
+    correctAnswer = curSessionRus[rng];
   } else if (order == "rus_eng" || (order == "mix" && orderValue == 1)){
-    askWord.innerHTML = currentArrRus[rng];
-    correctAnswer = currentArrEng[rng];
+    askWord.innerHTML = curSessionRus[rng];
+    correctAnswer = curSessionEng[rng];
   }
 
   if (historyArr.length > historyLength) historyArr.shift();
@@ -186,22 +215,101 @@ function blesRng(){
   checkHistory();
 }
 
-next.onclick = function nextWord(){
+function clearField(){
   answerWord.innerHTML = "";
   askTranscript.innerHTML = "";
   answerTranscript.innerHTML = "";
-  go();
 }
-check.onclick = function checkWord(){
-  answerWord.innerHTML = correctAnswer;
-  if (order == "rus_eng" || (order == "mix" && orderValue == 1)){
-    answerTranscript.innerHTML = transcriptionArr[rng];
+
+// предотвразщает повторение слов (если осталось мало слов, проверка не будет срабатывать)
+function checkHistory() {
+  if (historyLength > historyLength){
+    for (var i = 0; i <= historyLength; i++) {
+      if (historyArr[i] == rng){ blesRng(); }
+    }
   }
 }
 
-// предотвразщает повторение слов
-function checkHistory() {
-  for (var i = 0; i <= historyLength; i++) {
-    if (historyArr[i] == rng){ blesRng(); }
-  }
+
+/* ************************************** */
+if ( JSON.parse( localStorage.englishWords == undefined)) saveEnglishWords();
+
+function saveEnglishWords(){
+  localStorage.englishWords = JSON.stringify({
+    // rVerbsCnt: regVerbs_Easy_Length,
+    // rVerbsArr: new Array(regVerbs_Easy_Length).fill(0),
+    // iVerbsCnt: irrVerbs_Easy_Length,
+    // iVerbsArr: new Array(irrVerbs_Easy_Length).fill(0),
+    // adjectiveCnt: adjective_Easy_Length,
+    // adjectiveArr: new Array(adjective_Easy_Length).fill(0),
+    adverbsCnt: adverbs_Length,
+    adverbsArr: new Array(adverbs_Length).fill(0)
+  });
 }
+
+
+// формирует данные на основании сохранений
+function assembly(){
+  saveArr = JSON.parse( localStorage.englishWords || '{}');// обращаемся в локал сторадж и дёргаем оттуда данные и формируем массивы
+  progressList = saveArr.adverbsArr;  // выбирает массив в зависимости от нажатой кнопки меню.
+  var schetchik = 0;
+  var cn = 0;
+  curSessionEng = [];
+  curSessionRus = [];
+  wordPositions = [];
+  progressList.forEach(function(item, i) {
+    if (schetchik < wordLimit){
+      if(item < repeat) {
+        curSessionEng[schetchik] = currentArrEng[cn];
+        curSessionRus[schetchik] = currentArrRus[cn];
+        wordPositions[schetchik] = i;
+        schetchik++;
+      }
+      cn++;
+    }
+  });
+  console.log('wordPositions', wordPositions);
+  console.log(curSessionEng);
+  console.log(curSessionRus);
+  currentLength = curSessionEng.length; // здесь расчитывается длинна (остальное устарело)
+  curSessionEng.forEach(editing);
+  curSessionRus.forEach(editing);
+}
+
+
+// Изменяет данные
+function changes(change){
+  var yy = wordPositions[rng];        // позиция рандомного слова
+  var xx = saveArr.adverbsArr[yy];    // берёт число соответсвующее слову и увеличивает его на 1
+  if (change == "+") {
+    xx++;
+  } else if (change == "-") {
+    if (xx > 0){
+      xx--;
+    }
+  }
+  console.log( 'позиция - ' + yy + ';', 'плюсы - ' + xx + ';');
+  saveArr.adverbsArr[yy] = xx;
+  saveProgress(); // сохраняем прогресс
+  assembly();  // если слово выучено (значение перевалило за 5) пересобираем массив
+}
+
+
+// Сохранение данных
+function saveProgress(){
+  let jsn = JSON.stringify( saveArr ); // сохранит изменения и если перевалит за лимит уберёт выученное слово заменив новым.
+  localStorage.englishWords = jsn;
+}
+
+
+buttonPlus.addEventListener('click', function(){
+  changes("+");
+  clearField();
+  go();
+});
+
+buttonMinus.addEventListener('click', function(){
+  changes("-");
+  clearField();
+  go();
+});
