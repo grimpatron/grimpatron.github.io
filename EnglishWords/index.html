@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <!--как запретить зумировать страницу???-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <!-- <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/> -->
+  <!-- <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> -->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>English</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+
+    <div id="main-menu">
+      <button class="index-btn" id="ModeRegularVerbsEasy">Regular Verbs Easy</button>
+      <button class="index-btn" id="ModeIrregularVerbsEasy">Irregular Verbs Easy</button>
+      <button class="index-btn" id="ModeIrregularVerbsHard">Irregular Verbs Hard</button>
+      <button class="index-btn" id="ModeAdjectiveEasy">Adjective Easy</button>
+      <button class="index-btn" id="ModePhrasalVerbsEasy">Phrasal Verbs</button>
+      <button class="index-btn" id="ModeAdverbs">Adverbs</button>
+      <!-- <button class="index-btn"><a href="../generateEng/generateEngLvL-1.html">GENERATOR PHRASE lvl 1</a></button>
+      <button class="index-btn"><a href="../generateEng/generateEngLvL-2.html">GENERATOR PHRASE lvl 2</a></button>
+      <button class="index-btn"><a href="../generateEng/generateEngLvL-3.html">GENERATOR PHRASE lvl 3</a></button> -->
+    </div>
+
+
+    <div id="program">
+      <div class="topbar" >
+        <button class="topbar-btn" id="back-to-menu">MENU</button>
+        <button class="topbar-btn" id="revers">eng-rus</button>
+        <button class="topbar-btn" id="transcription">trans</button>
+        <button class="topbar-btn" id="reset">reset</button>
+      </div>
+
+      <div class="text-field">
+        <span id="ask-word"></span>
+        <span id="ask-transcript"></span>
+      </div>
+      <div class="text-field">
+        <span id="answer-word"></span>
+        <span id="answer-transcript"></span>
+      </div>
+
+      <div class="wrap-button">
+        <div class="button-action" id="buttonNext">Дальше</div>
+        <div class="button-action" id="buttonCheck">Ответ</div>
+        <div class="button-check__wrapper">
+          <div class="button-check" id="buttonPlus">+</div>
+          <div class="button-check" id="buttonMinus">-</div>          
+        </div>
+        <p id="info"></p>
+      </div>
+    </div>
+  
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
