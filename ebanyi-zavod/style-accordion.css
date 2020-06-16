@@ -8,18 +8,15 @@ body {
 }
 
 /* Компоненты аккордеона. */
-.accordion_item,
-.acc-item {
+.accordion_item {
   border-bottom: 1px solid #5a95fd;
 }
-.accordion_item:last-of-type,
-.acc-item:last-of-type {
+.accordion_item:last-of-type {
   border-bottom: none;
 }
 
 /* Элемент label который запускает открыть/закрыть. */
-.accordion_trigger,
-.acc-trig {
+.accordion_trigger {
   display: block;
   background-color: #007ccf;
   color: #ddd;
@@ -30,21 +27,18 @@ body {
 }
 
 /* меняем цвет фона у активного переключателя */
-.accordion_toggle:checked ~ .accordion_trigger,
-.acc-togg:checked ~ .acc-trig {
+.accordion_toggle:checked ~ .accordion_trigger {
   background-color: #005d9c;
 }
 
 /* эти элементы radio/checkbox всегда должны быть скрыты. */
-.accordion_toggle,
-.acc-togg {
+.accordion_toggle {
   position: absolute;
   display: none;
 }
 
 /* скрытое содержание аккордеона. */
-.accordion_target,
-.acc-targ {
+.accordion_target {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -57,8 +51,7 @@ body {
 }
 
 /* когда переключатель checked на radio/checkbox, показать содержимое аккордеона. */
-.accordion_toggle:checked ~ .accordion_target,
-.acc-togg:checked ~ .acc-targ {
+.accordion_toggle:checked ~ .accordion_target {
   position: static;
   overflow: visible;
   width: auto;
