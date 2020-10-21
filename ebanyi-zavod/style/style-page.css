@@ -1,0 +1,234 @@
+/***	PAGE Table & Text	***/
+.page-table {
+  width: 720px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+.page-table th {
+  padding: 14px;
+  color: #DDDDDD;
+  background: #1b1b22;
+  border-bottom: 3px solid #666688;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align: middle;
+}
+.page-table th:not(:last-child) {
+  border-right: 1px solid #666688;
+}
+.page-table th:first-child {
+  border-top-left-radius: 7px;
+}
+.page-table th:last-child {
+  border-top-right-radius: 7px;
+}
+.page-table tr {
+  background: #FFFFFF;
+  color: #666688;
+  border-top: 1px solid #CCCCDD;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+.page-table tr:first-child {
+  border-top: none;
+}
+.page-table tr:nth-child(odd) td {
+  background: #EBEBEB;
+}
+.page-table tr:hover td,
+.page-table tr:nth-child(odd):hover td {
+  color: #FFFFFF;
+  background: #4E5066;
+  border-top: 1px solid #22262E;
+}
+.page-table tr:last-child td:first-child {
+  border-bottom-left-radius: 7px;
+}
+.page-table tr:last-child td:last-child {
+  border-bottom-right-radius: 7px;
+}
+.page-table td {
+  padding: 5px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 20px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #CCCCDD;
+}
+.page-table td:last-child {
+  border-right: 0px;
+}
+.page-info {
+  width: 100%;
+  color: #666688;
+  background-color: #FFFFFF;
+  font-size: 24px;
+  margin: 15px auto;
+  padding: 10px 10px;
+  border: 1px solid #CCCCDD;
+  border-radius: 7px;
+}
+.page-info p {
+  margin: 0.5em 0;
+}
+.text {
+  color: #666B85;
+  background-color: #FFFFFF;
+  font-size: 24px;
+  margin: 10px -8px 5px;
+  padding: 14px 10px;
+  border: 1px solid #C1C3D1;
+  border-radius: 8px;
+}
+.text p {
+  margin: 0.4em 0;
+}
+/***   PASS PAGE   ***/
+.pass-page {
+  width: 720px;
+  margin: 0px auto;
+  font-size: 18px;
+  font-family: Segoe UI;
+  color: #585858;
+  background: #F2F2F2;
+}
+.pass-page header h1 {
+  color: #3e94ec;
+}
+.pass-wrap {
+  position: relative;
+  margin: 0px auto;
+  padding: 10px;
+  background: #EBEBEB;
+  border: 1px solid #C1C3D1;
+  border-radius: 8px;
+  filter: blur(4px);
+}
+.pass-wrap table {
+  width: 100%;
+  font-family: monospace;
+  padding-bottom: 20px;
+}
+.pass-window {
+  position: fixed;
+  padding: 32px 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20%;
+  width: 460px;
+  z-index: 100;
+  box-shadow: 0px 0px 32px #666;
+  background: repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
+}
+.pass-mask {
+  position: fixed;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: #FFF;
+}
+.pass-notice {
+  text-transform: uppercase;
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #cdd;
+}
+.pass-input {
+  width: 260px;
+  font-size: 26px;
+  border: 2px solid #CCC;
+  border-radius: 3px;
+  padding: 5px;
+  color: #585858;
+  float: left;
+  outline: none;
+}
+.pass-button {
+  padding: 5px 10px;
+  float: right;
+  font-size: 26px;
+  border: 2px solid #CCC;
+  border-radius: 3px;
+  background: #F2F2F2;
+  color: #585858;
+  cursor: pointer;
+}
+.pass-button:hover {
+  background: #F9F9F9;
+  border-color: #AAA;
+}
+/* ************************************** 255 code string **************************************** */
+/* Базовые стили страницы */
+body {
+  font-size: 22px;
+}
+/* Компоненты аккордеона. */
+.accordion_item {
+  border-bottom: 1px solid #5a95fd;
+}
+.accordion_item:last-of-type {
+  border-bottom: none;
+}
+/* Элемент label который запускает открыть/закрыть. */
+.accordion_trigger {
+  display: block;
+  padding: 0.8em;
+  color: #ddd;
+  background-color: #007ccf;
+  cursor: pointer;
+  user-select: none;
+  /* запрещено выделять элемент.*/
+  font-size: 28px;
+}
+/* меняем цвет фона у активного переключателя */
+.accordion_toggle:checked ~ .accordion_trigger {
+  background-color: #005d9c;
+}
+/* эти элементы radio/checkbox всегда должны быть скрыты. */
+.accordion_toggle {
+  position: absolute;
+  display: none;
+}
+/* скрытое содержание аккордеона. */
+.accordion_target {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  background-color: #fafafa;
+  color: #444;
+}
+/* когда переключатель checked на radio/checkbox, показать содержимое аккордеона. */
+.accordion_toggle:checked ~ .accordion_target {
+  position: static;
+  overflow: visible;
+  width: auto;
+  height: auto;
+  margin: auto;
+  clip: auto;
+  padding: 1.5rem;
+  /* задержка появления  функция анимации */
+  animation: fadeIn ease-in 0.4s;
+}
+/* анимация при появлении блоков с содержанием */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+fieldset {
+  padding: 10px;
+  margin: 10px -10px 0;
+}

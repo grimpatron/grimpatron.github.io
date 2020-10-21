@@ -1,0 +1,96 @@
+@main-color: #3e94ec;
+@color-light: #fafafa;
+@text-color: #666B85;
+@border-color: #4E5066;
+@shadow-color: rgba(0, 0, 0, .4);
+
+@bg-pass: repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    font-size: 16px;
+    background-color: @main-color;
+    font-family: helvetica, arial, sans-serif;
+    text-rendering: optimizeLegibility; /*делает особый акцент на скорость отображения в ущерб удобочитаемости и геометрической четкости.*/
+}
+
+.wrapper {
+    width: 720px;
+    // max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    padding: 20px 0;
+    color: @color-light;
+    font-size: 34px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-shadow: -2px -2px 2px @shadow-color;
+}
+
+.btn {
+    font-size: 46px;
+    display: block;
+    padding: 8px 26px;
+    border-radius: 35px;
+    box-shadow: 8px 6px 5px @shadow-color;
+    background: linear-gradient(#EBEBEB, #BCC);
+    &-i {
+        border: 2px solid @border-color;
+        color: @text-color;
+    }
+    &-t {
+        color: @main-color;
+        text-align: center;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-gap: 1em;
+    margin-bottom: 20px;
+    &-custom {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    &-four {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    &-five {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.one-inline-g  {    grid-column: 1 / span 6; }
+.two-inline-f  {    grid-column: 1 / span 3; }
+.two-inline-s  {    grid-column: 4 / span 3; }
+.thre-inline-f {    grid-column: 1 / span 2; }
+.thre-inline-s {    grid-column: 3 / span 2; }
+.thre-inline-t {    grid-column: 5 / span 2; }
+
+
+.gl {
+    background: linear-gradient(#EBffEB, #BfC);
+}   /*GreenLight - означает что номера правильные*/
+.bg-pass{
+    background: @bg-pass;
+}
+.clr1{background: #FCF78A}  .clr1d{background: #A49F2D}  .clr1l{background: #FEFBBE}
+.clr2{background: #FF8E00}  .clr2d{background: #A65C00}  .clr2l{background: #FFC173}
+.clr3{background: #007ECF}  .clr3d{background: #005287}  .clr3l{background: #68B5E7}
+.clr4{background: #00D76F}  .clr4d{background: #008B48}  .clr4l{background: #6AEBAD}
+.clr5{background: #FF4100}  .clr5d{background: #A62A00}  .clr5l{background: #FF9773}
+.clr6{background: #D5FB00}  .clr6d{background: #8BA300}  .clr6l{background: #E8FD72}
+.clr7{background: #736AAF}  .clr7d{background: #2D2272}  .clr7l{background: #AFA8D7}
+.clr8{background: #00CCBD}  .clr8d{background: #00857B}  .clr8l{background: #67E6DC}
+.clr9{background: #59A292}  .clr9d{background: #1D6A58}  .clr9l{background: #9DD1C5}
+.clrx{background: #FCD18A}  .clrxd{background: #A4772D}  .clrxl{background: #FEE6BE}
+.clrz{background: #EC0033}  .clrzd{background: #990021}  .clrzl{background: #F56E8B}

@@ -1,0 +1,278 @@
+@color-table-primary: #666688;
+@color-table-secondary: #FFFFFF;
+@color-table-header: #DDDDDD;
+@border-table-header: @color-table-primary;
+@border-table-row: #CCCCDD;
+@border-table-row-hover: #22262E;
+@bg-table-header: #1b1b22;
+@bg-table-primary: #FFFFFF;
+@bg-table-secondary: #EBEBEB;
+@bg-table-hover: #4E5066;
+@bg-pass: repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
+
+@radius-border: 7px;
+
+@import: url("style");
+
+/***	PAGE Table & Text	***/
+.page {
+  &-table {
+    width: 720px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    
+    th {
+      padding: 14px;
+      color: @color-table-header;
+      background: @bg-table-header;
+      border-bottom: 3px solid @border-table-header;
+      font-size: 24px;
+      font-weight: 400;
+      text-align: left;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      vertical-align: middle;
+      &:not(:last-child) {
+        border-right: 1px solid @border-table-header;
+      }
+      &:first-child {
+        border-top-left-radius: @radius-border;
+      }
+      &:last-child {
+        border-top-right-radius: @radius-border;
+      }
+    }
+
+    tr {
+      background: @bg-table-primary;
+      color: @color-table-primary;
+      border-top: 1px solid @border-table-row;
+      text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+      &:first-child {
+        border-top: none;
+      }
+      &:nth-child(odd) td {
+        background: @bg-table-secondary;
+      }
+      &:hover td,
+      &:nth-child(odd):hover td {
+        color: @color-table-secondary;
+        background: @bg-table-hover;
+        border-top: 1px solid @border-table-row-hover;
+      }
+      &:last-child td:first-child {
+        border-bottom-left-radius: @radius-border;
+      }
+      &:last-child td:last-child {
+        border-bottom-right-radius: @radius-border;
+      }
+    }
+    
+    td {
+      padding: 5px;
+      text-align: left;
+      vertical-align: middle;
+      font-size: 20px;
+      text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+      border-right: 1px solid @border-table-row;
+      &:last-child {
+        border-right: 0px;
+      }
+    }
+  }
+
+  &-info {
+    width: 100%;
+    color: @color-table-primary;
+    background-color: @bg-table-primary;
+    font-size: 24px;
+    margin: 15px auto;
+    padding: 10px 10px;
+    border: 1px solid @border-table-row;
+    border-radius: @radius-border;
+    p {
+      margin: 0.5em 0;
+    }
+  }
+}
+.text {
+  color: #666B85;
+  background-color: #FFFFFF;
+  font-size: 24px;
+  margin: 10px -8px 5px;
+  padding: 14px 10px;
+  border: 1px solid #C1C3D1;
+  border-radius: 8px;
+  p {
+    margin: 0.4em 0;
+  }
+}
+
+
+
+
+/***   PASS PAGE   ***/
+.pass {
+  &-page {
+    width: 720px;
+    margin: 0px auto;
+    font-size: 18px;
+    font-family: Segoe UI;
+    color: #585858;
+    background: #F2F2F2;
+    header h1 {
+      color: #3e94ec;
+    }
+  }
+
+  &-wrap {
+    position: relative;
+    margin: 0px auto;
+    padding: 10px;
+    background: #EBEBEB;
+    border: 1px solid #C1C3D1;
+    border-radius: 8px;
+    filter: blur(4px);
+    
+    table {
+      width: 100%; 
+      font-family: monospace; 
+      padding-bottom: 20px;
+    }
+
+  }
+  
+  &-window {
+    position: fixed; 
+    padding: 32px 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+    width: 460px;
+    z-index: 100;
+    box-shadow: 0px 0px 32px #666;
+    background: @bg-pass;
+  }
+
+  &-mask {
+    position: fixed;
+    opacity: 0.5; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 10;
+    background: #FFF; 
+  }
+
+  &-notice {
+    text-transform: uppercase;
+    text-align: center;
+    padding-bottom: 30px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #cdd;
+  }
+
+  &-input {
+    width: 260px;
+    font-size: 26px;
+    border: 2px solid #CCC;
+    border-radius: 3px;
+    padding: 5px;
+    color: #585858;
+    float: left;
+    outline: none;
+  }
+
+  &-button {
+    padding: 5px 10px;
+    float: right;
+    font-size: 26px;
+    border: 2px solid #CCC;
+    border-radius: 3px;
+    background: #F2F2F2;
+    color: #585858;
+    cursor: pointer;
+    &:hover {
+      background: #F9F9F9;
+      border-color: #AAA;
+    }
+  }
+}
+
+
+
+/* ************************************** 255 code string **************************************** */
+
+/* Базовые стили страницы */
+body {
+  font-size: 22px;
+}
+
+/* Компоненты аккордеона. */
+.accordion_item {
+  border-bottom: 1px solid #5a95fd;
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+/* Элемент label который запускает открыть/закрыть. */
+.accordion_trigger {
+  display: block;
+  padding: 0.8em;
+  color: #ddd;
+  background-color: #007ccf;
+  cursor: pointer;
+  user-select: none;    /* запрещено выделять элемент.*/
+  font-size: 28px;
+}
+
+/* меняем цвет фона у активного переключателя */
+.accordion_toggle:checked ~ .accordion_trigger {
+  background-color: #005d9c;
+}
+
+/* эти элементы radio/checkbox всегда должны быть скрыты. */
+.accordion_toggle {
+  position: absolute;
+  display: none;
+}
+
+/* скрытое содержание аккордеона. */
+.accordion_target {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  background-color: #fafafa;
+  color: #444;
+}
+
+/* когда переключатель checked на radio/checkbox, показать содержимое аккордеона. */
+.accordion_toggle:checked ~ .accordion_target {
+  position: static;
+  overflow: visible;
+  width: auto;
+  height: auto;
+  margin: auto;
+  clip: auto;
+  padding: 1.5rem;
+	
+  /* задержка появления  функция анимации */
+  animation: fadeIn ease-in 0.4s;
+}
+
+/* анимация при появлении блоков с содержанием */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1 }
+}
+
+fieldset {
+  padding: 10px; 
+  margin: 10px -10px 0;
+}

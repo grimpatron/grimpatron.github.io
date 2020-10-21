@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Assistance</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="style/style.css" />
+	<link rel="stylesheet" href="style/style-page.css" />
+	<meta name="viewport" content="width=device-width"/>
+</head>
+
+<body class="pass-page">
+
+	<header>
+		<div class="wrapper">
+			<a href="index.html"><h1>assistance</h1></a>
+		</div>
+	</header>
+	
+	<section>
+		<div id="wrapper">
+			<div class="pass-wrap" id="wrap">
+		
+			<h4>1-я цифра обозначает класс автомобиля по полной массе:</h4>
+			<ul>
+				<li>1 – до 1,2
+				<li>2 – 1,2 до 2,0
+				<li>3 – 2,0 до 8,0
+				<li>4 – 8,0 до 14,0
+				<li>5 – 14,0 до 20,0
+				<li>6 – 20,0 до 40,0
+				<li>7 – свыше 40,0
+			</ul>
+			
+			<h4>2-я цифра обозначает тип АТС:</h4>
+			<ul>
+				<li>3 – грузовой бортовой автомобиль или пикап;
+				<li>4 – седельный тягач;
+				<li>5 – самосвал; 
+				<li>6 – цистерна; 
+				<li>7 – фургон;
+				<li>8 – резервная цифра; 
+				<li>9 – специальное автотранспортное средство.
+			</ul>	
+			
+			<h4>3-я и 4-я цифры индексов указывают на порядковый номер модели;</h4>
+			
+			<h4>5-я цифра - модификация автомобиля (экологичность по евростандарту):</h4>
+			<ul>
+				<li>«О или 0» - ЯМЗ (Euro-2).
+				<li>«8» - Cummins (Euro-3)
+				<li>«А» - (Euro-3)
+				<li>«В» - (Euro-4)
+				<li>«Е» - (Euro-5)
+				<li>«P» - ММЗ (Euro-4)
+				<li>«W» - Cummins (Euro-4)
+				<li>«V» - MAN (Euro-5)
+				<li>«X» - ЯМЗ (Euro-4)
+				<li>«18» – Двигатели Daimler OM501 LA.III Мощностью 435 л.с. (Euro-3)
+				<li>«19» – Двигатели Daimler ОМ501 LA.IV. Мощностью 435 л.с. (Euro-4)
+			</ul>
+
+			<h4>6-я цифра - обозначает группу мощности двигателя в лошадиных силах:</h4>
+			<ul>
+				<li>2 – Двигатель мощностью 230 л.с.
+				<li>3 – Двигатель мощностью 250 л.с.
+				<li>5 – Двигатель мощностью 330 л.с.
+				<li>8 – Двигатель мощностью 400 л.с.
+				<li>9 – Двигатель мощностью 412 л.с.
+			</ul>
+			
+			</div> <!--wrap-->
+		</div> <!--wrapper-->
+		
+
+		<div class="pass-window" id="pass-window">
+			<p class="pass-notice" type="notice">введите пароль!</p>
+			<input class="pass-input" id="pass" type="text" autofocus/>
+			<input class="pass-button" type="button" value="Принять" onClick="javascript:Accept();"/>
+		</div>
+
+		<div class="pass-mask" id="mask"></div>
+		
+	</section>
+	<script src="script.js"></script>
+</body>
+</html>
