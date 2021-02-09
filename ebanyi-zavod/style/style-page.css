@@ -184,7 +184,8 @@ body {
   cursor: pointer;
   user-select: none;
   /* запрещено выделять элемент.*/
-  font-size: 28px;
+  font-size: 30px;
+  line-height: 24px;
 }
 /* меняем цвет фона у активного переключателя */
 .accordion_toggle:checked ~ .accordion_trigger {
