@@ -25,9 +25,6 @@
 				<li class="accordion_item"><input type="checkbox" class="accordion_toggle" id="n543403" hidden>
 					<label class="accordion_trigger" for="n543403"><span>543403</span></label>
 					<div class="accordion_target">
-						<ul>
-							<li>все 543403 - без капсул</li>
-						</ul>
 
 						<fieldset><legend>_261-700p1</legend>
 							<ul>
@@ -41,6 +38,8 @@
 								<li><b>Б</b> 102x2</li>
 							</ul>
 						</fieldset>
+
+						<i>все 543403 - без капсул</i>
 					</div>
 				</li>
 
@@ -48,13 +47,11 @@
 				<li class="accordion_item"><input type="checkbox" class="accordion_toggle" id="n5434X3" hidden>
 					<label class="accordion_trigger" for="n5434X3"><span>5434X3</span></label>
 					<div class="accordion_target">
-						<ul>
-							<li>если глуш, то без растяжки, если В\В (ИЯ) то ставим растяжку.</li>
-						</ul>
-
+						<i>если ставится глуш, то без растяжки; если В\В (ИЯ) то ставим растяжку.</i>
+						
 						<fieldset><legend>_441-000p1</legend>
 							<ul>
-								<li>ПП; без капс</li>
+								<li><b>..</b> ПП; без капс</li>
 								<li><b>Г</b> глуш «ящик»</li>
 								<li><b>М</b> вебаст</li>
 							</ul>
@@ -62,14 +59,14 @@
 						
 						<fieldset><legend>_442-000 «лесовоз»</legend>
 							<ul>
-								<li>растяжка; если ставится ИЯ то 22; вебаст; капс</li>
+								<li><b>..</b> растяжка; если ставится ИЯ то 22; вебаст; капс</li>
 								<li><b>Б</b> 102x2</li>
 							</ul>
 						</fieldset>
 
 						<fieldset><legend>_461-000 «лесовоз»</legend>
 							<ul>
-								<li> капс; КТ</li>
+								<li><b>..</b> капс; КТ</li>
 								<li><b>Б</b> 102+103</li>
 								<li><b>Г</b> выхлоп перед 631705; ИЯ</li>
 								<li><b>З</b> ПП; пакет; растяжка; два уголка|α (схема на листке)</li>
@@ -79,7 +76,7 @@
 
 						<fieldset><legend>_460-050p1</legend>
 							<ul>
-								<li>ПП€; без капс</li>
+								<li><b>..</b> ПП€; без капс</li>
 								<li><b>Б</b> 102x2</li>
 								<li><b>Г</b> выхлоп перед 631705</li>
 								<li><b>М</b> ПП & кр. подогрева 5434X3-1015616|α; ЗЭ|β под буфером</li>
@@ -89,7 +86,7 @@
 
 						<fieldset><legend>_461-050p1 «броневик»</legend>
 							<ul>
-								<li>без капс</li>
+								<li><b>..</b> без капс</li>
 								<li><b>Б</b> 102x2</li>
 								<li><b>А</b> АКБ-РВЗ</li>
 								<li><b>Г</b> 2 глуш 5434X3-1203063/66-030 + кр рессивер 5434X3-3513080 «штанга» на два уголка 5434X3-3513084</li>
@@ -169,6 +166,7 @@
 							<li>МногА БУкаф</li>
 							<li>МногА БУкаф</li>
 							<li><b>С</b> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi adipisci dolores numquam. Eum accusantium aut expedita deserunt recusandae, illum consectetur ducimus. Alias culpa qui libero, expedita dolorem eum deleniti nam.</li>
+							<li><b>СC</b> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi adipisci dolores numquam. Eum accusantium aut expedita deserunt recusandae, illum consectetur ducimus.</li>
 						</ul>
 					</div>
 				</li>
@@ -183,83 +181,8 @@
 				</li>
 			</ul>
 
-			<script>
-				/* Добавляет красные круги (в будущем убрать)*/
-				var sss = document.getElementsByClassName("accordion_trigger");
-				for(var i = 0; i<sss.length; i++){
-					var x = document.createElement("span");
-					x.style.display = "inline-block";
-					x.style.marginRight = "10px";
-					x.style.backgroundColor = "red";
-					x.style.width = "25px";
-					x.style.height = "25px";
-					x.style.borderRadius = "50%";
-					x.style.verticalAlign = "top";
-					sss[i].insertBefore(x, sss[i].firstChild);
-				}
-
-
-			let carCollectionn = document.querySelectorAll('.accordion_item');	// коллекция из всех машин
-			
-			for (let w = 0; w<carCollectionn.length; w++){
-				let ul = carCollectionn[w].childNodes[4].childNodes[1];	//выбор машины
-				let li = ul.querySelectorAll('li');						//выбор всех строк
-				
-				for (let v = 0; v<li.length; v++){
-
-					if (li[v].firstChild.nodeType == 1){
-						let r = li[v].firstChild;
-						li[v].className += 'operation-wrap';
-
-						if (r.innerHTML.length == 1) {
-							r.className += 'operation-name';
-						} else if (r.innerHTML.length == 2) {
-							r.className += 'operation-detail';
-						}
-					}
-				}
-			}
-			</script>
-
-			<style>
-				.accordion_target ul li{
-					padding: 2px 6px;
-					margin-bottom: 2px;
-				}
-				.operation-wrap{
-					border-top-left-radius: 16px;
-					border-bottom-left-radius: 16px;
-				}
-				.operation-name{
-					margin-left: -4px;
-					text-align: center;
-					display: inline-block;
-					line-height: 26px;
-					width: 26px;
-					height: 26px;
-					background-color: #ddd;
-					border: 1px solid #666;
-					border-radius: 50%;
-				}
-				.operation-detail{
-					margin-left: -4px;
-					text-align: center;
-					display: inline-block;
-					line-height: 26px;
-					width: 36px;
-					height: 26px;
-					background-color: #ddd;
-					border: 1px solid #666;
-					border-radius: 20px;
-				}
-				.accordion_target li:hover{
-					color:#FFFFFF;
-					background:#4E5066;
-				}
-				.accordion_target ul li:hover > .operation {
-					color: #444;
-				}
-			</style>
+			<script src="script/nextgen.js"></script>
+			<link rel="stylesheet" href="style/nextgen.css" />
 			
 			<div class="text">
 				<h4>Серийные:</h4>
