@@ -76,7 +76,7 @@
   color: #666B85;
   background-color: #FFFFFF;
   font-size: 24px;
-  margin: 10px -8px 5px;
+  margin: 10px 10px 5px;
   padding: 14px 10px;
   border: 1px solid #C1C3D1;
   border-radius: 8px;
@@ -170,7 +170,7 @@ body {
 }
 /* Компоненты аккордеона. */
 .accordion_item {
-  border-bottom: 1px solid #5a95fd;
+  border-bottom: 2px solid #5a95fd;
 }
 .accordion_item:last-of-type {
   border-bottom: none;

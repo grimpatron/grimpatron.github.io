@@ -15,10 +15,13 @@ body {
 .wrapper {
   width: 720px;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 0px;
+}
+.wrapper-p {
+  padding: 0 15px;
 }
 header h1 {
-  padding: 20px 0;
+  padding: 20px 15px;
   color: #fafafa;
   font-size: 34px;
   font-weight: 400;
