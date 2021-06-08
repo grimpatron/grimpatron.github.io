@@ -80,6 +80,23 @@ header h1 {
   background: linear-gradient(#EBffEB, #BfC);
 }
 /*GreenLight - означает что номера правильные*/
+.operation {
+  /*operation - внутри есть описание операции*/
+  position: relative;
+}
+.operation::after {
+  position: absolute;
+  content: '';
+  right: 25px;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #3e94ec;
+  transform: translateY(-50%);
+  border: 2px solid #4E5066;
+  box-shadow: inset 8px 6px 5px rgba(0, 0, 0, 0.4);
+}
 .bg-pass {
   background: repeating-linear-gradient(-45deg, #222, #222 10px, #333 10px, #333 20px);
 }

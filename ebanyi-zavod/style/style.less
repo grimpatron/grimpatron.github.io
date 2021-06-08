@@ -83,6 +83,23 @@ header h1 {
 .gl {
     background: linear-gradient(#EBffEB, #BfC);
 }   /*GreenLight - означает что номера правильные*/
+
+.operation { /*operation - внутри есть описание операции*/
+    position: relative;
+    &::after {
+        position: absolute;
+        content: '';
+        right: 25px;
+        top: 50%;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: @main-color;
+        transform: translateY(-50%);
+        border: 2px solid @border-color;
+        box-shadow: inset 8px 6px 5px @shadow-color;
+    }
+}
 .bg-pass{
     background: @bg-pass;
 }
