@@ -1,16 +1,36 @@
-/* Добавляет красные круги (в будущем убрать)*/
+/* Добавляет разноцветные круги*/
 var sss = document.getElementsByClassName("accordion_trigger");
+var tog = document.getElementsByClassName("accordion_toggle");
 for(var i = 0; i<sss.length; i++){
   var x = document.createElement("span");
   x.style.display = "inline-block";
   x.style.marginRight = "10px";
-  x.style.backgroundColor = "red";
-  x.style.width = "25px";
-  x.style.height = "25px";
+  switch(tog[i].id.slice(3, 5)){
+    case "71":
+    case "81": x.style.backgroundColor = "yellow"; break;
+    case "A0":
+    case "01":
+    case "02":
+    case "12":
+    case "30":
+    case "32":
+    case "40":
+    case "50": console.log("\tЕвро"); x.style.backgroundColor = "green"; break;
+    case "16":
+    case "17":
+    case "25": console.log("\tСерийные"); x.style.backgroundColor = "blue"; break;
+    case "09":
+    case "34": console.log("\tДругие"); x.style.backgroundColor = "red"; break;
+    // case /^438121$/: console.log("..."); break;
+  }					
+  x.style.width = "24px";
+  x.style.height = "24px";
   x.style.borderRadius = "50%";
-  x.style.verticalAlign = "top";
   sss[i].insertBefore(x, sss[i].firstChild);
 }
+/*
+  yellow - быки, автобусы
+*/
 
 /* Опеределяет что является операцией и добавляет стили */
 let carCollectionn = document.querySelectorAll('.accordion_item');	// коллекция из всех машин
