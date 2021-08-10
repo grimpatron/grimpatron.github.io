@@ -6,7 +6,11 @@ for(var i = 0; i<sss.length; i++){
   x.style.display = "inline-block";
   x.style.marginRight = "10px";
   switch(tog[i].id.slice(3, 5)){
+    case "7S": x.style.backgroundColor = "wheat"; break;
+    case "70":
     case "71":
+    case "72":
+    case "80":
     case "81": x.style.backgroundColor = "yellow"; break;
     case "A0":
     case "01":
@@ -29,7 +33,8 @@ for(var i = 0; i<sss.length; i++){
   sss[i].insertBefore(x, sss[i].firstChild);
 }
 /*
-  yellow - быки, автобусы
+  wheat - автобусы
+  yellow - быки
 */
 
 /* Опеределяет что является операцией и добавляет стили */
