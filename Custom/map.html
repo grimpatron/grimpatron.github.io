@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escape from Custom</title>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="main" id="main">
+      <div id="mapField" class="asyncImage" data-src="CustomsMap8.jpg">
+        <!-- <img id="imageMap" class="asyncImage" src="CustomsMap8-min.jpg" data-src="CustomsMap8.jpg" alt="Beautiful landscape sunrise"> -->
+      </div>
+      <canvas id="myCanvas" width="3000px" height="2000px"></canvas>
+      <div class="back-surface"></div>
+    </div>
+
+    <div class="aside">
+      <table>
+        <tr><td>Курсор на карте X%</td><td id="cursorPercentageX"></td></tr>
+        <tr><td>Курсор на карте Y%</td><td id="cursorPercentageY"></td></tr>
+        <tr><td>Смещение карты X</td><td id="offsetMapX"></td></tr>
+        <tr><td>Смещение карты Y</td><td id="OffsetMapY"></td></tr>
+      </table>
+
+      <div></div>
+      <div></div>
+
+      <div class="aside__division">
+        <label class="aside-sniper">
+          <input type="checkbox" name="sniperMode" id="sniperMode" >
+          <span>Снайперский режим</span>
+        </label>
+        <table>
+          <tr><td>Стрелок</td><td id="shooterPosition"></td></tr>
+          <tr><td>Цель</td><td id="targetPosition"></td></tr>
+          <tr><td>Дистания</td><td id="targetDistance"></td></tr>
+        </table>
+      </div>
+
+      <div class="aside__division">
+        <label>
+          <input id="checkCanvas" type="checkbox">
+          <span>Режим планирования</span>
+          <button onclick="clearCanvas()">Очистить</button>
+        </label>
+      </div>
+
+      <div class="scale-map" id="scaleMap">Масштаб карты:</div>
+    </div>
+
+  </div>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      cursor: pointer;
+      font-size: 19px;
+      font-family: sans-serif;
+      box-sizing: border-box;
+      position: relative;
+    }
+    td {
+      padding-right: 10px;
+    }
+    .wrapper {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+    }
+    .main {
+      position: relative;
+      overflow: hidden;
+      width: calc(100vw - 300px);
+      /* border: 2px solid rgb(127, 201, 42); */
+    }
+    #mapField {
+      width: 2048px;
+      height: 1152px;
+      /* background: url(https://transitiekaart.nl/3agky/3340514970_digital-dating-today-show.jpg) no-repeat; */
+      /* background: url(CustomsMap8-min.jpg) no-repeat; */
+      /* background: url(CustomsMap8.jpg) no-repeat; */
+      
+      background-image: url(CustomsMap8-min.jpg);
+      background-repeat: no-repeat;
+
+      background-size: 100%;
+      position: absolute;
+    }
+    #mapField img {
+      width: 100%;
+      height: 100%;
+    }
+    #myCanvas {
+      display: none;
+      position: absolute;
+      background-color: rgba(165, 97, 97, 0.1);
+    }
+    .at-gunpoint:hover {
+      cursor: url(target.cur) 16 16, auto;
+    }
+    .back-surface {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(50, 50, 50, 0.75);
+      z-index: 2;
+    }
+    .aside {
+      box-sizing: border-box;
+      width: 300px;
+      padding: 12px 10px;
+      display: inline-block;
+      background-color: #eee;
+      position: relative;
+      border: 2px solid rgb(50, 50, 50);
+      user-select: none;
+    }
+    .scale-map {
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      line-height: 30px;
+    }
+    .sniperPoint {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(129, 58, 123, 0.75);
+      border: 3px solid #000;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      position: relative;
+    }
+    .aside-sniper {
+      display: block;
+    }
+
+    .aside__division {
+      border: 2px solid #000;
+      border-radius: 5px;
+      padding: 5px;
+      margin: 10px 0;
+    }
+  </style>
+
+  <script>
+    let mapField = document.querySelector('#mapField');
+    let mapWidth = mapField.offsetWidth;
+    let mapHeight = mapField.offsetHeight;
+    let clickX;
+    let clickY;
+    let sniperMode = document.querySelector('#sniperMode');
+
+    let scaleValues = 1;
+    let scaleStep = 0.5;
+    let scaleStepWidth = mapWidth * scaleStep;
+    let scaleStepHeight = mapHeight * scaleStep;
+    const scaleMapInnerText = scaleMap.innerHTML;
+    const secretVariable = 10.1;
+    let movedMap = false;  // перемещение карты.
+
+    function startingValues() {
+      mapField.style.cssText = 'left: 0px; top: 0px';
+    }
+    startingValues();
+
+    // показывает координаты клика на карте
+    mapField.addEventListener('mouseup', (e) => {         
+      if (sniperMode.checked && movedMap == false) {
+        clickX = e.clientX;
+        clickY = e.clientY;
+        shooterPosition.innerHTML = "x = " + e.clientX + "; y = " + e.clientY;
+        
+        deleteSniperPoint();
+
+        // Добавляет элемент в место клика.
+        var sniperPoint = document.createElement('div');
+        sniperPoint.className = 'sniperPoint';
+        sniperPoint.id = "sniperPosition";
+        sniperPoint.style.left = e.offsetX + 'px';
+        sniperPoint.style.top = e.offsetY + 'px';
+        mapField.appendChild(sniperPoint);
+        mapField.classList.add("at-gunpoint");
+      }
+    });
+   
+
+    function deleteSniperPoint() {
+      if (document.querySelector('#sniperPosition')) {
+        sniperPosition.remove();
+      }
+    }
+
+    sniperMode.addEventListener('click', () => {
+      if (!sniperMode.checked) {
+        deleteSniperPoint();
+        clearSniper();
+      }
+    });
+
+    function clearSniper() {
+      sniperMode.checked = false;
+      shooterPosition.innerHTML = "";
+      targetPosition.innerHTML = "";
+      targetDistance.innerHTML = "";
+      mapField.classList.remove("at-gunpoint");
+    }
+
+    function determinationOfDistance(event) {
+    let mouse_x = mouse_y = 0;
+    let xxMinus = yyMinus = 0;
+    let distance = 0;
+      if (document.attachEvent != null) {
+        mouse_x = window.event.clientX;
+        mouse_y = window.event.clientY;
+      } else if (!document.attachEvent && document.addEventListener) {
+        mouse_x = event.clientX;
+        mouse_y = event.clientY;
+      }
+      if (shooterPosition.innerHTML) {
+        targetPosition.innerHTML = "x = " + mouse_x + "; y = " + mouse_y;   // Определяет местоположение курсора
+        xxMinus = (clickX > mouse_x) ? xxMinus = clickX - mouse_x : xxMinus = mouse_x - clickX;
+        yyMinus = (clickY > mouse_y) ? yyMinus = clickY - mouse_y : yyMinus = mouse_y - clickY;
+        distance = Math.sqrt(xxMinus*xxMinus + yyMinus*yyMinus);               
+        targetDistance.innerHTML = Math.round(distance / (mapWidth / 100) * secretVariable) + 'м';  // Это и будет растоянием до цели
+      }
+      cursorPercentageX.innerHTML =  Math.round(event.offsetX / (mapField.offsetWidth / 100)) + "%";
+      cursorPercentageXXX = Math.round(event.offsetX / (mapField.offsetWidth / 100));
+      cursorPercentageYYY = Math.round(event.offsetY / (mapField.offsetHeight / 100));
+      cursorPercentageY.innerHTML =  Math.round(event.offsetY / (mapField.offsetHeight / 100)) + "%";
+    }
+    document.onmousemove = determinationOfDistance;
+    // function init() {
+    //   if (document.layers) document.captureEvents(Event.MOUSEMOVE);
+    //   // document.onmousemove = determinationOfDistance;
+    // }
+    // init();
+
+    const ggs = function(){
+
+    }
+
+
+
+    /*    Увеличение карты     */
+    function mapScaling(elem, handler) {
+      if (elem.addEventListener) {
+        elem.addEventListener("wheel", handler);
+      }
+    }
+    
+    mapScaling(mapField, function(e) {
+      
+      deleteSniperPoint();
+      clearSniper();
+
+      var delta = e.deltaY || e.detail || e.wheelDelta;
+
+      let scrollingOffsetX = scaleStepWidth / 100 * cursorPercentageXXX;
+      let scrollingOffsetY = scaleStepHeight / 100 * cursorPercentageYYY;
+      let mapOffsetLeft = parseInt(mapField.style.left, 10);
+      let mapOffsetTop = parseInt(mapField.style.top, 10);
+      if (delta > 0 && scaleValues >= 0.6) {
+        mapField.style.left = (mapOffsetLeft += scrollingOffsetX) + 'px';
+        mapField.style.top = (mapOffsetTop += scrollingOffsetY) + 'px';
+        mapWidth -= scaleStepWidth;
+        mapHeight -= scaleStepHeight;
+        scaleValues -= scaleStep;
+      } else if ( delta < 0 && scaleValues <= 9.5) {
+        mapField.style.left = (mapOffsetLeft -= scrollingOffsetX) + 'px';
+        mapField.style.top = (mapOffsetTop -= scrollingOffsetY) + 'px';
+        mapWidth += scaleStepWidth;
+        mapHeight += scaleStepHeight;
+        scaleValues += scaleStep;
+      }
+      mapField.style.width =  mapWidth + 'px';
+      mapField.style.height =  mapHeight + 'px';
+      scaleMap.innerHTML = scaleMapInnerText + ' ' + Math.round(scaleValues * 100) / 100 ;  //- Округляет до десятых
+
+      e.preventDefault();     // отменим прокрутку
+    });
+
+
+    /*    Перемещение карты     */
+    let activeElement;
+    let offsetX =  offsetY = 0;
+    let container = document.querySelector('#mapField');
+    let posElemX = container.left;
+    let posElemY = container.top;
+
+    let mDown = (e) => {
+      activeElement = e.target;
+      offsetX = e.offsetX;
+      offsetY = e.offsetY;
+    }
+
+    let mUp = (e) => {
+      activeElement = null;
+      movedMap = false;
+    }
+
+    let mMove = (e) => {
+      if (activeElement){
+        if (activeElement.id == 'mapField') {
+          activeElement.style.left = (e.pageX - offsetX) + 'px';
+          activeElement.style.top = (e.pageY - offsetY) + 'px';
+          offsetMapX.innerHTML = activeElement.style.left;
+          OffsetMapY.innerHTML = activeElement.style.top;
+          movedMap = true;
+        } else if (activeElement.id == 'sniperPosition') {
+          sniperPosition.style.opacity = 0.2;   // Не смог сделать так, чтобы круг при перемещении был в цетре прицела.
+          activeElement.style.left = e.offsetX - activeElement.offsetWidth + 20 + 'px';
+          activeElement.style.top = e.offsetY - activeElement.offsetHeight + 'px';
+        }
+      }
+    }
+    container.addEventListener('mousedown', mDown);   // Нажали кнопку мыши
+    container.addEventListener('mouseup', mUp);       // Отпустили кнопку мыши
+    document.addEventListener('mousemove', mMove);    // Двигаем курсор
+
+    /* */
+    (() => {
+      'use strict';
+      // Page is loaded
+      const objects = document.getElementsByClassName('asyncImage');
+      Array.from(objects).map((item) => {
+        // Start loading image
+        const img = new Image();
+        img.src = item.dataset.src;
+        // Once image is loaded replace the src of the HTML element
+        img.onload = () => {
+          item.classList.remove('asyncImage');
+          return item.nodeName === 'IMG' ? 
+            item.src = item.dataset.src :        
+            item.style.backgroundImage = `url(${item.dataset.src})`;
+        };
+      });
+    })();
+    //https://habr.com/ru/post/482820/
+
+
+
+    /* рисовалка временная (потом сделать пиздато) */
+    var canvas = document.getElementById("myCanvas"), 
+        context = canvas.getContext("2d");
+        context.lineWidth = 5;  // толщина рисовалки
+    var mouse = { x:0, y:0};
+    var draw = false;
+        
+    canvas.addEventListener("mousedown", function(e){
+      mouse.x = e.pageX - this.offsetLeft;
+      mouse.y = e.pageY - this.offsetTop;
+      draw = true;
+      context.beginPath();
+      context.moveTo(mouse.x, mouse.y);
+    });
+
+    canvas.addEventListener("mousemove", function(e){
+      if(draw==true){
+        mouse.x = e.pageX - this.offsetLeft;
+        mouse.y = e.pageY - this.offsetTop;
+        context.lineTo(mouse.x, mouse.y);
+        context.stroke();
+      }
+    });
+
+    canvas.addEventListener("mouseup", function(e){
+      mouse.x = e.pageX - this.offsetLeft;
+      mouse.y = e.pageY - this.offsetTop;
+      context.lineTo(mouse.x, mouse.y);
+      context.stroke();
+      context.closePath();
+      draw = false;
+    });
+
+    let checkCanvas = document.querySelector('#checkCanvas')
+    checkCanvas.addEventListener('click', startCanvas);
+    function startCanvas() {
+      if ( checkCanvas.checked ) {
+        canvas.style.display = 'block';
+      } else {
+        canvas.style.display = 'none';
+      }
+    }
+
+    function clearCanvas() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    /* Конец рисовалки */
+
+    // 1
+    // 2 проработать принцип двух поверхностей, на одной отображается карта, а вторая служит для отслеживания движения (хз правда зачем).
+    // 3 добавить возможность установить солдатиков и перемещать их по карте.
+
+    // 2.0 Сделать версию, в которой позиция стрелка будет существовать всегда, но показываться она будет только при активации.
+    // Использовать https://learn.javascript.ru/drag-and-drop для улучшения перемещения объектов на карте.
+  </script>
+</body>
+</html>
