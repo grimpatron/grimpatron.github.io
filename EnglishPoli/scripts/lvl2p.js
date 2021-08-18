@@ -1,0 +1,289 @@
+let level2p = (function(){
+  let outputQuestion = document.getElementById("output-question");
+  let outputAnswer = document.getElementById("output-answer");
+  let checkListVerbs = document.getElementsByClassName("check-icon");
+  let wordsBlockList = document.querySelector('.words-block__list');
+  let binaryVerbs = [];
+  let curVerbEng = "";
+  let curVerbRus = "";
+  let curPronEng = "";
+  let curPronRus = "";
+  let curToDo1 = "";
+  let curToDo2 = "";
+  let curToDoRusQ = "";
+  let curToDoRusN = "";
+  let curEnding = "";
+  let curSign = "";
+  let listVerbEng = [];
+  let listVerbRus = [];
+  let listPastSimple = [];
+  let arrPronEng = ["I", "you", "we", "they", "he", "she"];   // pronouns English
+  let arrPronRus = ["я", "ты", "мы", "они", "он", "она"];     // pronouns Russian
+  let arrToDo = ["", "will", "do", "does", "did", "will not", "don't", "doesn't", "didn't"]; // вспомогательные слова перед/после местоимения
+  let arrToDoRus = ["буду", "будешь", "будем", "будут", "будет", "будет"];
+  let arrEnding = ["", "s", "es", "d", "ed"];
+  let arrVerbEng = "ask answer give(gave) take(took) help hope speak(spoke) travel".split(' ');
+  let arrVerbRus = "спрашивать спрашиваю спрашиваешь спрашиваем спрашивают спрашивает спрашивает спрашивал спрашивали спрашивала отвечать отвечаю отвечаешь отвечаем отвечают отвечает отвечает отвечал отвечали отвечала давать даю даёшь даём дают даёт даёт давал давали давала брать беру берёшь берём берут берёт берёт брал брали брала помогать помогаю помогаешь помогаем помогают помогает помогает помогал помогали помагала надеятся надеюсь надеешься надеемся надеются надеется надеется надеялся надеялись надеялась разговаривать разговариваю разговариваешь разговариваем разговаривают разговаривает разговариваает разговаривал разговаривали разговаривала путешествовать путешествую путешествуешь путешествуем путешествуют путешествует путешествует путешествовал путешествовали путешествовала".split(' ');
+  let arrPastSimple = separateIrregularVerbs(arrVerbEng); // вторая форма нерпавильных глаголав
+  let stringQestion = "";
+  let stringAnswer = "";
+  let order = "";
+  let rndMixValue = null;
+
+  /*p*/ let plusE = "want dream".split(' ');
+  /*p*/ let plusR = "хотеть хочу хочешь хотим хотят хочет хочет хотел хотели хотела мечтать мечтаю мечтаешь мечтаем мечтают мечтает мечтает мечтал мечтали мечтала".split(' ');
+  /*p*/ let to = "";
+  /*p*/ let v2E = "work sing dance".split(' ');
+  /*p*/ let v2R = "работать петь танцевать".split(' ');
+  /*p*/ let curV2E = "";
+  /*p*/ let curV2R = "";
+  /*p2*/ let withWithoutRUS = "";
+  /*p2*/ let withWithoutENG = "";
+  /*p2*/let biba = "с без".split(' ');
+  /*p2*/let buba = "with without".split(' ');
+  /*p2*/let bubaboba = "мной вами ним ней нами ими меня тебя него неё нас них".split(' ');
+
+  let curPronEng2 = ""; /* lvl2 */
+  let curPronRus2 = ""; /* lvl2 */
+  let arrCompatPron2 = [1, 2, 2, 1, 2, 0, 0, 0]; /* lvl2 */   // (compatibility) совместимость второго местоимения
+  let listPron2 = []; /* lvl2 */    // для вторых местоимений, на основании выбранных слов
+  let arrPronEng2 = ["me", "you", "him", "her", "us", "them"]; /* lvl2 */
+  let arrPronRus2 = ["меня", "тебя", "его", "её", "нас", "их", "мне", "тебе", "ему", "ей", "нам", "им" ]; /* lvl2 */
+  let curQuestionEng = ""; /* lvl2 */
+  let curQuestionRus = ""; /* lvl2 */
+  let listQuestionEng = []; /* lvl2 */
+  let listQuestionRus = []; /* lvl2 */
+  let listCompatQuestion = []; /* lvl2 */
+  let arrCompatQuestion = ["000001110", "100101111", "100111111", "100111111", "100101111", "000000110", "000101111", "000101111"]; /* lvl2 */   // совместимость вопросительных слов
+  let questionWordsRus = ["Что",  "Какой", "Кто", "Где",   "Куда",  "Когда", "Зачем", "Почему", "Как"]; /* lvl2 */
+  let questionWordsEng = ["What", "What",  "Who", "Where", "Where", "When",  "Why",   "Why",    "How"]; /* lvl2 */
+  
+/*** Проверка уровня урока ***/
+if (levelCheck() == "lvl2p") generateListWord();
+
+function generateListWord(){
+  // Выводим все глаголы в виде списка в боковой панели
+  createListOfAllWords(wordsBlockList, arrVerbEng);
+
+  // Отмечаются выбранные слова (сохранённые в localStorage)
+  binaryVerbs = selectedWordsInList(arrVerbEng);
+  
+  writeSV();
+
+  // вешает события при котором будет пересобираться массив;
+  wordsBlockList.addEventListener("click", writeSV, false);
+
+  // вешает событие которое выбирает или снимает выбор у всех глаголов;
+  eventSelectAllWords( checkListVerbs );
+
+  // Составление списков глаголов на основании выбранных слов.
+  function writeSV(){
+    listVerbEng = [];
+    listVerbRus = [];
+    listPastSimple = [];
+    listPron2 = []; /* lvl 2 */
+
+    for (let i = 0; i < binaryVerbs.length; i++){
+      if (checkListVerbs[i].checked == true){
+        binaryVerbs.splice(i, 1, 1);
+      } else {
+        binaryVerbs.splice(i, 1, 0);
+      }
+    }
+
+    for (let i = 0; i < binaryVerbs.length; i++){
+      if (binaryVerbs[i] == 1){
+        listVerbEng.push(arrVerbEng[i]);
+        listPastSimple.push(arrPastSimple[i]);
+        listPron2.push(arrCompatPron2[i]); /* lvl 2 */
+        
+        for (let j = (i * 10); j <= (i * 10) + 9; j++) {
+          listVerbRus.push( arrVerbRus.slice(j, j + 1).toString() );        
+        }
+      }
+    }
+    // Сохранение выбранных слов
+    saveWords( 'words_lvl2p', binaryVerbs );
+  }
+}
+
+  /* ****************************************************** */
+  function blessRNG(){
+    let rndX = Math.floor(Math.random() * 9);         // random order of time and form
+    let rndPron = Math.floor(Math.random() * 6);      // random pronoun
+    /*lvl2*/ let rndPron2 = Math.floor(Math.random() * 6); 
+    let rndVerbs = Math.floor(Math.random() * (listVerbEng.length)); // random verb
+    rndMixValue = Math.floor(Math.random() * 2);      // random order of languages
+    /*p*/let rndVerbsV2 = Math.floor(Math.random() * plusE.length);  // колличество добавленных глаголов
+    /*p*/let rndTo = Math.floor(Math.random() * 2);
+    /*p2*/let rndSOSO = Math.floor(Math.random() * 2);  // будет решать "с" или "без"
+
+    /*lvl2*/ pronounCompatibility(rndPron, rndPron2); // Проверка местоимений на совместимость
+    /*lvl2*/ questionWordsCompatibility(rndVerbs, rndX); // Подбираем подходящие вопросительные слова
+    order = checkLanguageOrder(); // преверяет порядок языка выбраный в данный момент
+    step2(rndX, rndPron, rndPron2, rndVerbs, rndVerbsV2, rndTo, rndSOSO);
+  }
+
+  function pronounCompatibility(rndPron, rndPron2){
+    for ( ; ; ){
+      console.log(rndPron, rndPron2);
+      if ( rndPron == rndPron2 || rndPron == 0 && rndPron2 == 4 || rndPron == 2 && rndPron2 == 4 || rndPron == 2  && rndPron2 == 0) { 
+        rndPron2 = Math.floor(Math.random() * 6);
+      } else break;
+    }
+  }
+
+  function questionWordsCompatibility(rndVerbs, rndX){
+    if (rndX == 0 || rndX == 3 || rndX == 6){
+      listCompatQuestion = [];
+      listQuestionEng = [];
+      listQuestionRus = [];
+      for(let i = 0; i < binaryVerbs.length; i++){
+        if (binaryVerbs[i] == 1) listCompatQuestion.push(arrCompatQuestion[i]);
+      }
+
+      listCompatQuestion = listCompatQuestion[rndVerbs].split('');
+
+      for(let i = 0; i < listCompatQuestion.length; i++){
+        if (listCompatQuestion[i] == 1){
+          listQuestionEng.push(questionWordsEng[i]);
+          listQuestionRus.push(questionWordsRus[i]);
+        }
+      }
+
+      let X = Math.floor(Math.random() * listQuestionEng.length);
+      curQuestionEng = listQuestionEng[X];
+      curQuestionRus = listQuestionRus[X];
+    } else {
+      curQuestionEng = "";
+      curQuestionRus = "";
+    }
+  }
+  
+  function step2(rndX, rndPron, rndPron2, rndVerbs, rndVerbsV2, rndTo, rndSOSO){
+    /*p*/  if (rndX >= 3 && rndTo == 1){ /* rndX скорей всего отвечает за частоту появления, но это не точно*/
+             console.log("успех!!!!", rndSOSO)
+    /*p*/    curVerbEng = plusE[rndVerbsV2];
+    /*p*/    curVerbRus = plusR[getVerbRus(rndX, rndPron, rndVerbsV2)];
+    /*p2*/   (rndSOSO == 0) ? curPronRus2 = bubaboba[rndPron2] : curPronRus2 = bubaboba[rndPron2 + 6];
+    /*p*/    curV2E = v2E[0];
+    /*p*/    curV2R = v2R[0];
+    /*p*/    to = "to";
+    /*p2*/   withWithoutRUS = biba[rndSOSO];
+    /*p2*/   withWithoutENG = buba[rndSOSO];
+    /*p*/  } else {  
+    /*p*/    curVerbEng = listVerbEng[rndVerbs];
+    /*p*/    curVerbRus = listVerbRus[getVerbRus(rndX, rndPron, rndVerbs)];
+    /* lvl2 */  curPronRus2 = arrPronRus2[rndPron2];
+    /*p*/    curV2E = "";
+    /*p*/    curV2R = "";
+    /*p*/    to = "";
+    /*p2*/    withWithoutRUS = "";
+    /*p2*/    withWithoutENG = "";
+    /*p*/  }
+    curPronEng = arrPronEng[rndPron];
+    curPronRus = arrPronRus[rndPron];
+    curPronEng2 = arrPronEng2[rndPron2]; /* lvl2 */
+    if(listPron2[rndVerbs] == 2) rndPron2 += 6; /* lvl2 */
+    // curPronRus2 = arrPronRus2[rndPron2]; /* lvl2 */
+    if(listPron2[rndVerbs] == 0) { curPronRus2 = ""; curPronEng2 = ""; }; /* lvl2 */
+
+    switch (rndX) {
+      case 0: curToDo1 = arrToDo[1]; 
+        curToDo2 = arrToDo[0]; break;
+      case 1: curToDo2 = arrToDo[1];
+        curToDo1 = arrToDo[0]; break;
+      case 2: curToDo2 = arrToDo[5];
+        curToDo1 = arrToDo[0]; break;
+      case 3: (rndPron < 4) ? curToDo1 = arrToDo[2] : curToDo1 = arrToDo[3];
+        curToDo2 = arrToDo[0]; break;
+      case 5: (rndPron < 4) ? curToDo2 = arrToDo[6] : curToDo2 = arrToDo[7];
+        curToDo1 = arrToDo[0]; break;
+      case 6: curToDo1 = arrToDo[4];
+        curToDo2 = arrToDo[0]; break;
+      case 8: curToDo2 = arrToDo[8];
+        curToDo1 = arrToDo[0]; break;
+      default:
+        curToDo1 = arrToDo[0];
+        curToDo2 = arrToDo[0];
+    }
+
+    // выбирает между окончаниями    s || es
+    if (rndX == 4 && rndPron >= 4){
+      if (curVerbEng == "finish" || curVerbEng == "go"){
+        curEnding = arrEnding[2];
+      } else {
+        curEnding = arrEnding[1];      
+      }
+    // выбирает между окончаниями    d || ed
+    } else if (rndX == 7){
+      if(curVerbEng.charAt(curVerbEng.length-1) == 'e'){
+        curEnding = arrEnding[3];
+      } else {
+        curEnding = arrEnding[4];
+      }
+    // замена на неправильный глагол
+      if(listPastSimple[rndVerbs] != ""){
+        curVerbEng = listPastSimple[rndVerbs];
+        curEnding = "";
+      }
+    } else {
+      curEnding = "";
+    }
+
+    (rndX == 0 || rndX == 1 || rndX == 2) ? curToDoRusQ = arrToDoRus[rndPron] : curToDoRusQ = "";
+    (rndX == 2 || rndX == 5 || rndX == 8 || rndX == 11) ? curToDoRusN = "не" : curToDoRusN = "";
+    (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) ? curSign = "?" : curSign = "";
+  }
+  
+  function getVerbRus(rndX, rndPron, rndVerbs) {
+    let rndVerbRus = null;
+    if (rndX >= 0 && rndX <= 2) {
+      rndVerbRus = 10 * rndVerbs;
+    } else if (rndX >= 3 && rndX <= 5) {
+      rndVerbRus = (rndPron + 1) + (10 * rndVerbs);
+    } else if (rndX >= 6 && rndX <= 8) {
+      if (rndPron == 0 || rndPron == 1 || rndPron == 4) {
+        rndVerbRus = 7 + (10 * rndVerbs);      
+      } else if (rndPron == 2 || rndPron == 3) {
+        rndVerbRus = 8 + (10 * rndVerbs);      
+      } else if (rndPron == 5) {
+        rndVerbRus = 9 + (10 * rndVerbs);      
+      }
+    }
+    return rndVerbRus;
+  }
+
+  function generateString(){
+    if ( plus(binaryVerbs) ) {
+      blessRNG();
+      // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
+      // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
+      if (order == "eng-rus" || (order == "mix" && rndMixValue == 0)) {
+      console.log("успех!!!!")
+        stringQestion = `${curQuestionEng} ${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E} ${withWithoutENG} ${curPronEng2}${curSign}`;
+        stringAnswer = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}              ${curV2R} ${withWithoutRUS} ${curPronRus2} ${curSign}`;
+        console.log(stringQestion,"ss", order)
+      } else if (order == "rus-eng" || (order == "mix" && rndMixValue == 1)) {
+        stringQestion = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus}            ${curV2R} ${withWithoutRUS} ${curPronRus2}${curSign}`;
+        stringAnswer = `${curQuestionEng} ${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${to} ${curV2E} ${withWithoutENG} ${curPronEng2}${curSign}`;
+        console.log(stringQestion,"ss", order)
+      }
+    } else {
+      alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
+    }
+  }
+
+  return {
+    next: function() {
+      generateString();
+      outputAnswer.innerHTML = '';
+      outputQuestion.innerHTML = stringQestion;
+    },
+    answer: function() {
+      outputAnswer.innerHTML = stringAnswer;
+    }
+  };
+
+})();
+/* На данный момент это просто копия 2 урока */

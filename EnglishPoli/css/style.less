@@ -1,0 +1,241 @@
+@bg-shadow-box: rgba(0, 0, 0, 0.5);
+@color-text: #333;
+// @bg-side-section: #efa;
+@bg-side-section: linear-gradient(180deg, rgba(222,255,225,1) 0%, rgba(214,245,255,1) 100%);
+
+
+html { font-size: 10px; }
+body { color: @color-text; }
+
+.buttonStyle(){
+  display: block;
+  margin: 1rem auto;
+  min-width: 12rem;
+  font-size: 1.8rem;
+  &:focus { outline: none; }
+}
+
+
+/* index.html */
+.menu {
+  &-button {
+    .buttonStyle();
+  }
+}
+
+.view {
+  &-field{
+    display: table;
+    height: 8rem;
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #eee;
+    font-size: 2.6rem;
+    &-text {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+}
+
+
+.shema {
+  margin: 1rem 0 2rem;
+  min-height: 20rem;
+}
+
+
+.intarface {
+  &-button {
+    .buttonStyle();
+    min-width: 30rem;
+    padding: 1rem 5rem;
+    font-size: 2rem;
+  }
+}
+
+
+.container {
+  position: relative;
+}
+.aside {
+  // display: none;
+  position: absolute;
+  width: 28rem;
+  height: 100vh;
+  min-height: 100%;
+  top: 0;
+  padding: 1rem;
+  background: @bg-side-section;
+  &-left { left: 0; }
+  &-right { right: 0; }
+  &-left[data-display="none"], &-right[data-display="none"] {
+    display: none;
+  }
+  &-left[data-display="block"], &-right[data-display="block"] {
+    display: block;
+  }
+  &-left-button,
+  &-right-button {
+    .buttonStyle();
+    display: none;
+  }
+}
+.shadow-gray-filter {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: @bg-shadow-box;
+}
+
+.menu-label,
+.label-word,
+.label-lesson {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+input.modal__menu-input,
+input.check-icon,
+input.check-all-icon,
+input.check-lesson {
+  margin-right: 1rem;
+}
+
+
+/* Large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) {
+  .aside {
+    &-left[data-display="block"], &-right[data-display="block"] {
+      display: none;
+    }
+  }
+
+  // .shadow-gray-box {
+  //   display: block;
+  // }
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+  html { font-size: 8px }
+  // .container { width: 98%; } убирает горизонтальную полосу прокрутки
+  // она появляется из-за того что в html font-size: 8px;
+  // .container { width: 98%; }
+  .menu {
+    &-button {
+      margin: 0.8rem auto;
+      padding: 0.5rem 1rem;
+    }
+  }
+  .shema {
+    font-size: 12px;
+    height: 290px;
+  }
+  .fotorama__nav-wrap {
+    display: none;
+  }
+  .aside-left, .aside-right {
+    max-width: 30rem;
+    width: 50%;   
+  }
+}
+
+
+
+
+/*** Модальные окна ***/
+.modal {
+  display: none;
+  position: absolute;
+  
+  /*** Новое модальное окно с настройками ***/
+  &__menu {
+    max-width: 90%;
+    width: 100%;
+    min-height: 80%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -35%);
+    &-btn--close {
+      display: block;
+      margin: 0 auto 25px;
+    }
+    &-block {
+      height: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+    }
+    &-title { margin-top: 0; }
+  }
+
+  /*** Модальное окно с порядком языков ***/
+  &__order {
+    max-width: 560px;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__order-content {
+    padding: 20px 0;
+    background-color: #fff;
+    z-index: 4;
+    border-radius: 6px;
+  }
+  &__order-btn {
+    display: block;
+    width: 75%;
+    margin: 20px auto;
+    font-size: 22px;
+    &:hover {
+      outline: none;
+    }
+    &--close {
+      display: block;
+      width: 55%;
+      margin: 40px auto 20px;
+      font-size: 26px;
+    }
+  }
+}
+
+.lessons-block {
+  padding: 10px 20px;
+  grid-row: span 3;
+  background-color: rgb(204, 255, 255);
+}
+.description-block {
+  padding: 10px;
+  background-color: lightyellow
+}
+.words-block {
+  padding: 10px;
+  background-color: antiquewhite
+}
+.settings-block {
+  padding: 10px;
+  background-color: rgb(224, 255, 233)
+}
+
+@media (max-width: 600px) {
+  .menu-window {
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+  }
+}
