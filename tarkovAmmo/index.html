@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ammo</title>
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+<section class="ammo">
+  <div class="main-overlay"></div>
+  <div class="container">
+
+    <div class="ammo__container">
+
+      <div class="sidebar">
+        <div class="sidebar-caliber" id="sidebar-caliber">
+          <div class="sidebar-caliber__header">Калибры:</div>
+          <button id="caliberAll">select all</button>
+        </div>
+
+        <div class="armor">
+          <div class="armor__header">Пробитие классов брони:</div>
+          <div class="armor__input-group">
+            <input class="armor__input" type="radio" name="armor-class" id="ac0" data-armor-class="0" checked><label class="armor__label" for="ac0">ВСЕ</label>
+            <input class="armor__input" type="radio" name="armor-class" id="ac1" data-armor-class="1"><label class="armor__label" for="ac1">1</label>
+            <input class="armor__input" type="radio" name="armor-class" id="ac2" data-armor-class="2"><label class="armor__label" for="ac2">2</label>
+            <input class="armor__input" type="radio" name="armor-class" id="ac3" data-armor-class="3"><label class="armor__label" for="ac3">3</label>
+            <input class="armor__input" type="radio" name="armor-class" id="ac4" data-armor-class="4"><label class="armor__label" for="ac4">4</label>
+            <input class="armor__input" type="radio" name="armor-class" id="ac5" data-armor-class="5"><label class="armor__label" for="ac5">5</label>
+            <input class="armor__input" type="radio" name="armor-class" id="ac6" data-armor-class="6"><label class="armor__label" for="ac6">6</label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="ammo__table">
+        <table id="ammo-table" class="table_sort">
+          <thead>
+            <tr class="ammo__table-header">
+              <th>Caliber</th>
+              <th>Ammo Type</th>
+              <th>Damage</th>
+              <th>Pen Value</th>
+              <th>Armor Damage %</th>
+              <th>Frag. Chance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>12 Gauge Shot</td><td>5.25mm Buckshot</td><td>37</td><td>1</td><td>15</td><td>0%</td></tr>
+            <tr><td>12 Gauge Shot</td><td>8.5mm Buckshot "Magnum"</td><td>50</td><td>2</td><td>26</td><td>0%</td></tr>
+            <tr><td>12 Gauge Shot</td><td>6.5mm Buckshot "Express"</td><td>35</td><td>3</td><td>26</td><td>0%</td></tr>
+            <tr><td>12 Gauge Shot</td><td>7mm Buckshot</td><td>39</td><td>3</td><td>26</td><td>0%</td></tr>
+            <tr><td>12 Gauge Shot</td><td>Flechette</td><td>25</td><td>31</td><td>26</td><td>0%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>RIP Slug</td><td>265</td><td>0</td><td>11</td><td>100%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Superformance HP Slug</td><td>220</td><td>2</td><td>12</td><td>39%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Grizzly 40 Slug</td><td>190</td><td>12</td><td>48</td><td>12%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>HP Copper Sabot Premier</td><td>206</td><td>14</td><td>46</td><td>38%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Led Slug</td><td>167</td><td>15</td><td>55</td><td>20%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Dual Sabot Slug</td><td>85</td><td>17</td><td>65</td><td>10%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Slug "Poleva-3"</td><td>140</td><td>17</td><td>40</td><td>20%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>FTX Custom Lite Slug</td><td>183</td><td>20</td><td>50</td><td>10%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Slug "Poleva-6u"</td><td>150</td><td>20</td><td>50</td><td>15%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>Shell With .50 BMG (Tracer)</td><td>197</td><td>26</td><td>57</td><td>5%</td></tr>
+            <tr><td>12 Gauge Slugs</td><td>AP 20 Slug</td><td>164</td><td>37</td><td>65</td><td>3%</td></tr>
+            <tr><td>20 Gauge</td><td>5.6mm Buckshot</td><td>26</td><td>1</td><td>12</td><td>0%</td></tr>
+            <tr><td>20 Gauge</td><td>6.2mm Buckshot</td><td>22</td><td>2</td><td>13</td><td>0%</td></tr>
+            <tr><td>20 Gauge</td><td>7.5mm Buckshot</td><td>25</td><td>3</td><td>14</td><td>0%</td></tr>
+            <tr><td>20 Gauge</td><td>7.3mm Buckshot</td><td>23</td><td>3</td><td>13</td><td>0%</td></tr>
+            <tr><td>20 Gauge</td><td>Devastator Slug</td><td>198</td><td>5</td><td>13</td><td>100%</td></tr>
+            <tr><td>20 Gauge</td><td>Slug "Poleva-3"</td><td>120</td><td>14</td><td>35</td><td>20%</td></tr>
+            <tr><td>20 Gauge</td><td>Star Slug</td><td>154</td><td>16</td><td>42</td><td>10%</td></tr>
+            <tr><td>20 Gauge</td><td>Slug "Poleva-6u"</td><td>135</td><td>17</td><td>40</td><td>15%</td></tr>
+            <tr><td>23x75 mm</td><td>"Star" Flashbang Slug</td><td>0</td><td>0</td><td>0</td><td>20%</td></tr>
+            <tr><td>23x75 mm</td><td>Shrapnel 25</td><td>78</td><td>10</td><td>20</td><td>0%</td></tr>
+            <tr><td>23x75 mm</td><td>Shrapnel 10</td><td>87</td><td>11</td><td>20</td><td>0%</td></tr>
+            <tr><td>23x75 mm</td><td>"Barricade" Slug</td><td>192</td><td>39</td><td>75</td><td>20%</td></tr>
+            <tr><td>9x18mm</td><td>SP8</td><td>67</td><td>1</td><td>2</td><td>60%</td></tr>
+            <tr><td>9x18mm</td><td>SP7</td><td>77</td><td>2</td><td>5</td><td>2%</td></tr>
+            <tr><td>9x18mm</td><td>PSV</td><td>69</td><td>3</td><td>5</td><td>40%</td></tr>
+            <tr><td>9x18mm</td><td>P gzh</td><td>50</td><td>5</td><td>16</td><td>25%</td></tr>
+            <tr><td>9x18mm</td><td>PSO gzh</td><td>54</td><td>5</td><td>13</td><td>35%</td></tr>
+            <tr><td>9x18mm</td><td>PS gs PPO</td><td>55</td><td>6</td><td>16</td><td>25%</td></tr>
+            <tr><td>9x18mm</td><td>PRS gs</td><td>58</td><td>6</td><td>16</td><td>30%</td></tr>
+            <tr><td>9x18mm</td><td>PPE gzh</td><td>61</td><td>7</td><td>15</td><td>35%</td></tr>
+            <tr><td>9x18mm</td><td>PPT gzh</td><td>59</td><td>8</td><td>22</td><td>17%</td></tr>
+            <tr><td>9x18mm</td><td>PST gzh</td><td>50</td><td>12</td><td>26</td><td>20%</td></tr>
+            <tr><td>9x18mm</td><td>RG028 gzh</td><td>65</td><td>13</td><td>26</td><td>2%</td></tr>
+            <tr><td>9x18mm</td><td>BZT gzh</td><td>53</td><td>18</td><td>28</td><td>17%</td></tr>
+            <tr><td>9x18mm</td><td>PMM</td><td>58</td><td>24</td><td>33</td><td>17%</td></tr>
+            <tr><td>9x18mm</td><td>PBM</td><td>40</td><td>28</td><td>30</td><td>16%</td></tr>
+            <tr><td>7.62x25mm</td><td>LRNPC</td><td>66</td><td>7</td><td>27</td><td>35%</td></tr>
+            <tr><td>7.62x25mm</td><td>LRN</td><td>64</td><td>8</td><td>28</td><td>35%</td></tr>
+            <tr><td>7.62x25mm</td><td>FMJ43</td><td>60</td><td>11</td><td>29</td><td>25%</td></tr>
+            <tr><td>7.62x25mm</td><td>akbs</td><td>58</td><td>12</td><td>32</td><td>25%</td></tr>
+            <tr><td>7.62x25mm</td><td>P Gl</td><td>58</td><td>14</td><td>32</td><td>25%</td></tr>
+            <tr><td>7.62x25mm</td><td>T Gzh (Tracer)</td><td>55</td><td>18</td><td>34</td><td>17%</td></tr>
+            <tr><td>7.62x25mm</td><td>Pst gzh</td><td>50</td><td>25</td><td>36</td><td>20%</td></tr>
+            <tr><td>9x19mm</td><td>RIP</td><td>102</td><td>2</td><td>11</td><td>100%</td></tr>
+            <tr><td>9x19mm</td><td>Quakemaker</td><td>85</td><td>8</td><td>22</td><td>10%</td></tr>
+            <tr><td>9x19mm</td><td>PSO gzh</td><td>59</td><td>10</td><td>32</td><td>25%</td></tr>
+            <tr><td>9x19mm</td><td>Luger CCI</td><td>70</td><td>10</td><td>38</td><td>25%</td></tr>
+            <tr><td>9x19mm</td><td>Green Tracer</td><td>58</td><td>14</td><td>33</td><td>15%</td></tr>
+            <tr><td>9x19mm</td><td>PST gzh</td><td>54</td><td>20</td><td>33</td><td>15%</td></tr>
+            <tr><td>9x19mm</td><td>AP 6.3</td><td>52</td><td>30</td><td>48</td><td>5%</td></tr>
+            <tr><td>9x19mm</td><td>7n31</td><td>52</td><td>39</td><td>53</td><td>5%</td></tr>
+            <tr><td>.45</td><td>RIP</td><td>127</td><td>3</td><td>12</td><td>100%</td></tr>
+            <tr><td>.45</td><td>Hydroshok</td><td>95</td><td>13</td><td>30</td><td>50%</td></tr>
+            <tr><td>.45</td><td>Lasermatch (Tracer)</td><td>74</td><td>19</td><td>37</td><td>1%</td></tr>
+            <tr><td>.45</td><td>ACP</td><td>69</td><td>23</td><td>36</td><td>1%</td></tr>
+            <tr><td>.45</td><td>ACP AP</td><td>70</td><td>36</td><td>43</td><td>1%</td></tr>
+            <tr><td>9x21mm</td><td>sp12</td><td>80</td><td>15</td><td>63</td><td>35%</td></tr>
+            <tr><td>9x21mm</td><td>sp11</td><td>65</td><td>18</td><td>44</td><td>30%</td></tr>
+            <tr><td>9x21mm</td><td>sp10</td><td>49</td><td>35</td><td>46</td><td>20%</td></tr>
+            <tr><td>9x21mm</td><td>sp13</td><td>63</td><td>39</td><td>47</td><td>20%</td></tr>
+            <tr><td>5.7x28 mm</td><td>r37f</td><td>98</td><td>8</td><td>7</td><td>100%</td></tr>
+            <tr><td>5.7x28 mm</td><td>ss198lf</td><td>74</td><td>10</td><td>15</td><td>80%</td></tr>
+            <tr><td>5.7x28 mm</td><td>r37x</td><td>81</td><td>11</td><td>14</td><td>70%</td></tr>
+            <tr><td>5.7x28 mm</td><td>ss197sr</td><td>62</td><td>20</td><td>22</td><td>50%</td></tr>
+            <tr><td>5.7x28 mm</td><td>l191 (Tracer)</td><td>58</td><td>33</td><td>41</td><td>20%</td></tr>
+            <tr><td>5.7x28 mm</td><td>sb193</td><td>54</td><td>35</td><td>37</td><td>20%</td></tr>
+            <tr><td>5.7x28 mm</td><td>ss190</td><td>49</td><td>37</td><td>43</td><td>20%</td></tr>
+            <tr><td>4.6x30 mm</td><td>Action SX</td><td>65</td><td>18</td><td>39</td><td>50%</td></tr>
+            <tr><td>4.6x30 mm</td><td>Subsonic SX</td><td>45</td><td>36</td><td>46</td><td>20%</td></tr>
+            <tr><td>4.6x30 mm</td><td>FMJ SX</td><td>43</td><td>40</td><td>41</td><td>20%</td></tr>
+            <tr><td>4.6x30 mm</td><td>AP SX</td><td>35</td><td>53</td><td>46</td><td>10%</td></tr>
+            <tr><td>9x39mm</td><td>sp5</td><td>68</td><td>38</td><td>52</td><td>20%</td></tr>
+            <tr><td>9x39mm</td><td>sp6</td><td>58</td><td>46</td><td>60</td><td>10%</td></tr>
+            <tr><td>9x39mm</td><td>SPP</td><td>64</td><td>50</td><td>56</td><td>20%</td></tr>
+            <tr><td>9x39mm</td><td>BP</td><td>60</td><td>55</td><td>68</td><td>10%</td></tr>
+            <tr><td>.366</td><td>Geksa</td><td>110</td><td>14</td><td>38</td><td>45%</td></tr>
+            <tr><td>.366</td><td>FMJ</td><td>98</td><td>23</td><td>48</td><td>25%</td></tr>
+            <tr><td>.366</td><td>EKO</td><td>73</td><td>30</td><td>40</td><td>20%</td></tr>
+            <tr><td>.366</td><td>AP</td><td>90</td><td>42</td><td>60</td><td>1%</td></tr>
+            <tr><td>5.45x39 mm</td><td>SP</td><td>68</td><td>11</td><td>34</td><td>45%</td></tr>
+            <tr><td>5.45x39 mm</td><td>HP</td><td>74</td><td>11</td><td>20</td><td>35%</td></tr>
+            <tr><td>5.45x39 mm</td><td>PRS</td><td>60</td><td>14</td><td>28</td><td>30%</td></tr>
+            <tr><td>5.45x39 mm</td><td>US</td><td>65</td><td>15</td><td>34</td><td>10%</td></tr>
+            <tr><td>5.45x39 mm</td><td>FMJ</td><td>54</td><td>20</td><td>30</td><td>25%</td></tr>
+            <tr><td>5.45x39 mm</td><td>T (Tracer)</td><td>57</td><td>20</td><td>38</td><td>16%</td></tr>
+            <tr><td>5.45x39 mm</td><td>PS</td><td>50</td><td>25</td><td>35</td><td>40%</td></tr>
+            <tr><td>5.45x39 mm</td><td>PP</td><td>46</td><td>30</td><td>32</td><td>17%</td></tr>
+            <tr><td>5.45x39 mm</td><td>BP</td><td>48</td><td>32</td><td>41</td><td>16%</td></tr>
+            <tr><td>5.45x39 mm</td><td>BT (Tracer)</td><td>44</td><td>37</td><td>49</td><td>16%</td></tr>
+            <tr><td>5.45x39 mm</td><td>BS</td><td>40</td><td>51</td><td>57</td><td>17%</td></tr>
+            <tr><td>5.45x39 mm</td><td>7n39</td><td>37</td><td>62</td><td>60</td><td>2%</td></tr>
+            <tr><td>5.56x45 mm</td><td>Warmage</td><td>85</td><td>3</td><td>14</td><td>90%</td></tr>
+            <tr><td>5.56x45 mm</td><td>55_HP</td><td>75</td><td>9</td><td>22</td><td>70%</td></tr>
+            <tr><td>5.56x45 mm</td><td>MK_255_Mod_0</td><td>60</td><td>17</td><td>32</td><td>3%</td></tr>
+            <tr><td>5.56x45 mm</td><td>M856 (Tracer)</td><td>55</td><td>23</td><td>34</td><td>33%</td></tr>
+            <tr><td>5.56x45 mm</td><td>FMJ</td><td>52</td><td>24</td><td>33</td><td>50%</td></tr>
+            <tr><td>5.56x45 mm</td><td>M855</td><td>50</td><td>30</td><td>37</td><td>40%</td></tr>
+            <tr><td>5.56x45 mm</td><td>M856A1 (Tracer)</td><td>51</td><td>37</td><td>52</td><td>33%</td></tr>
+            <tr><td>5.56x45 mm</td><td>M855A1</td><td>45</td><td>43</td><td>52</td><td>34%</td></tr>
+            <tr><td>5.56x45 mm</td><td>M995</td><td>40</td><td>53</td><td>58</td><td>32%</td></tr>
+            <tr><td>7.62x39 mm</td><td>HP</td><td>87</td><td>15</td><td>35</td><td>26%</td></tr>
+            <tr><td>7.62x39 mm</td><td>US</td><td>56</td><td>29</td><td>42</td><td>8%</td></tr>
+            <tr><td>7.62x39 mm</td><td>T45M</td><td>62</td><td>30</td><td>46</td><td>12%</td></tr>
+            <tr><td>7.62x39 mm</td><td>PS</td><td>57</td><td>32</td><td>52</td><td>25%</td></tr>
+            <tr><td>7.62x39 mm</td><td>BP</td><td>58</td><td>47</td><td>63</td><td>12%</td></tr>
+            <tr><td>.300 blk</td><td>BPZ</td><td>60</td><td>28</td><td>36</td><td>30%</td></tr>
+            <tr><td>.300 blk</td><td>AP</td><td>55</td><td>44</td><td>60</td><td>30%</td></tr>
+            <tr><td>7.62x51 mm</td><td>Ultra Nosler</td><td>107</td><td>15</td><td>20</td><td>70%</td></tr>
+            <tr><td>7.62x51 mm</td><td>BPZ FMJ</td><td>88</td><td>31</td><td>33</td><td>25%</td></tr>
+            <tr><td>7.62x51 mm</td><td>TPZ SP</td><td>60</td><td>36</td><td>40</td><td>20%</td></tr>
+            <tr><td>7.62x51 mm</td><td>M80</td><td>80</td><td>41</td><td>66</td><td>17%</td></tr>
+            <tr><td>7.62x51 mm</td><td>M62 (Tracer)</td><td>79</td><td>44</td><td>75</td><td>14%</td></tr>
+            <tr><td>7.62x51 mm</td><td>M61</td><td>70</td><td>64</td><td>83</td><td>13%</td></tr>
+            <tr><td>7.62x51 mm</td><td>M993</td><td>67</td><td>70</td><td>85</td><td>13%</td></tr>
+            <tr><td>7.62x54R</td><td>T-46M (Tracer)</td><td>82</td><td>41</td><td>83</td><td>18%</td></tr>
+            <tr><td>7.62x54R</td><td>LPS_Gzh</td><td>81</td><td>42</td><td>78</td><td>18%</td></tr>
+            <tr><td>7.62x54R</td><td>7N1</td><td>86</td><td>45</td><td>84</td><td>8%</td></tr>
+            <tr><td>7.62x54R</td><td>7BT1 (Tracer)</td><td>78</td><td>59</td><td>87</td><td>8%</td></tr>
+            <tr><td>7.62x54R</td><td>SNB</td><td>75</td><td>62</td><td>87</td><td>8%</td></tr>
+            <tr><td>7.62x54R</td><td>7n37</td><td>72</td><td>70</td><td>88</td><td>8%</td></tr>
+            <tr><td>12.7x55 mm</td><td>ps12a</td><td>165</td><td>10</td><td>22</td><td>70%</td></tr>
+            <tr><td>12.7x55 mm</td><td>ps12</td><td>115</td><td>28</td><td>60</td><td>30%</td></tr>
+            <tr><td>12.7x55 mm</td><td>ps12b</td><td>102</td><td>46</td><td>57</td><td>30%</td></tr>
+            <tr><td>.338 Lapua Magnum</td><td>Tac-X</td><td>196</td><td>18</td><td>55</td><td>50%</td></tr>
+            <tr><td>.338 Lapua Magnum</td><td>UPZ</td><td>142</td><td>32</td><td>70</td><td>60%</td></tr>
+            <tr><td>.338 Lapua Magnum</td><td>FMJ</td><td>122</td><td>47</td><td>83</td><td>20%</td></tr>
+            <tr><td>.338 Lapua Magnum</td><td>AP</td><td>115</td><td>79</td><td>89</td><td>13%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <script src="script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+@active-color: darkslategray;
+@border-color: #666;
+@bg-shading: rgba(51, 51, 51, .6);
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  width: 100vw;
+  overflow-x: hidden; /*убирает дёргание при появлении полосы прокрутки*/
+  font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+}
+body {
+  margin: 0;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.sidebar {
+  position: fixed;
+  max-width: 210px;
+  
+  &-caliber {
+    padding: 10px 5px;
+    background-color: @bg-shading;
+    margin-bottom: 10px;
+    &__header {
+      .sidebar-header();
+    }
+    label {
+      display: block;
+    }
+  }
+}
+
+.ammo {
+  position: relative;
+  background: url(../img/eft-bg.jpg) no-repeat center;
+  background-size: cover;
+  background-attachment:fixed;
+  min-height: 100vh;
+  &__container {
+    position: relative;
+    z-index: 5;
+    color: #fff;
+    display: flex;
+  }
+  &__table {
+    width: 100%;
+    min-height: 100vh;
+    background-color: @bg-shading;
+    margin-left: 220px;
+  }
+}
+
+
+
+
+
+.armor {
+  padding: 10px 5px;
+  background-color: @bg-shading;
+  &__header {
+    .sidebar-header();
+  }
+  &__input-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__input {
+    display: none;
+    &:checked + .armor__label {
+      color: white;
+      background: @active-color;
+      border-color: rgb(34, 128, 22);
+    }
+  }
+  &__label {
+    border: 1px solid @border-color;
+    background: white;
+    color: @active-color;
+    line-height: 1;
+    padding: 5px;
+    display: inline-block;
+    user-select: none;
+  }
+}
+
+
+.main-overlay {
+  position: absolute;
+  left: 0; right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .8;
+  background-image: radial-gradient(circle, rgba(32, 40, 63, 0.9) 0%, rgba(49, 61, 97, 0.8) 40%, rgba(47,58,82,1) 100%);
+  z-index: 0;
+  background-attachment:fixed;
+}
+.ammo__sidebar label {
+  display: block;
+}
+.ammo__table-header {
+  position: sticky;
+  top: 0px;
+}
+
+table {
+  width: 100%; /* Ширина таблицы */
+  border-collapse: collapse; /* Убираем двойные линии */
+ }
+ thead {
+  background: #f5e8d0; /* Цвет фона заголовка */
+ }
+ td, th {
+  padding: 5px; /* Поля в ячейках */
+  border: 1px solid #333; /* Параметры рамки */
+ }
+ th {
+  border-top: none;
+  font-size: 14px;
+  background-color:darkslategray;
+ }
+//  tbody tr:nth-child(even) {
+//   background: lighten(@bg-shading, 20%); // вылезает косяк (нужно окрашивать только те что отображаются)
+//  }
+.light-row {
+  background: lighten(@bg-shading, 20%); // вылезает косяк (нужно окрашивать только те что отображаются)
+}
+
+
+
+// треугольники при сортировке
+th.sorted[data-order="1"],
+th.sorted[data-order="-1"] {
+  position: relative;
+}
+
+th.sorted[data-order="1"]::after,
+th.sorted[data-order="-1"]::after {
+  right: 5px;
+  position: absolute;
+}
+
+th.sorted[data-order="-1"]::after {
+content: "▼"
+}
+
+th.sorted[data-order="1"]::after {
+content: "▲"
+}
+
+.hidden {
+  display: none;
+}
+.show {
+  display: table-row;
+}
