@@ -2,11 +2,6 @@
 @border-color: #666;
 @bg-shading: rgba(51, 51, 51, .6);
 
-.sidebar-header {
-  text-align: center;
-  margin-bottom: 8px;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -23,20 +18,30 @@ body {
   max-width: 1200px;
 }
 
+/* MIXINS */
+.sidebar-header() {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.sidebar-wrapper() {
+  padding: 10px 5px;
+  background-color: @bg-shading;
+  margin-bottom: 10px;
+}
+
+
 .sidebar {
   position: fixed;
   max-width: 210px;
-  
-  &-caliber {
-    padding: 10px 5px;
-    background-color: @bg-shading;
-    margin-bottom: 10px;
-    &__header {
-      .sidebar-header();
-    }
-    label {
-      display: block;
-    }
+}
+
+.caliber {
+  .sidebar-wrapper();
+  &__header {
+    .sidebar-header();
+  }
+  label {
+    display: block;
   }
 }
 
@@ -54,19 +59,15 @@ body {
   }
   &__table {
     width: 100%;
-    min-height: 100vh;
+    // min-height: 100vh;
     background-color: @bg-shading;
     margin-left: 220px;
   }
 }
 
 
-
-
-
 .armor {
-  padding: 10px 5px;
-  background-color: @bg-shading;
+  .sidebar-wrapper();
   &__header {
     .sidebar-header();
   }
@@ -93,6 +94,15 @@ body {
   }
 }
 
+.category {
+  .sidebar-wrapper();
+  &__header {
+    .sidebar-header();
+  }
+  &__label {
+    display: block;
+  }
+}
 
 .main-overlay {
   position: absolute;
@@ -116,17 +126,18 @@ table {
   width: 100%; /* Ширина таблицы */
   border-collapse: collapse; /* Убираем двойные линии */
  }
- thead {
-  background: #f5e8d0; /* Цвет фона заголовка */
- }
- td, th {
-  padding: 5px; /* Поля в ячейках */
-  border: 1px solid #333; /* Параметры рамки */
- }
+  tr {
+    max-height: 20px;
+  }
+  td, th {
+    padding: 5px; /* Поля в ячейках */
+    border: 1px solid #333; /* Параметры рамки */
+  }
  th {
   border-top: none;
   font-size: 14px;
-  background-color:darkslategray;
+  background-color: @active-color;
+  user-select: none;
  }
 //  tbody tr:nth-child(even) {
 //   background: lighten(@bg-shading, 20%); // вылезает косяк (нужно окрашивать только те что отображаются)
