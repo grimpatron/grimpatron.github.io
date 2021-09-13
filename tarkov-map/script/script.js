@@ -321,7 +321,7 @@ function clearCanvas() {
 
 
 document.querySelector('#custom-btn').addEventListener('click', () => {
-  mapField.style.backgroundImage = "url(../img/CustomsMap.jpg)";
+  mapField.style.backgroundImage = "url('img/CustomsMap.jpg')";
   mapField.style.width = '2048px';
   mapField.style.height = '1064px';
   mapWidth = mapField.offsetWidth;
@@ -333,7 +333,7 @@ document.querySelector('#custom-btn').addEventListener('click', () => {
   document.querySelector('.aside__header').innerText = "Таможня";
 });
 document.querySelector('#shoreline-btn').addEventListener('click', () => {
-  mapField.style.backgroundImage = "url(../img/ShorelineMap.jpg)";
+  mapField.style.backgroundImage = "url('img/ShorelineMap.jpg')";
   mapField.style.width = '2048px';
   mapField.style.height = '1245px';
   mapWidth = mapField.offsetWidth;
