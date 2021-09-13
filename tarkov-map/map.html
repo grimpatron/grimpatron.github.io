@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escape from Custom</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="main" id="main">
+      <div id="mapField" class="asyncImage" data-src="img/CustomsMap.jpg">
+        <!-- <img id="imageMap" class="asyncImage" src="CustomsMap8-min.jpg" data-src="CustomsMap8.jpg" alt="Beautiful landscape sunrise"> -->
+        <div class="spoint">
+          <div class="sline"></div>
+        </div>
+        <div class="sdistance"></div>
+      </div>
+      <canvas id="myCanvas" width="6000px" height="4000px"></canvas>
+      <div class="back-surface"></div>
+    </div>
+
+    
+
+
+
+    <div class="aside">
+      <div class="aside__header">Таможня</div>
+
+      <div class="map-list">
+        <button type="button" class="map-list__item" id="custom-btn">Таможня</button>
+        <button type="button" class="map-list__item" id="shoreline-btn">Берег</button>
+      </div>
+
+      <div class="aside__division">
+        <label>
+          <input type="checkbox" name="sniperMode" id="sniperMode" >
+          <span>Снайперский режим</span>
+        </label>
+        <table>
+          <tr><td>Стрелок</td><td id="shooterPosition"></td></tr>
+          <tr><td>Цель</td><td id="targetPosition"></td></tr>
+          <tr><td>Дистания</td><td id="targetDistance"></td></tr>
+        </table>
+      </div>
+
+      <div class="aside__division">
+        <label>
+          <input type="checkbox" name="checkCanvas" id="checkCanvas">
+          <span>Режим планирования</span>
+        </label>
+        <button onclick="clearCanvas()">Очистить</button>
+      </div>
+
+      <div class="calculation-results">
+        <div>Технические данные:</div>
+        <table>
+          <tr><td>Курсор по оси X</td><td id="cursorPercentageX"></td></tr>
+          <tr><td>Курсор по оси Y</td><td id="cursorPercentageY"></td></tr>
+          <tr><td>Смещение карты X</td><td id="offsetMapX"></td></tr>
+          <tr><td>Смещение карты Y</td><td id="OffsetMapY"></td></tr>
+          <tr><td>Масштаб карты:</td><td id="scaleMap"></td></tr>
+        </table>
+        <!-- <div class="scale-map" id="scaleMap">Масштаб карты:</div> -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script/script.js"></script>
+</body>
+</html>

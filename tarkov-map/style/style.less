@@ -1,0 +1,171 @@
+@border-color: #666;
+@aside-width: 300px;
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  cursor: pointer;
+  font-size: 19px;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  position: relative;
+}
+.wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.main {
+  position: relative;
+  overflow: hidden;
+  width: calc(100vw - @aside-width);
+}
+#mapField {
+  width: 2048px;
+  height: 1064px;
+  background-image: url(../img/CustomsMap-min.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  // img {
+  //   width: 100%;
+  //   height: 100%;
+  // }
+}
+#myCanvas {
+  display: none;
+  position: absolute;
+  background-color: rgba(165, 97, 97, 0.1);
+}
+.at-gunpoint:hover {
+  cursor: url(../target.cur) 16 16, auto;
+}
+.back-surface {
+  width: 100%;
+  height: 100%;
+  // background-color: rgba(216, 216, 216, 0.75);
+  background: repeating-linear-gradient( -45deg, #ccc, #ccc 20px, #ddd 20px, #ddd 40px );
+  z-index: 2;
+}
+.aside {
+  box-sizing: border-box;
+  width: @aside-width;
+  padding: 12px 10px;
+  display: inline-block;
+  background-color: #eed;
+  // background: url(../img/pngwing.com-min.png);
+  background-size: cover;
+  position: relative;
+  border: 2px solid @border-color;
+  user-select: none;
+  &__header {
+    font-size: 32px;
+    text-align: center;
+  }
+  &__division {
+    border: 2px solid @border-color;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+  }
+}
+
+.map-list {
+  display: flex;
+  flex-wrap: wrap;
+  &__item {
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 5px;
+    width: calc(50% - 10px);
+    min-height: 42px;
+    border: 1px solid @border-color;
+    border-radius: 6px;
+  }
+}
+#custom-btn {
+  background: url(../img/custom-preview.jpg) 0 55%;
+  background-size: cover;
+}
+#shoreline-btn {
+  background: url(../img/shoreline-preview.jpg) 0 40%;
+  background-size: cover;
+}
+
+.calculation-results {
+  padding: 10px 5px;
+  position: absolute;
+  bottom: 0;
+  font-size: 16px;
+  font-family: monospace;
+  table {
+    display: block;
+    border-spacing: 0px;
+    margin-left: -1px;
+    td {
+      padding-right: 10px;
+    }
+  }
+}
+// .sniperPoint {
+//   position: absolute;
+//   width: 20px;
+//   height: 20px;
+//   background: rgba(129, 58, 123, 0.75);
+//   border: 3px solid @border-color;
+//   border-radius: 50%;
+//   transform: translate(-50%, -50%);
+//   position: relative;
+// }
+
+// .trajectory {
+//   height: 4px;
+//   background-color: rgba(255, 0, 0, .3);
+//   position: absolute;
+//   top: 45%;
+//   left: 45%;
+// }
+
+
+
+
+
+
+.sdistance {
+  display: none;
+  border: 1px solid Coral;
+  border-radius: 3px;
+  width: 60px;
+  height: 20px;
+  position: absolute;
+  text-align: center;
+  line-height: 20px;
+  color: #666;
+  background-color: #eee;
+}
+.spoint {
+  display: none;
+  background-color: rgb(50, 129, 96);
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  border-radius: 50%;
+  transform-origin: center;
+  border: 1px solid Coral;
+}
+.sline {
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), red);
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 50%;
+  height: 4px;
+}
+
+
+
+
+
