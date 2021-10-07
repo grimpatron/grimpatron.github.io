@@ -24,7 +24,7 @@ body{
     padding: 5px;
     box-sizing: border-box;
     /* max-width: 70%; */
-    max-height: 80px;
+    max-height: 65px;
     margin: 5px auto;
 }
 
@@ -61,4 +61,5 @@ div.button{
     border-radius: 25px;
     border: 2px solid #bbb;
     font-size: 24px;
+    cursor: pointer;
 }
