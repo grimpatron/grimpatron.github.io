@@ -7,6 +7,7 @@
 	<title>Assistance</title>
 	<link rel="stylesheet" href="style/style.css" />
 	<link rel="stylesheet" href="style/style-page.css" />
+	<link rel="stylesheet" href="style/nextgen.css" />
 </head>
 
 <body>
@@ -76,7 +77,7 @@
 
 				<!-- 53092J -->
 				<li class="accordion_item"><input type="checkbox" class="accordion_toggle" id="n53092J" hidden>
-					<label class="accordion_trigger" for="n53092J">53092J</label>
+					<label class="accordion_trigger" for="n53092J">53092J «пожарка»</label>
 					<div class="accordion_target">
 						<ul>
 							<li><b>..</b> делается как 63022J</li>				
@@ -139,7 +140,6 @@
 							<li><b>З></b> зап. "65"; буф 1е; К|α</li>
 							<li><b>М></b> март. обч; ЗЭ</li>
 							<li><b>П></b> ами: 1)534026-1401102 2)534026-1401103 + уг. ТТ (2кр, верхнее отве, смотрит вниз)</li>
-							<li><i>Вместо уголка на Б.О, уголок ставит "запаска"</i></li>
 						</ul>
 						
 						<fieldset><legend>521-030 пн</legend>
@@ -357,7 +357,7 @@
 								<li><b>БО</b> - (свои) 63022J-1001042/43-000 (загибом вперёд), резина 63022J-1001023-000, ЦПК 5309C5-5003073-000 &БО </li>
 								<li><b>ПП</b> - 6514H9-2801119-010 (высок) + птичка 040 (обч), болты: 5 потай + М16x50 (схема на листке)</li>
 								<li><b>сапог</b> 5440M9-2801118/19-000</li>
-								<li><b>F></b> суш|α снаружи; пластины ставит закладка, заг^b</li>
+								<li><b>А></b> суш|α снаружи; пластины АКБ ставит закладка, заг^b</li>
 								<li><b>Б></b> ТБ 500л - 4 пластины</li>
 								<li><b>В></b> ВФ - 5309C5-1109110-000; РОВ^b => мал|β^d</li>
 								<li><b>Г></b> глуш (свой) 63022J-1203063/66-000, без пакетов</li>
@@ -972,46 +972,9 @@
 				<p><b>1228</b>, <b>3028</b> - на БО не обжимаются 2 нижних болта</p>
 			</div>	<!--text-->
 
-<!--удалить после добавления nextgen-->
-<script>
-var sss = document.getElementsByClassName("accordion_trigger");
-var tog = document.getElementsByClassName("accordion_toggle");
-for(var i = 0; i<sss.length; i++){
-	var x = document.createElement("span");
-	x.style.display = "inline-block";
-	x.style.marginRight = "10px";
-	switch(tog[i].id.slice(3, 5)){
-		case "71":
-		case "81": console.log("\tБычара"); x.style.backgroundColor = "yellow"; break;
-		case "A0":
-		case "01":
-		case "02":
-		case "12":
-		case "30":
-		case "32":
-		case "40":
-		case "50": console.log("\tЕвро"); x.style.backgroundColor = "green"; break;
-		case "16":
-		case "17":
-		case "25": console.log("\tСерийные"); x.style.backgroundColor = "blue"; break;
-		case "09":
-		case "34": console.log("\tДругие"); x.style.backgroundColor = "red"; break;
-		// case /^438121$/: console.log("..."); break;
-	}					
-	// x.style.backgroundColor = "red";
-	x.style.width = "24px";
-	x.style.height = "24px";
-	x.style.borderRadius = "50%";
-	// x.style.verticalAlign = "top";
-	sss[i].insertBefore(x, sss[i].firstChild);
-}
-</script>
-
-
 		</div><!--wrapper-->
 	</section>
-	<script>
-		// let label = document.getElementsByTagName("label");
-	</script>
+	
+	<script src="script/nextgen.js"></script>
 </body>
 </html>
