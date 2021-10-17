@@ -138,7 +138,7 @@ body {
   height: auto;
   margin: auto;
   clip: auto;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   /* задержка появления  функция анимации */
   animation: fadeIn ease-in 0.4s;
 }
@@ -152,6 +152,10 @@ body {
   }
 }
 fieldset {
-  padding: 10px;
-  margin: 10px -10px 0;
+  padding: 10px 5px;
+  margin: 10px -5px 0;
+}
+legend {
+  margin: 0 5px;
+  padding: 0 5px;
 }
