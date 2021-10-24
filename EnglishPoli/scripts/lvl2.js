@@ -3,6 +3,7 @@ let level2 = (function(){
   let outputAnswer = document.getElementById("output-answer");
   let checkListVerbs = document.getElementsByClassName("check-icon");
   let wordsBlockList = document.querySelector('.words-block__list');
+  let wordsBlockListSelect = document.querySelector('.words-block__list-select');
   let binaryVerbs = [];
   let curVerbEng = "";
   let curVerbRus = "";
@@ -12,8 +13,6 @@ let level2 = (function(){
   let curToDo2 = "";
   let curToDoRusQ = "";
   let curToDoRusN = "";
-  let curEnding = "";
-  let curSign = "";
   let listVerbEng = [];
   let listVerbRus = [];
   let listPastSimple = [];
@@ -21,27 +20,25 @@ let level2 = (function(){
   let arrPronRus = ["я", "ты", "мы", "они", "он", "она"];     // pronouns Russian
   let arrToDo = ["", "will", "do", "does", "did", "will not", "don't", "doesn't", "didn't"]; // вспомогательные слова перед/после местоимения
   let arrToDoRus = ["буду", "будешь", "будем", "будут", "будет", "будет"];
-  let arrEnding = ["", "s", "es", "d", "ed"];
   let arrVerbEng = "ask answer give(gave) take(took) help hope speak(spoke) travel".split(' ');
   let arrVerbRus = "спрашивать спрашиваю спрашиваешь спрашиваем спрашивают спрашивает спрашивает спрашивал спрашивали спрашивала отвечать отвечаю отвечаешь отвечаем отвечают отвечает отвечает отвечал отвечали отвечала давать даю даёшь даём дают даёт даёт давал давали давала брать беру берёшь берём берут берёт берёт брал брали брала помогать помогаю помогаешь помогаем помогают помогает помогает помогал помогали помагала надеятся надеюсь надеешься надеемся надеются надеется надеется надеялся надеялись надеялась разговаривать разговариваю разговариваешь разговариваем разговаривают разговаривает разговариваает разговаривал разговаривали разговаривала путешествовать путешествую путешествуешь путешествуем путешествуют путешествует путешествует путешествовал путешествовали путешествовала".split(' ');
   let arrPastSimple = separateIrregularVerbs(arrVerbEng); // вторая форма нерпавильных глаголав
   let stringQestion = "";
   let stringAnswer = "";
-  let order = "";
-  let rndMixValue = null;
 
   let curPronEng2 = ""; /* lvl2 */
   let curPronRus2 = ""; /* lvl2 */
-  let arrCompatPron2 = [1, 2, 2, 1, 2, 0, 0, 0]; /* lvl2 */   // (compatibility) совместимость второго местоимения
+  let arrCompatPron2 = [1, 2, 2, 1, 2, 0, 0, 0]; /* lvl2 */   // (compatibility) совместимость глагола и второго местоимения
   let listPron2 = []; /* lvl2 */    // для вторых местоимений, на основании выбранных слов
-  let arrPronEng2 = ["me", "you", "him", "her", "us", "them"]; /* lvl2 */
-  let arrPronRus2 = ["меня", "тебя", "его", "её", "нас", "их", "мне", "тебе", "ему", "ей", "нам", "им" ]; /* lvl2 */
+  let arrPronEng2 = ["me", "you", "us", "them", "him", "her"]; /* lvl2 */
+  let arrPronRus2 = ["меня", "тебя", "нас", "их", "его", "её", "мне", "тебе", "нам", "им", "ему", "ей" ]; /* lvl2 */
   let curQuestionEng = ""; /* lvl2 */
   let curQuestionRus = ""; /* lvl2 */
   let listQuestionEng = []; /* lvl2 */
   let listQuestionRus = []; /* lvl2 */
   let listCompatQuestion = []; /* lvl2 */
   let arrCompatQuestion = ["000001110", "100101111", "100111111", "100111111", "100101111", "000000110", "000101111", "000101111"]; /* lvl2 */   // совместимость вопросительных слов
+  let pronounCompatibility = ["011101", "101111", "011101", "111111", "111111", "111111"];              /* lvl2 */    // совместимость местоимений
   let questionWordsRus = ["Что",  "Какой", "Кто", "Где",   "Куда",  "Когда", "Зачем", "Почему", "Как"]; /* lvl2 */
   let questionWordsEng = ["What", "What",  "Who", "Where", "Where", "When",  "Why",   "Why",    "How"]; /* lvl2 */
 
@@ -56,16 +53,17 @@ function generateListWord(){
   // Отмечаются выбранные слова (сохранённые в localStorage)
   binaryVerbs = selectedWordsInList(arrVerbEng);
   
-  writeSV();
+  listOfSelectedWords();
 
   // вешает события при котором будет пересобираться массив;
-  wordsBlockList.addEventListener("click", writeSV, false);
+  wordsBlockList.addEventListener("click", listOfSelectedWords, false);
+  wordsBlockListSelect.addEventListener("click", listOfSelectedWords, false);
 
   // вешает событие которое выбирает или снимает выбор у всех глаголов;
   eventSelectAllWords( checkListVerbs );
 
   // Составление списков глаголов на основании выбранных слов.
-  function writeSV(){
+  function listOfSelectedWords(){
     listVerbEng = [];
     listVerbRus = [];
     listPastSimple = [];
@@ -96,30 +94,16 @@ function generateListWord(){
 }
 
   /* ****************************************************** */
-  function blessRNG(){
-    let rndX = Math.floor(Math.random() * 9);         // random order of time and form
-    let rndPron = Math.floor(Math.random() * 6);      // random pronoun
-    /*lvl2*/ let rndPron2 = Math.floor(Math.random() * 6); 
-    let rndVerbs = Math.floor(Math.random() * (listVerbEng.length)); // random verb
-    rndMixValue = Math.floor(Math.random() * 2);      // random order of languages
-
-    /*lvl2*/ pronounCompatibility(rndPron, rndPron2); // Проверка местоимений на совместимость
-    /*lvl2*/ questionWordsCompatibility(rndVerbs, rndX); // Подбираем подходящие вопросительные слова
-    order = checkLanguageOrder(); // преверяет порядок языка выбраный в данный момент
-    step2(rndX, rndPron, rndPron2, rndVerbs);
-  }
-
-  function pronounCompatibility(rndPron, rndPron2){
+  function pronounCompatibilityCheck(rndVal){
     for ( ; ; ){
-      console.log(rndPron, rndPron2);
-      if ( rndPron == rndPron2 || rndPron == 0 && rndPron2 == 4 || rndPron == 2 && rndPron2 == 4 || rndPron == 2  && rndPron2 == 0) { 
-        rndPron2 = Math.floor(Math.random() * 6);
+      if (pronounCompatibility[rndVal.pron1][rndVal.pron2] == 0) {
+        rndVal.pron2 = Math.floor(Math.random() * 6);
       } else break;
     }
   }
 
-  function questionWordsCompatibility(rndVerbs, rndX){
-    if (rndX == 0 || rndX == 3 || rndX == 6){
+  function questionWordsCompatibility(valVerb, valCell){
+    if (valCell == 0 || valCell == 3 || valCell == 6){
       listCompatQuestion = [];
       listQuestionEng = [];
       listQuestionRus = [];
@@ -127,7 +111,7 @@ function generateListWord(){
         if (binaryVerbs[i] == 1) listCompatQuestion.push(arrCompatQuestion[i]);
       }
 
-      listCompatQuestion = listCompatQuestion[rndVerbs].split('');
+      listCompatQuestion = listCompatQuestion[valVerb].split('');
 
       for(let i = 0; i < listCompatQuestion.length; i++){
         if (listCompatQuestion[i] == 1){
@@ -145,26 +129,26 @@ function generateListWord(){
     }
   }
   
-  function step2(rndX, rndPron, rndPron2, rndVerbs){
-    curVerbEng = listVerbEng[rndVerbs];
-    curVerbRus = listVerbRus[getVerbRus(rndX, rndPron, rndVerbs)];
-    curPronEng = arrPronEng[rndPron];
-    curPronRus = arrPronRus[rndPron];
-    curPronEng2 = arrPronEng2[rndPron2]; /* lvl2 */
-    if(listPron2[rndVerbs] == 2) rndPron2 += 6; /* lvl2 */
-    curPronRus2 = arrPronRus2[rndPron2]; /* lvl2 */
-    if(listPron2[rndVerbs] == 0) { curPronRus2 = ""; curPronEng2 = ""; }; /* lvl2 */
+  function wordPreparation(rndVal){
+    curVerbEng = listVerbEng[rndVal.verb];
+    curVerbRus = listVerbRus[getVerbRus(rndVal.cell, rndVal.pron1, rndVal.verb)];
+    curPronEng = arrPronEng[rndVal.pron1];
+    curPronRus = arrPronRus[rndVal.pron1];
+    curPronEng2 = arrPronEng2[rndVal.pron2]; /* lvl2 */
+    if(listPron2[rndVal.verb] == 2) rndVal.pron2 += 6; /* lvl2 */
+    curPronRus2 = arrPronRus2[rndVal.pron2]; /* lvl2 */
+    if(listPron2[rndVal.verb] == 0) { curPronRus2 = ""; curPronEng2 = ""; }; /* lvl2 */
 
-    switch (rndX) {
+    switch (rndVal.cell) {
       case 0: curToDo1 = arrToDo[1]; 
         curToDo2 = arrToDo[0]; break;
       case 1: curToDo2 = arrToDo[1];
         curToDo1 = arrToDo[0]; break;
       case 2: curToDo2 = arrToDo[5];
         curToDo1 = arrToDo[0]; break;
-      case 3: (rndPron < 4) ? curToDo1 = arrToDo[2] : curToDo1 = arrToDo[3];
+      case 3: (rndVal.pron1 < 4) ? curToDo1 = arrToDo[2] : curToDo1 = arrToDo[3];
         curToDo2 = arrToDo[0]; break;
-      case 5: (rndPron < 4) ? curToDo2 = arrToDo[6] : curToDo2 = arrToDo[7];
+      case 5: (rndVal.pron1 < 4) ? curToDo2 = arrToDo[6] : curToDo2 = arrToDo[7];
         curToDo1 = arrToDo[0]; break;
       case 6: curToDo1 = arrToDo[4];
         curToDo2 = arrToDo[0]; break;
@@ -174,48 +158,26 @@ function generateListWord(){
         curToDo1 = arrToDo[0];
         curToDo2 = arrToDo[0];
     }
+    
+    curVerbEng = changeVerb(curVerbEng, listPastSimple, rndVal);
 
-    // выбирает между окончаниями    s || es
-    if (rndX == 4 && rndPron >= 4){
-      if (curVerbEng == "finish" || curVerbEng == "go"){
-        curEnding = arrEnding[2];
-      } else {
-        curEnding = arrEnding[1];      
-      }
-    // выбирает между окончаниями    d || ed
-    } else if (rndX == 7){
-      if(curVerbEng.charAt(curVerbEng.length-1) == 'e'){
-        curEnding = arrEnding[3];
-      } else {
-        curEnding = arrEnding[4];
-      }
-    // замена на неправильный глагол
-      if(listPastSimple[rndVerbs] != ""){
-        curVerbEng = listPastSimple[rndVerbs];
-        curEnding = "";
-      }
-    } else {
-      curEnding = "";
-    }
-
-    (rndX == 0 || rndX == 1 || rndX == 2) ? curToDoRusQ = arrToDoRus[rndPron] : curToDoRusQ = "";
-    (rndX == 2 || rndX == 5 || rndX == 8 || rndX == 11) ? curToDoRusN = "не" : curToDoRusN = "";
-    (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) ? curSign = "?" : curSign = "";
+    (rndVal.cell == 0 || rndVal.cell == 1 || rndVal.cell == 2) ? curToDoRusQ = arrToDoRus[rndVal.pron1] : curToDoRusQ = "";
+    (rndVal.cell == 2 || rndVal.cell == 5 || rndVal.cell == 8 || rndVal.cell == 11) ? curToDoRusN = "не" : curToDoRusN = "";
   }
   
-  function getVerbRus(rndX, rndPron, rndVerbs) {
+  function getVerbRus(valCell, valPron, valVerb) {
     let rndVerbRus = null;
-    if (rndX >= 0 && rndX <= 2) {
-      rndVerbRus = 10 * rndVerbs;
-    } else if (rndX >= 3 && rndX <= 5) {
-      rndVerbRus = (rndPron + 1) + (10 * rndVerbs);
-    } else if (rndX >= 6 && rndX <= 8) {
-      if (rndPron == 0 || rndPron == 1 || rndPron == 4) {
-        rndVerbRus = 7 + (10 * rndVerbs);      
-      } else if (rndPron == 2 || rndPron == 3) {
-        rndVerbRus = 8 + (10 * rndVerbs);      
-      } else if (rndPron == 5) {
-        rndVerbRus = 9 + (10 * rndVerbs);      
+    if (valCell >= 0 && valCell <= 2) {
+      rndVerbRus = 10 * valVerb;
+    } else if (valCell >= 3 && valCell <= 5) {
+      rndVerbRus = (valPron + 1) + (10 * valVerb);
+    } else if (valCell >= 6 && valCell <= 8) {
+      if (valPron == 0 || valPron == 1 || valPron == 4) {
+        rndVerbRus = 7 + (10 * valVerb);      
+      } else if (valPron == 2 || valPron == 3) {
+        rndVerbRus = 8 + (10 * valVerb);      
+      } else if (valPron == 5) {
+        rndVerbRus = 9 + (10 * valVerb);      
       }
     }
     return rndVerbRus;
@@ -223,18 +185,21 @@ function generateListWord(){
 
   function generateString(){
     if ( plus(binaryVerbs) ) {
-      blessRNG();
+      let rndVal = blessRNG( {verbList: listVerbEng.length, pronCnt: 2} );
+      /*lvl2*/ pronounCompatibilityCheck(rndVal); // Проверка местоимений на совместимость
+      /*lvl2*/ questionWordsCompatibility(rndVal.verb, rndVal.cell); // Подбираем подходящие вопросительные слова
+      wordPreparation(rndVal);
       // Rus  1)местоимение 2)отрицание 2)вставка 3)глагол 4)знак препинания
       // Eng  1)вставка 2)местоимение 3)вставка 4)глагол 5)окончание 6)знак препинания
-      if (order == "eng-rus" || (order == "mix" && rndMixValue == 0)) {
-        stringQestion = `${curQuestionEng} ${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${curPronEng2}${curSign}`;
-        stringAnswer = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curPronRus2}${curSign}`;
-        console.log(stringQestion,"ss", order)
-      } else if (order == "rus-eng" || (order == "mix" && rndMixValue == 1)) {
-        stringQestion = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curPronRus2}${curSign}`;
-        stringAnswer = `${curQuestionEng} ${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng}${curEnding} ${curPronEng2}${curSign}`;
-        console.log(stringQestion,"ss", order)
+      if (rndVal.order == "eng-rus" || (rndVal.order == "mix" && rndVal.mix == 0)) {
+        stringQestion = `${curQuestionEng} ${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng} ${curPronEng2}`;
+        stringAnswer = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curPronRus2}`;
+      } else if (rndVal.order == "rus-eng" || (rndVal.order == "mix" && rndVal.mix == 1)) {
+        stringQestion = `${curQuestionRus} ${curPronRus} ${curToDoRusN} ${curToDoRusQ} ${curVerbRus} ${curPronRus2}`;
+        stringAnswer = `${curQuestionEng} ${curToDo1} ${curPronEng} ${curToDo2} ${curVerbEng} ${curPronEng2}`;
       }
+      stringQestion = conversionToSentence(stringQestion, rndVal.cell);
+      stringAnswer = conversionToSentence(stringAnswer, rndVal.cell);
     } else {
       alert("Выберите хотя бы один глагол чтобы продолжить"); // Если ни один глагол не выбран
     }

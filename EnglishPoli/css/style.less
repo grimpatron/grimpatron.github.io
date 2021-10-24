@@ -1,6 +1,5 @@
 @bg-shadow-box: rgba(0, 0, 0, 0.5);
 @color-text: #333;
-// @bg-side-section: #efa;
 @bg-side-section: linear-gradient(180deg, rgba(222,255,225,1) 0%, rgba(214,245,255,1) 100%);
 
 
@@ -17,6 +16,8 @@ body { color: @color-text; }
 
 
 /* index.html */
+.container { position: relative; }
+
 .menu {
   &-button {
     .buttonStyle();
@@ -40,12 +41,10 @@ body { color: @color-text; }
   }
 }
 
-
 .shema {
   margin: 1rem 0 2rem;
   min-height: 20rem;
 }
-
 
 .intarface {
   &-button {
@@ -56,10 +55,6 @@ body { color: @color-text; }
   }
 }
 
-
-.container {
-  position: relative;
-}
 .aside {
   // display: none;
   position: absolute;
@@ -94,7 +89,7 @@ body { color: @color-text; }
 }
 
 .menu-label,
-.label-word,
+.words-block__list-select,
 .label-lesson {
   display: block;
   font-size: 1.8rem;
@@ -107,52 +102,6 @@ input.check-all-icon,
 input.check-lesson {
   margin-right: 1rem;
 }
-
-
-/* Large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) {
-  .aside {
-    &-left[data-display="block"], &-right[data-display="block"] {
-      display: none;
-    }
-  }
-
-  // .shadow-gray-box {
-  //   display: block;
-  // }
-}
-
-
-/* Medium devices (desktops, 992px and up) */
-@media (max-width: 992px) {
-}
-
-
-/* Small devices (tablets, 768px and up) */
-@media (max-width: 768px) {
-  html { font-size: 8px }
-  // .container { width: 98%; } убирает горизонтальную полосу прокрутки
-  // она появляется из-за того что в html font-size: 8px;
-  // .container { width: 98%; }
-  .menu {
-    &-button {
-      margin: 0.8rem auto;
-      padding: 0.5rem 1rem;
-    }
-  }
-  .shema {
-    font-size: 12px;
-    height: 290px;
-  }
-  .fotorama__nav-wrap {
-    display: none;
-  }
-  .aside-left, .aside-right {
-    max-width: 30rem;
-    width: 50%;   
-  }
-}
-
 
 
 
@@ -231,8 +180,41 @@ input.check-lesson {
   background-color: rgb(224, 255, 233)
 }
 
-@media (max-width: 600px) {
-  .menu-window {
+
+
+/* MEDIA QUERIES */
+@media (max-width: 1200px) {
+  .aside {
+    &-left[data-display="block"], &-right[data-display="block"] {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 8px }
+  // .container { width: 98%; } убирает горизонтальную полосу прокрутки (появляется из-за того что в html font-size: 8px;)
+  .menu {
+    &-button {
+      margin: 0.8rem auto;
+      padding: 0.5rem 1rem;
+    }
+  }
+  .shema {
+    font-size: 12px;
+    height: 290px;
+  }
+  .fotorama__nav-wrap {
+    display: none;
+  }
+  .aside-left, .aside-right {
+    max-width: 30rem;
+    width: 50%;   
+  }
+}
+
+@media (max-width: 480px) {
+  .modal__menu {
     max-width: 100%;
     top: 0;
     left: 0;

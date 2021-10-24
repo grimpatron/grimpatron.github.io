@@ -235,7 +235,6 @@ function openMenu() {
 }
 
 function saveState() {
-  console.log('save');
   let zaraza =  JSON.parse( localStorage.polyglot );
   
   for ( let i = 0; i < modalOrderBtns.length ; i++ ){
@@ -305,7 +304,7 @@ function createListOfAllWords(parentNode, arrWord) {
     let eInput = document.createElement("input");
     eInput.className = "check-icon";
     eInput.setAttribute("type", "checkbox");
-    eLabel.className = "label-word";
+    eLabel.className = "words-block__list-select";
     eLabel.appendChild(eInput);
     eLabel.appendChild(document.createTextNode(arrWord[i]));
     parentNode.appendChild(eLabel);
@@ -359,10 +358,11 @@ function eventSelectAllWords( checkListVerbs ){
 /*** преверяет порядок языка выбраный в данный момент ***/
 function checkLanguageOrder(){
   let order;
+
   for (let i = 0; i < modalOrderBtns.length; i++) {
     if ( modalOrderBtns[i].classList.contains('btn-primary') ) order = modalOrderBtns[i].id;
   }
-  console.log("order -", order);
+
   return order;
 }
 
@@ -381,19 +381,31 @@ function saveWords(lvlStr, binaryVerbs) {
   localStorage.polyglot = JSON.stringify( data );
 }
 
-/*** Оформляет строку в предложение (заглавная буква и знак препинания) ***/
-function conversionToSentence( generatedString, rndX ){
-  generatedString = generatedString[0].toUpperCase() + generatedString.slice(1);
-  if (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) {
-    generatedString += "?";
-  } else {
-    generatedString += ".";
-  }
-  console.log(generatedString);
-}
-conversionToSentence("знак препинания", 9);
+/*** Оформляет строку в предложение ***/
+function conversionToSentence( gnrStr, rndX ){      // gnrStr - generated string
 
-// 258 строк, нужно оптимизировать!!!
+  for ( ; ; ) {
+    if (gnrStr.includes('_')) {
+      gnrStr = gnrStr.replace("_", " ");    // убирает все нижние подчёркивания в строке.
+    } else if (gnrStr[0] == ' ') {
+      gnrStr = gnrStr.slice(1);             // если первый символ пуская строка, убирает его!
+    } else if (gnrStr.slice(-1) == ' ') {
+      gnrStr = gnrStr.slice(0, -1);         // если последний символ пуская строка, убирает его!
+    } else break;
+  }
+
+  gnrStr = gnrStr[0].toUpperCase() + gnrStr.slice(1);
+
+  if (rndX == 0 || rndX == 3 || rndX == 6 || rndX == 9) {
+    gnrStr += "?";
+  } else {
+    gnrStr += ".";
+  }
+
+  return gnrStr;
+}
+
+// 258 строк, нужно оптимизировать!!!     // блин, уже 394 строки!!!
 
 // фунционал:
 // 1) показывать текущий урок и выбранные слова (только на десктоп).
@@ -401,4 +413,73 @@ conversionToSentence("знак препинания", 9);
 // 2) если закрывать меню и не выбрано ни одного слова предупредить, что в меню нужно выбрать хотя бы одно слово.
 
 // пересобрать localStorage с коментариями!
+
 // из старой версии вырезать функционал который запоминал текущую страницу и при открытие перенаправлял на нужную страницу.
+
+
+
+
+function blessRNG(params) {
+  // в качестве параметров принимает объект!
+  // в 3 уровне заменить глаголы на существетильные!
+
+  let rndVal = {}                                                 // random values - объект случайных значений
+
+  rndVal['cell'] = Math.floor(Math.random() * 9);                 // time and form - выбор времени и формы.
+  rndVal['verb'] = Math.floor(Math.random() * params.verbList);   // verb - выбор глагола.
+  rndVal['order'] = checkLanguageOrder();                         // устанавливает порядок языка.
+  rndVal['mix'] = Math.floor(Math.random() * 2);                  // mix - случайный порядок языка.
+
+  if (params.to) {
+    rndVal['to'] = Math.floor(Math.random() * 2);
+  }
+  if (params.adverb) {
+    rndVal['adverb'] = Math.floor(Math.random() * 2);             // adverb - наречие "с" или "без"
+  }
+  if (params.verb2) {
+    rndVal['verb2'] = Math.floor(Math.random() * params.verb2.length);
+  }
+
+  for (let i = 1; i <= params.pronCnt; i++) {
+    rndVal['pron' + i] = Math.floor(Math.random() * 6);     // pronouns - местоимение.
+  }
+  
+  return rndVal;
+}
+
+
+/***  Изменение глагола (зависит от времени и местоимения) ***/
+function changeVerb(curVerbEng, listPastSimple, rndVal) {
+  // окончаниями    s || es || ies
+  if (rndVal.cell == 4 && rndVal.pron1 >= 4) {
+    if (  /o$/.test(curVerbEng)   ||
+          /s$/.test(curVerbEng)   ||
+          /sh$/.test(curVerbEng)  ||
+          /ss$/.test(curVerbEng)  ||
+          /tch$/.test(curVerbEng) ||
+          /z$/.test(curVerbEng)   ||
+          /ch$/.test(curVerbEng)
+    ) {
+      curVerbEng = curVerbEng+'es';
+    } else if ( /[aeiouy]y$/.test(curVerbEng) ) {
+      curVerbEng = curVerbEng+'ys';
+    } else if (/[^aeiouy]y$/.test(curVerbEng)) {
+      curVerbEng = curVerbEng.substring(0, curVerbEng.length - 1)+'ies';
+    } else {
+      curVerbEng = curVerbEng+'s';
+    }
+  // окончаниями    d || ed
+  } else if (rndVal.cell == 7) {
+    if (/e$/.test(curVerbEng)) {
+      curVerbEng = curVerbEng+'d';
+    } else {
+      curVerbEng = curVerbEng+'ed';
+    }
+
+    // замена на неправильный глагол
+    if (listPastSimple[rndVal.verb] != "") {
+      curVerbEng = listPastSimple[rndVal.verb];
+    }
+  }
+  return curVerbEng;
+}

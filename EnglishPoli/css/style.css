@@ -5,6 +5,9 @@ body {
   color: #333;
 }
 /* index.html */
+.container {
+  position: relative;
+}
 .menu-button {
   display: block;
   margin: 1rem auto;
@@ -43,9 +46,6 @@ body {
 }
 .intarface-button:focus {
   outline: none;
-}
-.container {
-  position: relative;
 }
 .aside {
   position: absolute;
@@ -92,7 +92,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 .menu-label,
-.label-word,
+.words-block__list-select,
 .label-lesson {
   display: block;
   font-size: 1.8rem;
@@ -104,36 +104,6 @@ input.check-icon,
 input.check-all-icon,
 input.check-lesson {
   margin-right: 1rem;
-}
-/* Large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) {
-  .aside-left[data-display="block"],
-  .aside-right[data-display="block"] {
-    display: none;
-  }
-}
-/* Medium devices (desktops, 992px and up) */
-/* Small devices (tablets, 768px and up) */
-@media (max-width: 768px) {
-  html {
-    font-size: 8px;
-  }
-  .menu-button {
-    margin: 0.8rem auto;
-    padding: 0.5rem 1rem;
-  }
-  .shema {
-    font-size: 12px;
-    height: 290px;
-  }
-  .fotorama__nav-wrap {
-    display: none;
-  }
-  .aside-left,
-  .aside-right {
-    max-width: 30rem;
-    width: 50%;
-  }
 }
 /*** Модальные окна ***/
 .modal {
@@ -208,8 +178,36 @@ input.check-lesson {
   padding: 10px;
   background-color: #e0ffe9;
 }
-@media (max-width: 600px) {
-  .menu-window {
+/* MEDIA QUERIES */
+@media (max-width: 1200px) {
+  .aside-left[data-display="block"],
+  .aside-right[data-display="block"] {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 8px;
+  }
+  .menu-button {
+    margin: 0.8rem auto;
+    padding: 0.5rem 1rem;
+  }
+  .shema {
+    font-size: 12px;
+    height: 290px;
+  }
+  .fotorama__nav-wrap {
+    display: none;
+  }
+  .aside-left,
+  .aside-right {
+    max-width: 30rem;
+    width: 50%;
+  }
+}
+@media (max-width: 480px) {
+  .modal__menu {
     max-width: 100%;
     top: 0;
     left: 0;
