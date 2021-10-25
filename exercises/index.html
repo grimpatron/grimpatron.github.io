@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-size: 28px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .textField {
+      border: 1px solid #999;
+      padding: 20px;
+      min-height: 200px;
+    }
+    input[type="button"] {
+      font-size: 26px;
+      padding: 0px 10px;
+    }
+    .button-block {
+      margin: 60px 0 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="textField"></div>
+  <div class="button-block">
+    <input type="button" id="do" value="do">
+    <input type="button" id="does" value="does">
+    <input type="button" id="don't" value="don't">
+    <input type="button" id="doesn't" value="doesn't">
+  </div>
+  <div>
+    <!-- <input type="button" value="Дальше" id="check"> -->
+    <input type="button" value="Далее" id="next">
+  </div>
+<script>
+  let textField = document.querySelector('.textField');
+  let str = '';
+  let original;
+  let current;
+  let questionArray = ["Where", "What", "How often", "When", "How"];
+  let pronounsArray = ["do you", "do we", "do	they", "does he", "does she", "does John", "does Lycy"];
+  let ending = [
+    ["go to school?", "come from?", "play tennis?", "live?", "eat lunch?"],
+    ["do?", "think about that?", "see in this photo?", "know about this?"],
+    ["go to the cinems?", "study English?", "come here?"],
+    ["get up?", "have breakfast?"],
+    ["get to work?"], "even know where I live?", "even know I'm here?"];
+  next.addEventListener('click', function goRND() {
+    textField.style.color="inherit";
+    let question = Math.floor(Math.random() * questionArray.length);
+    let pronouns = Math.floor(Math.random() * pronounsArray.length);
+    let endSentence = Math.floor(Math.random() * ending[question].length);
+    console.log(questionArray[question], pronounsArray[pronouns]);
+    str = `${questionArray[question]} ${pronounsArray[pronouns]} ${ending[question][endSentence]}`;
+    
+    original = str;
+
+    if ( str.includes('does') ) {
+      str = str.replace('does', '…');
+      textField.setAttribute('data-q', 'does');
+    }
+
+    if ( str.includes('do') ) {
+      str = str.replace('do', '…');
+      textField.setAttribute('data-q', 'do');
+    }
+
+    textField.innerHTML = str;
+  });
+
+  let qq_do = document.querySelector('#do');
+  qq_do.addEventListener('click', function qz(){
+    let str = textField.innerText;
+    str = str.replace('…', 'do');
+    current = str;
+    textField.innerText = str;
+    if (textField.getAttribute('data-q') == 'do') {
+      textField.style.color="green";
+    }else {
+      textField.style.color="red";
+    }
+  });
+
+  let qq_does = document.querySelector('#does');
+  qq_does.addEventListener('click', function qzs(){
+    let str = textField.innerText;
+    str = str.replace('…', 'does');
+    current = str;
+    textField.innerText = str;
+    if (textField.getAttribute('data-q') == 'does') {
+      textField.style.color="green";
+    }else {
+      textField.style.color="red";
+    }
+  });
+
+
+ 
+  // check.addEventListener('click', function goRND() {
+  //   if (original == current) {
+  //     textField.style.color="green";
+  //   } else {
+  //     textField.style.color="red";
+  //   }
+  // });
+
+  
+</script>
+</body>
+</html>
