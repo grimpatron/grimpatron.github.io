@@ -67,24 +67,25 @@
   margin: 15px auto;
   padding: 10px 10px;
   border: 1px solid #CCCCDD;
-  border-radius: 7px;
+  border-radius: 15px;
+}
+.page-info h4 {
+  border: 1px solid #C1C3D1;
+  padding: 5px;
+  background-color: #f3f6fd;
+  border-radius: 10px;
 }
 .page-info p {
   margin: 0.5em 0;
 }
-.text {
-  color: #666B85;
-  background-color: #FFFFFF;
-  font-size: 24px;
-  margin: 10px 10px 5px;
-  padding: 14px 10px;
-  border: 1px solid #C1C3D1;
-  border-radius: 8px;
+.page-info--hover p {
+  margin: 0.4em -11px;
+  padding: 0 10px;
 }
-.text p {
-  margin: 0.4em 0;
+.page-info--hover p:hover {
+  color: #FFFFFF;
+  background: #4E5066;
 }
-/***   УДАЛИТЬ   ***/
 /* ************************************** 255 code string **************************************** */
 /* Базовые стили страницы */
 body {
