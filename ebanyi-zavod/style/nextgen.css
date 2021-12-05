@@ -3,7 +3,8 @@
   border: 2px solid #bbb;
   border-radius: 6px;
   padding: 5px 3px;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-bottom: 3px;
   background-color: #eee;
 }
 
@@ -33,7 +34,8 @@
   color:#FFFFFF;
   background:#4E5066;
 }
-.accordion_target li:hover b{
+.accordion_target li:hover b, 
+.accordion_target li:hover i {
   color:#4E5066;
 }
 
