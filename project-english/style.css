@@ -13,28 +13,27 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
 }
-.logo {
+
+
+.header {
     background-color: rgb(180, 210, 210);
     display: flex;
     justify-content: center;
 }
-.graficlogo{
+.graficlogo {
     display: block;
     padding: 6px 5px;
     box-sizing: border-box;
-    max-height: 60px;
+    max-height: 55px;
     margin: 0 auto;
 }
-
-
-
-
 section {
     max-width: 800px; 
     margin: auto;
 }
-div.translate {
-    min-height: 300px;
+.translate {
+    /* min-height: 300px; */
+    margin-bottom: 80px;
 }
 div.translate p {
     width: 95%;
@@ -52,14 +51,14 @@ div.translate p {
 div.button {
     background-color: #eee;
     width: 60%;
-    margin: 20px auto;
+    margin: 25px auto;
     text-align: center;
     padding: 5px 15px;
     box-sizing: border-box;
     border-radius: 25px;
-    border: 2px solid #bbb;
+    border: 2px solid #ccc;
     font-size: 24px;
     cursor: pointer;
-    color: #666;
+    color: #777;
     text-transform: uppercase;
 }
