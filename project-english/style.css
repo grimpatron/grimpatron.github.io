@@ -18,17 +18,18 @@ body {
 
 
 .header {
-    background-color: rgb(180, 210, 210);
+    /* background-color: rgb(180, 210, 210); */
+    background-color: #1e6464;
     display: flex;
     justify-content: center;
 }
-.graficlogo {
+/* .graficlogo {
     display: block;
     padding: 6px 5px;
     box-sizing: border-box;
     max-height: 55px;
     margin: 0 auto;
-}
+} */
 section {
     max-width: 800px; 
     margin: auto;
@@ -75,4 +76,25 @@ div.button {
     cursor: pointer;
     color: #777;
     text-transform: uppercase;
+}
+
+
+
+
+@font-face {
+    font-family: 'DJB-Speak-Out';
+    src:  url('fonts/DJB-Speak-Out.ttf.woff') format('woff'),
+    url('fonts/DJB-Speak-Out.ttf.svg#DJB-Speak-Out') format('svg'),
+    url('fonts/DJB-Speak-Out.ttf.eot'),
+    url('fonts/DJB-Speak-Out.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+.speakout {
+    font-family: 'DJB-Speak-Out';
+    font-size: 36px;
+    color: #b4d2d2;
+}
+.speakout span {
+    color: #dddddd;
 }
