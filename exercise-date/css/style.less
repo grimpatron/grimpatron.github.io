@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+}
+
+.box-shadow-easy(){
+  box-shadow: 3px 3px 3px #d8d8d8;
+  border-radius: 5px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto 20px;
+  padding: 0 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.date-list {
+  display: inline-block;
+  width: 200px;
+  height: 220px;
+  background-color: rgb(223, 238, 237);
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(161, 161, 161);
+  padding: 20px;
+  text-align: center;
+  user-select: none;
+  margin-bottom: 80px;
+}
+.date-month {
+  background-color: rgb(164, 201, 235);
+  border-radius: 5px;
+  font-size: 26px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.date-number {
+  font-size: 60px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.date-year {
+  font-weight: 600;
+  font-size: 20px;
+}
+.date-decor {
+  // height: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.date-decor--hole {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: inset 10px 10px 10px rgb(161, 161, 161);
+}
+.date-answer {
+  .box-shadow-easy();
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 80px;
+  font-size: 17px;
+  background-color: rgb(223, 240, 231);
+  border: 1px solid rgb(200, 223, 211);
+  width: 100%;
+}
+
+.button {
+  .box-shadow-easy();
+  min-width: 200px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 42px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+}
