@@ -32,48 +32,59 @@ function yearAsAString() {
   if ( /20../.test(valuedDteYear) ) {
     XXxx = 'two thousand';
   } else {
-    XXxx = 'nineteen';
+    XXxx = numberUnits[Math.floor(valuedDteYear / 100) - 1];
   }
 
   xxXX = valuedDteYear % 100;
   
-  if (xxXX <=19) {
+  if (xxXX <=19 && xxXX >= 10) {
     xxXX = numberUnits[--xxXX];
+  } 
+  else if (xxXX < 10) {
+    xxXx = " and ";
+    xxxX = numberUnits[Math.floor(xxXX % 10 - 1)];
+    xxXX = `${xxXx}${xxxX}`;
   } else if (xxXX > 19) {
     xxXx = numberDozens[Math.floor(xxXX / 10 - 2)];
     xxxX = "-" + numberUnits[Math.floor(xxXX % 10 - 1)];
-
-    if (/...0/.test(valuedDteYear)) { xxxX = "" }
-    if (/..0./.test(valuedDteYear)) { xxXx = "" }
-
+    // if (/..0./.test(valuedDteYear)) { xxXx = "" }
+    // if (/...0/.test(valuedDteYear)) { xxxX = "" }
     xxXX = `${xxXx}${xxxX}`;
   }
 
 
-  
+  console.log(XXxx, ":", xxXX, ":", xxXx, ":", xxxX);
   return `${XXxx} ${xxXX}`;
 }
 
 function dateAsAString() {
-  return str = `The ${ordinalNumbersEng[valuedDteNumbers]} of ${valueDateMonth}, ${yearAsAString()}`;
+  return `The ${ordinalNumbersEng[valuedDteNumbers]} of ${valueDateMonth}, ${yearAsAString()}`;
 }
 
 
 action.addEventListener("click", () => {
   if (flag == false) {
-    calendarSheet.classList.add("animate__zoomIn");
-    // calendarSheet.classList.add("animate__fadeOutUpBig");
-    valuedDteNumbers = getRandomNumber(ordinalNumberNum.length);
-    dateNumber.innerHTML = ordinalNumberNum[valuedDteNumbers];
-    dateMonth.innerHTML = valueDateMonth = monthEng[getRandomNumber(monthEng.length)];
-    dateYear.innerHTML = valuedDteYear = getRandomArbitrary(1900, 2025);
-    dateAnswer.innerHTML = "";
-    action.innerHTML = "Answer";
-    flag = true;
+    if (calendarSheet.style.opacity == "1") {
+      calendarSheet.classList.add("animate__fadeOutUpBig");
+    }
+    setTimeout( anim, 100);
   } else {
-    calendarSheet.classList.remove("animate__zoomIn")
+    calendarSheet.classList.remove("animate__fadeOutUpBig");
+    calendarSheet.classList.remove("animate__zoomIn");
     dateAnswer.innerHTML = dateAsAString();
     action.innerHTML = "Next date";
     flag = false;
   }
 });
+
+function anim(){
+  calendarSheet.style.opacity = "1";
+  calendarSheet.classList.add("animate__zoomIn");
+  valuedDteNumbers = getRandomNumber(ordinalNumberNum.length);
+  dateNumber.innerHTML = ordinalNumberNum[valuedDteNumbers];
+  dateMonth.innerHTML = valueDateMonth = monthEng[getRandomNumber(monthEng.length)];
+  dateYear.innerHTML = valuedDteYear = getRandomArbitrary(1880, 2030);
+  action.innerHTML = "Answer";
+  dateAnswer.innerHTML = "";
+  flag = true;
+}

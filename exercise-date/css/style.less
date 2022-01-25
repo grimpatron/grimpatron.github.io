@@ -13,65 +13,81 @@ body {
 
 .container {
   max-width: 600px;
-  margin: 50px auto 20px;
-  padding: 0 10px;
+  margin: 40px auto 20px;
+  padding: 0 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.date-list {
-  display: inline-block;
-  width: 200px;
-  height: 220px;
-  background-color: rgb(223, 238, 237);
-  border-radius: 10px;
-  box-shadow: 10px 10px 10px rgb(161, 161, 161);
-  padding: 20px;
-  text-align: center;
-  user-select: none;
-  margin-bottom: 80px;
+
+.date{
+  &-list {
+    opacity: 0;
+    display: inline-block;
+    width: 200px;
+    height: 220px;
+    background-color: rgb(223, 238, 237);
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgb(161, 161, 161);
+    padding: 20px;
+    text-align: center;
+    user-select: none;
+    margin-bottom: 60px;
+  }
+  &-month {
+    background-color: rgb(164, 201, 235);
+    border-radius: 5px;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    padding: 1px;
+  }
+  &-number {
+    font-size: 56px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  &-year {
+    font-weight: 600;
+    font-size: 20px;
+  }
+  &-decor {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    &--hole {
+      display: inline-block;
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: inset 10px 10px 10px rgb(161, 161, 161);
+    }
+  }
+  &-answer {
+    .box-shadow-easy();
+    height: 60px;
+    line-height: 26px;
+    margin-bottom: 80px;
+    padding: 4px 10px;
+    font-size: 19px;
+    background-color: rgb(223, 240, 231);
+    border: 1px solid rgb(200, 223, 211);
+    width: 100%;
+    position: relative;
+    &::after {
+      left: 0;
+      top: 30px;
+      content: "";
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      background-color: rgb(200, 223, 211);
+    }
+  }
 }
-.date-month {
-  background-color: rgb(164, 201, 235);
-  border-radius: 5px;
-  font-size: 26px;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-.date-number {
-  font-size: 60px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-.date-year {
-  font-weight: 600;
-  font-size: 20px;
-}
-.date-decor {
-  // height: auto;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.date-decor--hole {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: inset 10px 10px 10px rgb(161, 161, 161);
-}
-.date-answer {
-  .box-shadow-easy();
-  height: 40px;
-  line-height: 40px;
-  margin-bottom: 80px;
-  font-size: 17px;
-  background-color: rgb(223, 240, 231);
-  border: 1px solid rgb(200, 223, 211);
-  width: 100%;
-}
+
 
 .button {
   .box-shadow-easy();

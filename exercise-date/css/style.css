@@ -7,14 +7,15 @@ body {
 }
 .container {
   max-width: 600px;
-  margin: 50px auto 20px;
-  padding: 0 10px;
+  margin: 40px auto 20px;
+  padding: 0 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .date-list {
+  opacity: 0;
   display: inline-block;
   width: 200px;
   height: 220px;
@@ -24,19 +25,20 @@ body {
   padding: 20px;
   text-align: center;
   user-select: none;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 .date-month {
   background-color: #a4c9eb;
   border-radius: 5px;
-  font-size: 26px;
+  font-size: 24px;
   text-transform: uppercase;
   margin-bottom: 15px;
+  padding: 1px;
 }
 .date-number {
-  font-size: 60px;
+  font-size: 56px;
   font-weight: 600;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .date-year {
   font-weight: 600;
@@ -49,8 +51,8 @@ body {
 }
 .date-decor--hole {
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   border-radius: 50%;
   background-color: #fff;
   box-shadow: inset 10px 10px 10px #a1a1a1;
@@ -58,13 +60,24 @@ body {
 .date-answer {
   box-shadow: 3px 3px 3px #d8d8d8;
   border-radius: 5px;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 26px;
   margin-bottom: 80px;
-  font-size: 17px;
+  padding: 4px 10px;
+  font-size: 19px;
   background-color: #dff0e7;
   border: 1px solid #c8dfd3;
   width: 100%;
+  position: relative;
+}
+.date-answer::after {
+  left: 0;
+  top: 30px;
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: #c8dfd3;
 }
 .button {
   box-shadow: 3px 3px 3px #d8d8d8;
