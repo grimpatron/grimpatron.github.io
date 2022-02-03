@@ -1,0 +1,39 @@
+.container {
+  margin: 0 auto;
+  text-align: center;
+  font-family: sans-serif;
+  max-width: 620px;
+}
+.word {
+  font-size: 22px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 100px;
+  position: relative;
+  &-rus {
+    border: 1px solid #000;
+    border-radius: 25px;
+    background-color: #f0fefa;
+  }
+  &-v1::before {
+    position: absolute;
+    left: 0;
+    content: 'v1.';
+  }
+  &-v2::before {
+    position: absolute;
+    left: 0;
+    content: 'v2.';
+  }
+  &-v3::before {
+    position: absolute;
+    left: 0;
+    content: 'v3.';
+  }
+}
+.btn {
+  margin-top: 100px;
+  font-size: 24px;
+}
