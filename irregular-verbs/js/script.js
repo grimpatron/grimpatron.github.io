@@ -5,7 +5,7 @@ let list = [
 ['begin', 'began', 'begun', 'начинать'],
 ['bend', 'bent', 'bent', 'гнуть'],
 ['bind', 'bound', 'bound', 'связывать'],
-  ['bet', 'bet', 'bet', 'держать пари'], 
+  // ['bet', 'bet', 'bet', 'держать пари'], 
 ['bite', 'bit', 'bitten', 'кусать'], 
 ['blow', 'blew', 'blown', 'дуть, выдыхать'], 
 ['break', 'broke', 'broken', 'ломать, разбивать, разрушать'], 
@@ -18,10 +18,11 @@ let list = [
 ['come', 'came', 'come', 'приходить, подходить'], 
 ['cost', 'cost', 'cost', 'стоить, обходиться'], 
 ['cut', 'cut', 'cut', 'резать, разрезать'], 
-  ['deal', 'dealt', 'dealt', 'иметь дело, распределять'], 
+  // ['deal', 'dealt', 'dealt', 'иметь дело, распределять'], 
 ['dig', 'dug', 'dug', 'копать, рыть'], 
 ['do', 'did', 'done', 'делать, выполнять'], 
 ['draw', 'drew', 'drawn', 'рисовать, чертить'], 
+['dream', 'dreamt', 'dreamt', 'мечтать'], 
 ['drink', 'drank', 'drunk', 'пить'], 
 ['drive', 'drove', 'driven', 'ездить, подвозить'],
 ['eat', 'ate', 'eaten', 'есть, поглощать, поедать'],
@@ -111,12 +112,16 @@ let input = document.querySelector("#answer_input");
 
 let cnt = -1;
 let flag = 0;
+let v1 = document.querySelector('#v1');
 
 check.addEventListener( 'click', () => {
   if (flag == 0) {
     v1.innerHTML = list[cnt][0];
     v2.innerHTML = list[cnt][1];
     v3.innerHTML = list[cnt][2];
+    // v2.classList.add('animate__zoomInRight');
+    // v1.classList.add('animate__zoomInRight');
+    // v3.classList.add('animate__zoomInRight');
     flag = 1;
   } else {
     step();
@@ -124,13 +129,11 @@ check.addEventListener( 'click', () => {
     v1.innerHTML = '';
     v2.innerHTML = '';
     v3.innerHTML = '';
+    // v1.classList.remove('animate__zoomInRight');
+    // v2.classList.remove('animate__zoomInRight');
+    // v3.classList.remove('animate__zoomInRight');
     flag = 0;
   }
-  // if (list[cnt][1] == input.value) {
-  //   console.log("da!");
-  // } else {
-  //   console.log("net!");
-  // }
 });
 
 step();
