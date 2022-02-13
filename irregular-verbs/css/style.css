@@ -11,6 +11,17 @@ body {
   font-family: sans-serif;
   max-width: 620px;
 }
+.mods {
+  display: flex;
+  margin: 0 5% 20px;
+}
+.mods--frequency {
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 18px;
+}
 .word {
   min-height: 50px;
   display: flex;
