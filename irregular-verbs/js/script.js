@@ -6,6 +6,7 @@ let word = document.querySelector("#word");
 let check = document.querySelector("#check");
 let input = document.querySelector("#answer_input");
 let frequency = document.querySelector("#frequency");
+let aaa = document.querySelector("#order");
 
 
 let cnt = -1;
@@ -32,6 +33,7 @@ function step() {
   if (cnt <= list.length - 2) {
     cnt++;
     rus.innerHTML = list[cnt][3];
+    order.innerHTML = cnt + 1;
   } else {
     word.innerHTML = "The end!";
     input.disabled = true;
@@ -43,12 +45,16 @@ frequency.addEventListener("click", () => {
     function (a, b) {
     if (parseInt(a[4]) > parseInt(b[4])) { return 1; }
     if (parseInt(a[4]) < parseInt(b[4])) { return -1; }
-    });
-    console.log(list);
+  });
+  reset();
+  frequency.classList.add("mods__frequency--active");
 });
 
 function reset() {
   cnt = -1;
   flag = 0;
+  v1.innerHTML = '';
+  v2.innerHTML = '';
+  v3.innerHTML = '';
   step();
 }

@@ -13,14 +13,29 @@ body {
 }
 .mods {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0 5% 20px;
 }
-.mods--frequency {
-  background-color: #4CAF50;
-  color: white;
+.mods__frequency {
+  background-color: white;
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
   padding: 4px 8px;
   border-radius: 10px;
   font-size: 18px;
+  cursor: pointer;
+}
+.mods__frequency--active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+.order {
+  background-color: #d8cfcf;
+  min-width: 36px;
+  padding: 4px 2px;
+  border-radius: 10px;
 }
 .word {
   min-height: 50px;
@@ -34,6 +49,7 @@ body {
   border-radius: 15px;
   background-color: #f0fefa;
   margin: 0 5% 20px;
+  height: 60px;
   border: 1px solid #d2efde;
 }
 .word-eng {
